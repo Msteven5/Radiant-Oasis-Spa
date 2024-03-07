@@ -13,11 +13,11 @@ const staffSchema = new Schema({
     required: true,
     trim: true,
   },
-  service: {
+  services: [{
     type: Schema.Types.ObjectId,
     ref: 'Services', 
     required: true,
-  },
+  }],
 });
 
 const Staff = mongoose.model('Staff', staffSchema);

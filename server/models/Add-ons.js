@@ -1,19 +1,26 @@
-const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
 
-const addOnSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
+const addOnSchema = new Schema(
+  {
+    addOnId: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId(),
+    },
+    addOnName: {
+      type: String,
+      required: true,
+      trim:true
+    },
+    addOnPrice: {
+      type: Number,
+      required: true,
+    }
   },
-  price: {
-    type: Number,
-    required: true
+  {
+    toJSON: {
+      getters: true,
+    },
   }
-});
+);
 
-const AddOn = mongoose.model('addOn', addOnSchema);
-
-module.exports = AddOn;
+module.exports = addOnSchema;

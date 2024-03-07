@@ -3,19 +3,16 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const serviceSchema = new Schema({
-  name: {
+  serviceName: {
     type: String,
     required: true,
     trim: true,
   },
-  price: {
+  servicePrice: {
     type: Number,
     required: true
   },
-  addOn: [{
-    type: Schema.Types.ObjectId,
-    ref: 'AddOn'
-  }],
+  addOn: [addOnSchema],
 });
 
 const Service = mongoose.model('Service', serviceSchema);
