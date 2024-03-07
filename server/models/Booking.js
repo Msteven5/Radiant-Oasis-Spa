@@ -21,6 +21,14 @@ const bookingSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Staff',
 
+  },
+  date: {
+    type: Date,
+    required: true
+  },
+  time: {
+    type: String,
+    required: true
   }
 });
 
