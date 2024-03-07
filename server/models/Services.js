@@ -12,7 +12,7 @@ const serviceSchema = new Schema({
     type: Number,
     required: true
   },
-  addOn: [addOnSchema],
+  addOns: [addOnSchema],
 });
 
 const Service = mongoose.model('Service', serviceSchema);
