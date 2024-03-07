@@ -4,11 +4,12 @@ import './index.css'
 
 import App from './App.jsx'
 import Home from './pages/Home';
-import Booking from './pages/Booking';
-import Error from './pages/Error';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import BookingHistory from './pages/BookingHistory'
+import Booking from './pages/Booking'
+import Conformation from './pages/Confirmation'
+import Error from './pages/Error'
 
 const router = createBrowserRouter([
   {
@@ -28,9 +29,18 @@ const router = createBrowserRouter([
       }, {
         path: '/BookingHistory',
         element: <BookingHistory />
-      }, {
-        path: '/products/:id',
+      },
+      {
+        path: '/Booking',
         element: <Booking />
+      },
+      {
+        path: '/Conformation',
+        element: <Conformation />
+      },
+      {
+        path: '/Error',
+        element: <Error />
       }
     ]
   }
