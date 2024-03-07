@@ -2,10 +2,6 @@
 
 const addOnSchema = new Schema(
   {
-    addOnId: {
-      type: Schema.Types.ObjectId,
-      default: () => new mongoose.Types.ObjectId(),
-    },
     addOnName: {
       type: String,
       required: true,
@@ -15,11 +11,6 @@ const addOnSchema = new Schema(
       type: Number,
       required: true,
     }
-  },
-  {
-    toJSON: {
-      getters: true,
-    },
   }
 );
 
