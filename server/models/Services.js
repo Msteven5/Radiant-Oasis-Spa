@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+const addOnSchema = require('./Add-ons'); 
+
 
 const serviceSchema = new Schema({
   serviceName: {
