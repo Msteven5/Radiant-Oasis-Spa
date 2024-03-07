@@ -1,155 +1,131 @@
-const db = require('./connection');
-const { User, Product, Category } = require('../models');
-const cleanDB = require('./cleanDB');
+const mongoose = require('mongoose');
+const User = require('./models/User');
+const Staff = require('./models/Staff');
+const Service = require('./models/Service');
+const Addon = require('./models/Addon');
+const Booking = require('./models/Booking');
 
-db.once('open', async () => {
-  await cleanDB('Category', 'categories');
-  await cleanDB('Product', 'products');
-  await cleanDB('User', 'users');
-
-  const categories = await Category.insertMany([
-    { name: 'Food' },
-    { name: 'Household Supplies' },
-    { name: 'Electronics' },
-    { name: 'Books' },
-    { name: 'Toys' },
-  ]);
-
-  console.log('categories seeded');
-
-  const products = await Product.insertMany([
-    {
-      name: 'Tin of Cookies',
-      description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      image: 'cookie-tin.jpg',
-      category: categories[0]._id,
-      price: 2.99,
-      quantity: 500,
-    },
-    {
-      name: 'Canned Coffee',
-      description:
-        'Praesent sed lacinia mauris. Nulla congue nibh magna, at feugiat nunc scelerisque quis. Donec iaculis rutrum vulputate. Suspendisse lectus sem, vulputate ac lectus sed, placerat consequat dui.',
-      image: 'canned-coffee.jpg',
-      category: categories[0]._id,
-      price: 1.99,
-      quantity: 500,
-    },
-    {
-      name: 'Toilet Paper',
-      category: categories[1]._id,
-      description:
-        'Donec volutpat erat erat, sit amet gravida justo sodales in. Phasellus tempus euismod urna. Proin ultrices nisi ut ipsum congue, vitae porttitor libero suscipit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam lacinia a nisi non congue.',
-      image: 'toilet-paper.jpg',
-      price: 7.99,
-      quantity: 20,
-    },
-    {
-      name: 'Handmade Soap',
-      category: categories[1]._id,
-      description:
-        'Praesent placerat, odio vel euismod venenatis, lectus arcu laoreet felis, et fringilla sapien turpis vestibulum nisl.',
-      image: 'soap.jpg',
-      price: 3.99,
-      quantity: 50,
-    },
-    {
-      name: 'Set of Wooden Spoons',
-      category: categories[1]._id,
-      description:
-        'Vivamus ut turpis in purus pretium mollis. Donec turpis odio, semper vel interdum ut, vulputate at ex. Duis dignissim nisi vel tortor imperdiet finibus. Aenean aliquam sagittis rutrum.',
-      image: 'wooden-spoons.jpg',
-      price: 14.99,
-      quantity: 100,
-    },
-    {
-      name: 'Camera',
-      category: categories[2]._id,
-      description:
-        'Vestibulum risus metus, luctus non tortor quis, tincidunt consectetur ex. Nullam vitae lobortis ligula, ut sagittis massa. Curabitur consectetur, tellus at pulvinar venenatis, erat augue cursus erat, eu ullamcorper eros lectus ultrices ipsum. Integer rutrum, augue vitae auctor venenatis, turpis turpis elementum orci, at sagittis risus mi a leo.',
-      image: 'camera.jpg',
-      price: 399.99,
-      quantity: 30,
-    },
-    {
-      name: 'Tablet',
-      category: categories[2]._id,
-      description:
-        'In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.',
-      image: 'tablet.jpg',
-      price: 199.99,
-      quantity: 30,
-    },
-    {
-      name: 'Tales at Bedtime',
-      category: categories[3]._id,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ornare diam quis eleifend rutrum. Aliquam nulla est, volutpat non enim nec, pharetra gravida augue. Donec vitae dictum neque. Pellentesque arcu lorem, fringilla non ligula ac, tristique bibendum erat. Ut a semper nibh. Quisque a mi et mi tempor ultricies. Maecenas eu ipsum eu enim hendrerit accumsan at euismod urna.',
-      image: 'bedtime-book.jpg',
-      price: 9.99,
-      quantity: 100,
-    },
-    {
-      name: 'Spinning Top',
-      category: categories[4]._id,
-      description:
-        'Ut vulputate hendrerit nibh, a placerat elit cursus interdum.',
-      image: 'spinning-top.jpg',
-      price: 1.99,
-      quantity: 1000,
-    },
-    {
-      name: 'Set of Plastic Horses',
-      category: categories[4]._id,
-      description:
-        'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
-      image: 'plastic-horses.jpg',
-      price: 2.99,
-      quantity: 1000,
-    },
-    {
-      name: 'Teddy Bear',
-      category: categories[4]._id,
-      description:
-        'Vestibulum et erat finibus erat suscipit vulputate sed vitae dui. Ut laoreet tellus sit amet justo bibendum ultrices. Donec vitae felis vestibulum, congue augue eu, finibus turpis.',
-      image: 'teddy-bear.jpg',
-      price: 7.99,
-      quantity: 100,
-    },
-    {
-      name: 'Alphabet Blocks',
-      category: categories[4]._id,
-      description:
-        'Morbi consectetur viverra urna, eu fringilla turpis faucibus sit amet. Suspendisse potenti. Donec at dui ac sapien eleifend hendrerit vel sit amet lectus.',
-      image: 'alphabet-blocks.jpg',
-      price: 9.99,
-      quantity: 600,
-    },
-  ]);
-
-  console.log('products seeded');
-
-  await User.create({
-    firstName: 'Pamela',
-    lastName: 'Washington',
-    email: 'pamela@testmail.com',
-    password: 'password12345',
-    orders: [
-      {
-        products: [products[0]._id, products[0]._id, products[1]._id],
-      },
-    ],
-  });
-
-  await User.create({
-    firstName: 'Elijah',
-    lastName: 'Holt',
-    email: 'eholt@testmail.com',
-    password: 'password12345',
-  });
-
-  console.log('users seeded');
-
-  process.exit();
+mongoose.connect('mongodb://localhost:27017/your-database-name', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
+
+const userData = [
+  {
+    firstName: 'John',
+    lastName: 'Smith',
+    birthday: new Date('1990-01-01'),
+    email: 'john@example.com',
+    password: 'password123',
+    bookings: [
+      { date: { date: new Date('2024-03-07'), time: '12:00 PM' }, services: [], staff: null },
+      { date: { date: new Date('2024-03-08'), time: '2:30 PM' }, services: [], staff: null },
+     
+    ],
+  },
+  {
+    firstName: 'Emma',
+    lastName: 'Johnson',
+    birthday: new Date('1985-05-15'),
+    email: 'emma@example.com',
+    password: 'password456',
+    bookings: [
+      { date: { date: new Date('2024-03-09'), time: '3:45 PM' }, services: [], staff: null },
+      { date: { date: new Date('2024-03-10'), time: '11:00 AM' }, services: [], staff: null },
+     
+    ],
+  },
+ 
+];
+
+const staffData = [
+  { firstName: 'Michael', lastName: 'Brown', assignedService: 'Manicure' },
+  { firstName: 'Jessica', lastName: 'Davis', assignedService: 'Pedicure' },
+  { firstName: 'Christopher', lastName: 'Wilson', assignedService: 'Massage' },
+  { firstName: 'Emily', lastName: 'Jones', assignedService: 'Facial' },
+  { firstName: 'Daniel', lastName: 'Taylor', assignedService: 'Manicure' },
+  { firstName: 'Sophia', lastName: 'Miller', assignedService: 'Massage' },
+  { firstName: 'Andrew', lastName: 'Anderson', assignedService: 'Facial' },
+  { firstName: 'Olivia', lastName: 'Moore', assignedService: 'Pedicure' },
+  
+];
+
+const serviceData = [
+  { serviceName: 'Manicure', price: 25.99, addons: [{ addonName: 'Nail Art', addonPrice: 5.99 }, { addonName: 'Cuticle Treatment', addonPrice: 3.99 }] },
+  { serviceName: 'Pedicure', price: 35.99, addons: [{ addonName: 'Foot Massage', addonPrice: 8.99 }, { addonName: 'Callus Removal', addonPrice: 4.99 }] },
+  { serviceName: 'Massage', price: 45.99, addons: [{ addonName: 'Aromatherapy', addonPrice: 7.99 }, { addonName: 'Hot Stones', addonPrice: 9.99 }] },
+  { serviceName: 'Facial', price: 55.99, addons: [{ addonName: 'Exfoliation', addonPrice: 6.99 }, { addonName: 'Mask', addonPrice: 5.99 }] },
+  
+];
+
+async function seedUsers() {
+  try {
+    await User.deleteMany({});
+    await User.create(userData);
+    console.log('User seed data inserted successfully.');
+  } catch (error) {
+    console.error('Error seeding user data:', error);
+  }
+}
+
+async function seedStaff() {
+  try {
+    await Staff.deleteMany({});
+    await Staff.create(staffData);
+    console.log('Staff seed data inserted successfully.');
+  } catch (error) {
+    console.error('Error seeding staff data:', error);
+  }
+}
+
+async function seedServicesAndAddons() {
+  try {
+    await Service.deleteMany({});
+    await Addon.deleteMany({});
+    const services = await Service.create(serviceData);
+
+    console.log('Service seed data inserted successfully.');
+    return services;
+  } catch (error) {
+    console.error('Error seeding service data:', error);
+  }
+}
+
+async function seedBookings(users, staff, services) {
+  try {
+    await Booking.deleteMany({});
+
+    users.forEach(async (user, index) => {
+      const bookings = user.bookings.map((booking) => {
+        return {
+          user: user._id,
+          staff: staff[index % staff.length]._id,
+          services: [services[index % services.length]._id],
+          date: booking.date,
+        };
+      });
+
+      await Booking.create(bookings);
+    });
+
+    console.log('Booking seed data inserted successfully.');
+  } catch (error) {
+    console.error('Error seeding booking data:', error);
+  } finally {
+    mongoose.disconnect();
+  }
+}
+
+async function seedData() {
+  await seedUsers();
+  await seedStaff();
+  const services = await seedServicesAndAddons();
+  await seedBookings(userData, staffData, services);
+}
+
+seedData();
+
+
+
+
+
