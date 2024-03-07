@@ -1,109 +1,94 @@
-const { User, Product, Category, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const { User, Staff, Services, Booking } = require('../models');
 
 const resolvers = {
   Query: {
-    categories: async () => Category.find(),
-    products: async (parent, { category, name }) => {
-      const params = {};
-
-      if (category) {
-        params.category = category;
-      }
-
-      if (name) {
-        params.name = {
-          $regex: name,
-        };
-      }
-
-      return Product.find(params).populate('category');
-    },
-    product: async (parent, { id }) =>
-      Product.findById(id).populate('category'),
-
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user.id).populate({
-          path: 'orders.products',
-          populate: 'category',
-        });
-
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
-
+    getUser: async (_, { userId }) => {
+      try {
+        const user = await User.findById(userId);
+        if (!user) {
+          throw new Error('User not found');
+        }
         return user;
+      } catch (error) {
+        throw new Error('Failed to fetch user');
       }
-
-      throw AuthenticationError;
     },
-    order: async (parent, { id }, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user.id).populate({
-          path: 'orders.products',
-          populate: 'category',
-        });
-
-        return user.orders.id(id);
+    
+    getStaff: async () => {
+      try {
+        return await Staff.find();
+      } catch (error) {
+        throw new Error('Failed to fetch staff');
       }
-
-      throw AuthenticationError;
+    },
+    getServices: async () => {
+      try {
+        return await Services.find();
+      } catch (error) {
+        throw new Error('Failed to fetch treatments');
+      }
+    },
+    getBookings: async () => {
+      try {
+        return await Booking.find();
+      } catch (error) {
+        throw new Error('Failed to fetch bookings');
+      }
     },
   },
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-
-      return { token, user };
+    createUser: async (_, args) => {
+      try {
+        const newUser = await User.create(args);
+        return newUser;
+      } catch (error) {
+        throw new Error('Failed to create user');
+      }
     },
-    addOrder: async (parent, { products }, context) => {
-      console.log(context);
-      if (context.user) {
-        const order = new Order({ products });
-
-        await User.findByIdAndUpdate(context.user.id, {
-          $push: { orders: order },
+    createBooking: async (_, { userId, services, staffId, date, time }) => {
+      try {
+        const serviceObjects = [];
+        for (const serviceData of services) {
+          const { serviceId, addOns } = serviceData;
+          const service = await Services.findById(serviceId);
+          if (!service) {
+            throw new Error(`Service not found`);
+          }
+          if (addOns && addOns.length > 0) {
+            service.addons.push(...addOns);
+          }
+          serviceObjects.push(service);
+        }
+        const newBooking = await Booking.create({
+          user: userId,
+          services: serviceObjects,
+          staff: staffId,
+          date,
+          time
         });
-
-        return order;
+        return newBooking;
+      } catch (error) {
+        throw new Error('Failure to create booking');
       }
-
-      throw AuthenticationError;
     },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findByIdAndUpdate(context.user.id, args, {
-          new: true,
-        });
+
+    login: async (_, { email, password }) => {
+      try {
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error('User not found');
+        }
+        
+        if (password !== user.password) {
+          throw new Error('Incorrect password');
+        }
+        // JWT token
+        const token = signToken({ userId: user._id }); 
+        return { token };
+      } catch (error) {
+        throw new AuthenticationError('Login failed'); 
       }
-
-      throw AuthenticationError;
-    },
-    updateProduct: async (parent, { id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
-
-      return Product.findByIdAndUpdate(
-        id,
-        { $inc: { quantity: decrement } },
-        { new: true }
-      );
-    },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw AuthenticationError;
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw AuthenticationError;
-      }
-
-      const token = signToken(user);
-
-      return { token, user };
     },
   },
 };
