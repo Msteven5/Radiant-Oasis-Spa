@@ -1,63 +1,67 @@
-const typeDefs = `
-  type Category {
-    _id: ID
-    name: String
-  }
+// schemas/typeDefs.js
 
-  type Product {
-    _id: ID
-    name: String
-    description: String
-    image: String
-    quantity: Int
-    price: Float
-    category: Category
-  }
+const { gql } = require('apollo-server-express');
 
-  type Order {
-    _id: ID
-    purchaseDate: String
-    products: [Product]
-  }
+const typeDefs = gql`
+# schemas/typeDefs.js
 
-  type User {
-    _id: ID
-    firstName: String
-    lastName: String
-    email: String
-    orders: [Order]
-  }
+type Auth {
+  token: ID! # JWT 
+  user: User! # Authenticated 
+}
 
-  type Auth {
-    token: ID
-    user: User
-  }
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  birthday: String
+  bookings: [Booking!]!
+}
 
-  type Query {
-    categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
-    user: User
-    order(_id: ID!): Order
-  }
+type Service {
+  id: ID!
+  name: String!
+  price: Float!
+  addOns: [AddOn!]!
+}
 
-  type Mutation {
-    addUser(
-      firstName: String!
-      lastName: String!
-      email: String!
-      password: String!
-    ): Auth
-    addOrder(products: [ID]!): Order
-    updateUser(
-      firstName: String
-      lastName: String
-      email: String
-      password: String
-    ): User
-    updateProduct(_id: ID!, quantity: Int!): Product
-    login(email: String!, password: String!): Auth
-  }
+type Staff {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  services: [Service!]!
+}
+
+type AddOn {
+  id: ID!
+  name: String!
+  price: Float!
+}
+
+type Booking {
+  id: ID!
+  user: User!
+  service: Service!
+  staff: Staff!
+  date: String!
+  time: String!
+}
+
+type Query {
+  getUsers: [User!]!
+  getUser(id: ID!): User
+  getStaff: [Staff!]!
+  getServices: [Service!]!
+  getBookings: [Booking!]!
+}
+
+type Mutation {
+  login (email: String!, password: String!): Auth! # Login mutation
+  logout: String! # Logout mutation
+  addUser (firstName: String!, lastName: String!, email: String!, password: String!, birthday: String): User!
+  createBooking (userId: ID!, serviceId: ID!, staffId: ID!, date: String!, time: String!): Booking!
+}
 `;
 
 module.exports = typeDefs;
