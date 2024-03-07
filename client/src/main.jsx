@@ -4,11 +4,12 @@ import './index.css'
 
 import App from './App.jsx'
 import Home from './pages/Home';
-import Detail from './pages/Detail';
-import NoMatch from './pages/NoMatch';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import OrderHistory from './pages/OrderHistory'
+import BookingHistory from './pages/BookingHistory'
+import Booking from './pages/Booking'
+import Conformation from './pages/Confirmation'
+import Error from './pages/Error'
 
 const router = createBrowserRouter([
   {
@@ -26,11 +27,20 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
-        path: '/orderHistory',
-        element: <OrderHistory />
-      }, {
-        path: '/products/:id',
-        element: <Detail />
+        path: '/BookingHistory',
+        element: <BookingHistory />
+      },
+      {
+        path: '/Booking',
+        element: <Booking />
+      },
+      {
+        path: '/Conformation',
+        element: <Conformation />
+      },
+      {
+        path: '/Error',
+        element: <Error />
       }
     ]
   }
