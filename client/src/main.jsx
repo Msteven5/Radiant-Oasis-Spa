@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import BookingHistory from './pages/BookingHistory'
 import Booking from './pages/Booking'
-import Conformation from './pages/Confirmation'
+import Confirmation from './pages/Confirmation'
 import Error from './pages/Error'
 
 const router = createBrowserRouter([
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
         element: <Booking />
       },
       {
-        path: '/Conformation',
-        element: <Conformation />
+        path: '/Confirmation',
+        element: <Confirmation />
       },
       {
         path: '/Error',
