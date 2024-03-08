@@ -1,4 +1,4 @@
-const typeDefs = gql`
+const typeDefs = `
 # schemas/typeDefs.js
 
 type Auth {

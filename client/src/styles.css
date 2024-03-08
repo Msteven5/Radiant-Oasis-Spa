@@ -1,5 +1,5 @@
 #carousel1 {
-    background-image: url(./client/public/images/aeroma.jpg);
+    background-image: url(./assets/aeroma.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -8,7 +8,7 @@
 }
 
 #carousel2 {
-    background-image: url(./client/public/images/sauna.jpg);
+    background-image: url(./assets/sauna.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -17,7 +17,7 @@
 }
 
 #carousel3 {
-    background-image: url(./client/public/images/stone.jpg);
+    background-image: url(./assets/stone.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -45,7 +45,7 @@
 #title-container {
     height:15%;
     margin-top:20px;
-    background-image: url(./client/public/images/Radiant\ oasis.png);
+    background-image: url(./assets/title.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position:start;
