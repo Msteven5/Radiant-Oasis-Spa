@@ -29,8 +29,8 @@ type User {
 
 type Service {
   id: ID!
-  name: String!
-  price: Float!
+  serviceName: String!
+  servicePrice: Float!
   addOns: [AddOn!]!
 }
 
