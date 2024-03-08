@@ -1,16 +1,24 @@
-const models = require('../models');
-const db = require('../config/connection');
+// cleanDB.js
+const { User, Staff, Services, Booking } = require('../models');
 
-module.exports = async (modelName, collectionName) => {
+const cleanDB = async (modelName, collectionName) => {
   try {
-    let modelExists = await models[modelName].db.db.listCollections({
-      name: collectionName
-    }).toArray()
-
-    if (modelExists.length) {
-      await db.dropCollection(collectionName);
+    if (modelName === 'User') {
+      await User.deleteMany({});
+    } else if (modelName === 'Staff') {
+      await Staff.deleteMany({});
+    } else if (modelName === 'Services') {
+      await Services.deleteMany({});
+    } else if (modelName === 'Booking') {
+      await Booking.deleteMany({});
+    } else {
+      console.error(`Unknown model: ${modelName}`);
     }
-  } catch (err) {
-    throw err;
+    console.log(`${collectionName} collection cleaned`);
+  } catch (error) {
+    console.error(`Error cleaning ${collectionName} collection:`, error);
   }
-}
+};
+
+module.exports = cleanDB;
+

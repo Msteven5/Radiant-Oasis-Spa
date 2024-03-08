@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError } = require('../utils/auth');
-const { User, Staff, Service, Booking } = require('../models');
+const { User, Staff, Services, Booking } = require('../models');
 
 const resolvers = {
   Query: {
@@ -23,7 +23,7 @@ const resolvers = {
     },
     getServices: async () => {
       try {
-        return await Service.find();
+        return await Services.find();
       } catch (error) {
         throw new Error('Failed to fetch services');
       }
