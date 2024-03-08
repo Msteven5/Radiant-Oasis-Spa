@@ -19,18 +19,18 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                   <ul className="navbar-nav me-auto mb-2 mb-md-0">
                     <li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="#services">Services Available</a>
+                      <a className="nav-link active mx-3" aria-current="page" href="#services">Services Available</a>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link active" to="/Booking">Book Your Appointment</Link>
+                      <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="/" onClick={() => Auth.logout()}>
+                      <a className="nav-link active mx-3" aria-current="page" href="/" onClick={() => Auth.logout()}>
                         Logout
                       </a>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link active" to="/BookingHistory">Booking History</Link>
+                      <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
                     </li>
                   </ul>
                   <form className="d-flex">
@@ -59,13 +59,13 @@ function Nav() {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                   <ul className="navbar-nav me-auto mb-2 mb-md-0">
                     <li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="#services">Services Available</a>
+                      <a className="nav-link active mx-3" aria-current="page" href="#services">Services Available</a>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link active" to="/Booking">Book Your Appointment</Link>
+                      <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link active" to="/signup">Sign Up</Link>
+                      <Link className="nav-link active mx-3" to="/signup">Sign Up</Link>
                     </li>
                   </ul>
                   <form className="d-flex">
