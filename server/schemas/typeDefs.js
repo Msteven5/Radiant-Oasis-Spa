@@ -1,8 +1,4 @@
-// schemas/typeDefs.js
-
-// const { gql } = require('apollo-server-express');
-
-const typeDefs = `
+const typeDefs = gql`
 # schemas/typeDefs.js
 
 type Auth {
