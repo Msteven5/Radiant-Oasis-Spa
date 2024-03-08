@@ -24,7 +24,7 @@ type User {
   lastName: String!
   email: String!
   birthday: String
-  bookings: [Booking!]!
+  bookings: [Booking]
 }
 
 type Service {
@@ -43,8 +43,8 @@ type Staff {
 
 type AddOn {
   id: ID!
-  name: String!
-  price: Float!
+  addOnName: String!
+  addOnPrice: Float!
 }
 
 type Booking {
