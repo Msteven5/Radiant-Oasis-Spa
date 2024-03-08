@@ -23,3 +23,5 @@ export const GET_BOOKINGS = gql`
     }
   }
 `;
+
+// NEED TO ADD MORE INFO TO THIS FILE

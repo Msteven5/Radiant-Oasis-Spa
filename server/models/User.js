@@ -26,7 +26,7 @@ const userSchema = new Schema({
     minlength: 5,
   },
   birthday:{
-    type: Date,
+    type: String,
     
   },
   bookings: [{
