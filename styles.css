@@ -1,32 +1,81 @@
 #carousel1 {
-    background-image: url(./client/public/images/sauna.jpg);
-    background-size:cover;
+    background-image: url(./client/public/images/aeroma.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-position: center;
-    height:700px;
+    height: 700px;
 }
 
 #carousel2 {
-    background-image: url(./client/public/images/aeroma.jpg);
-    background-size:cover;
+    background-image: url(./client/public/images/sauna.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-position: center;
-    height:700px;
+    height: 700px;
 }
 
 #carousel3 {
-    background-image: url(./client/public/images/mudmask.jpg);
-    background-size:cover;
+    background-image: url(./client/public/images/stone.jpg);
+    background-size: cover;
     background-repeat: no-repeat;
-    background-attachment:fixed;
+    background-attachment: fixed;
     background-position: center;
-    height:700px;
+    height: 700px;
+}
+
+
+.light-text {
+    color: #a28e7b;
+}
+
+.dark-text {
+    color: #231a11;
+}
+
+.dark-background {
+    background-color: #231a11;
+}
+
+.gold-background {
+    background-color: #a68e45;
+}
+
+#title-container {
+    height:15%;
+    margin-top:20px;
+    background-image: url(./client/public/images/Radiant\ oasis.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position:start;
+}
+
+#title {
+    height: 35%;
+    width: 15%;
+    margin-top:5px;
+}
+
+.modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
 }
 
 @media only screen and (max-width: 1100px) {
-    #carousel1, #carousel2, #carousel3 {
-      height:450px;
+
+    #carousel1,
+    #carousel2,
+    #carousel3 {
+        height: 450px;
     }
-  }
+    #title {
+        height: 10%;
+        width: 5%;
+    }
+}
