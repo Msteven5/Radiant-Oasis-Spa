@@ -40,7 +40,7 @@ const userData = [
 
 const staffData = [
   { firstName: 'Michael', lastName: 'Brown', services: 'Manicure' },
-  { firstName: 'Jessica', lastName: 'Davis', services: 'Pedicure' },
+  { firstName: 'Jessica', lastName: 'Davis', services: 'Yoga' },
   { firstName: 'Christopher', lastName: 'Wilson', services: 'Massage' },
   { firstName: 'Emily', lastName: 'Jones', services: 'Facial' },
   { firstName: 'Daniel', lastName: 'Taylor', services: 'Manicure' },
@@ -55,6 +55,7 @@ const serviceData = [
   { serviceName: 'Pedicure', servicePrice: 35.99, addons: [{ addonName: 'Foot Massage', addonPrice: 8.99 }, { addonName: 'Callus Removal', addonPrice: 4.99 }] },
   { serviceName: 'Massage', servicePrice: 45.99, addons: [{ addonName: 'Aromatherapy', addonPrice: 7.99 }, { addonName: 'Hot Stones', addonPrice: 9.99 }] },
   { serviceName: 'Facial', servicePrice: 55.99, addons: [{ addonName: 'Exfoliation', addonPrice: 6.99 }, { addonName: 'Mask', addonPrice: 5.99 }] },
+  { serviceName: 'Yoga', servicePrice: 30.00}
   
 ];
 
