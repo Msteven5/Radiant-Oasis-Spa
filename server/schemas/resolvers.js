@@ -3,9 +3,9 @@ const { User, Staff, Services, Booking } = require('../models');
 
 const resolvers = {
   Query: {
-    getUser: async (_, { userId }) => {
+    getUser: async (_, { id }) => {
       try {
-        const user = await User.findById(userId);
+        const user = await User.findById(id);
         if (!user) {
           throw new Error('User not found');
         }
@@ -14,10 +14,9 @@ const resolvers = {
         throw new Error('Failed to fetch user');
       }
     },
-    
     getStaff: async () => {
       try {
-        return await Staff.find();
+        return await Staff.find().populate('services');
       } catch (error) {
         throw new Error('Failed to fetch staff');
       }
@@ -26,7 +25,7 @@ const resolvers = {
       try {
         return await Services.find();
       } catch (error) {
-        throw new Error('Failed to fetch treatments');
+        throw new Error('Failed to fetch services');
       }
     },
     getBookings: async () => {

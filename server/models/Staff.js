@@ -15,7 +15,7 @@ const staffSchema = new Schema({
   },
   services: [{
     type: Schema.Types.ObjectId,
-    ref: 'Services', 
+    ref: 'Service', 
     required: true,
   }],
 });

@@ -1,5 +1,17 @@
 const typeDefs = `
-# schemas/typeDefs.js
+
+input ServiceInput {
+  id: ID!
+  name: String!
+  price: Float!
+  addOns: [AddOnInput] # Optional add-ons
+}
+
+input AddOnInput {
+  id: ID!
+  name: String!
+  price: Float!
+}
 
 type Auth {
   token: ID! # JWT 
@@ -12,13 +24,13 @@ type User {
   lastName: String!
   email: String!
   birthday: String
-  bookings: [Booking!]!
+  bookings: [Booking]
 }
 
 type Service {
   id: ID!
-  name: String!
-  price: Float!
+  serviceName: String!
+  servicePrice: Float!
   addOns: [AddOn!]!
 }
 
@@ -31,8 +43,8 @@ type Staff {
 
 type AddOn {
   id: ID!
-  name: String!
-  price: Float!
+  addOnName: String!
+  addOnPrice: Float!
 }
 
 type Booking {
@@ -53,11 +65,12 @@ type Query {
 }
 
 type Mutation {
-  login (email: String!, password: String!): Auth! # Login mutation
+  login(email: String!, password: String!): Auth! # Login mutation
   logout: String! # Logout mutation
-  addUser (firstName: String!, lastName: String!, email: String!, password: String!, birthday: String): User!
-  createBooking (userId: ID!, serviceId: ID!, staffId: ID!, date: String!, time: String!): Booking!
+  createUser(firstName: String!, lastName: String!, email: String!, password: String!, birthday: String): User!
+  createBooking(userId: ID!, services: [ServiceInput]!, staffId: ID!, date: String!, time: String!): Booking!
 }
+
 `;
 
 module.exports = typeDefs;

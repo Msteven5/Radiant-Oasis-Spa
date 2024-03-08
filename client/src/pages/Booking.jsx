@@ -55,4 +55,4 @@ function Detail() {
   );
 }
 
-export default Detail;
+export default Booking

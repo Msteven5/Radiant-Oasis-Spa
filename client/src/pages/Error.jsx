@@ -1,4 +1,5 @@
 // import Jumbotron from "../components/Jumbotron";
+// import Jumbotron from "../components/Jumbotron";
 
 const NoMatch = () => {
   return (
@@ -15,4 +16,4 @@ const NoMatch = () => {
   );
 };
 
-export default NoMatch;
+// export default NoMatch;
