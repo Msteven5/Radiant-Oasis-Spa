@@ -11,30 +11,32 @@
  padding: 10px;
  border-radius: 100%;
  font-size: 18px;
- background-color: white;
+ background-color: transparent;
  border: none;
  cursor: pointer;
 }
 
-.chatbot-button:hover {
- padding: 10px;
- border-radius: 100%;
- font-size: 18px;
- background-color: #a68e45;
- border: none;
- cursor: pointer;
-}
+
 
 .chatbot-icon {
  width: 75px;
  height: 75px;
+ 
+}
+img {
+ opacity: 100%;
+}
+
+.chatbot-icon:hover {
+ width: 80px;
+ height: 80px;
 }
 
 .chatbot-container {
  position: fixed;
  top: 50%;
  right: 20px;
- transform: translateY(-10%);
+ transform: translateY(-30%);
  z-index: 10000;
 }
 

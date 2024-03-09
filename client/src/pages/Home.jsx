@@ -15,7 +15,7 @@ import Worker2 from "../assets/worker2.jpg"
 import Worker3 from "../assets/worker3.jpg"
 import MyComponent from "../components/ChatBot/Index"
 import React, { useState } from 'react';
-import Logo from "../assets/logo.png"
+import Logo from "../assets/logoBubble.png"
 import './Home.css';
 
 const Home = () => {
