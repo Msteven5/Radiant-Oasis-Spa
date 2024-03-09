@@ -1,0 +1,66 @@
+
+
+.chatbot-button-container {
+ position: fixed;
+ top: 85%;
+ right: 20px;
+ z-index: 9999;
+}
+
+.chatbot-button {
+ padding: 10px;
+ border-radius: 100%;
+ font-size: 18px;
+ background-color: white;
+ border: none;
+ cursor: pointer;
+}
+
+.chatbot-button:hover {
+ padding: 10px;
+ border-radius: 100%;
+ font-size: 18px;
+ background-color: #a68e45;
+ border: none;
+ cursor: pointer;
+}
+
+.chatbot-icon {
+ width: 75px;
+ height: 75px;
+}
+
+.chatbot-container {
+ position: fixed;
+ top: 50%;
+ right: 20px;
+ transform: translateY(-10%);
+ z-index: 10000;
+}
+
+.close-button {
+ position: absolute;
+ top: 0px;
+ right: 0px;
+ font-size: 16px;
+ padding: 5px;
+ width: 50px;
+ border-radius: 10%;
+ background: #a68e45;
+ color: white;
+ border: none;
+ cursor: pointer;
+}
+.close-button:hover {
+ position: absolute;
+ top: 0px;
+ right: 0px;
+ font-size: 16px;
+ padding: 5px;
+ width: 50px;
+ border-radius: 10%;
+ background: #6b5b2c;
+ color: white;
+ border: none;
+ cursor: pointer;
+}
