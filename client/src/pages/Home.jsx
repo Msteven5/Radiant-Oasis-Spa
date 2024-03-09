@@ -182,7 +182,7 @@ const Home = () => {
               <p className="lead ps-5 light-text">Indulge in the epitome of pampering with our exquisite manicure services at Radiant Oasis. Our skilled and experienced nail technicians are dedicated to enhancing the natural beauty of your hands, leaving them soft, polished, and impeccably groomed.</p>
             </div>
             <div className="col-md-5">
-              <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
+              <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
                 src={Manicure} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
             </div>
@@ -191,7 +191,7 @@ const Home = () => {
 
         <hr className="featurette-divider py-5 m-0" />
 
-        <div className="row featurette my-5 pt-4">
+        <div className="row featurette mx-4 my-5 pt-4">
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading text-end dark-text">Pedicure</h2>
             <p className="lead text-end dark-text">Step into indulgence with our revitalizing pedicure services. Our expert pedicurists deliver a blissful experience, focusing on meticulous nail care and relaxation. Sit back and unwind as we pamper your feet with a soothing soak, precise nail shaping, and a decadent massage. Choose from our curated selection of vibrant polish colors for a touch of personal flair.</p>
@@ -215,24 +215,24 @@ const Home = () => {
               <p className="lead ps-5 light-text">Rejuvenate your skin with our luxurious facials. Our skilled estheticians offer a personalized experience, cleansing, exfoliating, and nourishing your skin to unveil a radiant glow. Indulge in a moment of pure relaxation as our expert hands work to enhance your natural beauty. Choose from our range of rejuvenating facials tailored to address your unique skincare needs. Elevate your self-care routine and embrace a refreshed, luminous complexion.</p>
             </div>
             <div className="col-md-5">
-              <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
+              <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
                 src={Facial} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
-              
+
             </div>
           </div>
         </article>
 
         <hr className="featurette-divider py-5 m-0" />
 
-        <div className="row featurette my-5 pt-4">
+        <div className="row featurette mx-4 my-5 pt-4">
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading text-end dark-text">Massage</h2>
             <p className="lead text-end dark-text">Embark on a journey of tranquility with our rejuvenating massages. Our skilled therapists craft a personalized experience, expertly kneading away tension and promoting relaxation. Surrender to the soothing ambiance as our skilled hands work to release stress from your muscles. Choose from our diverse massage options, each designed to cater to your specific needs. Immerse yourself in a moment of serenity and let the cares of the world melt away, leaving you renewed and revitalized.</p>
           </div>
           <div className="col-md-5 order-md-1">
             <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
-              src= {Massage3} role="img" preserveAspectRatio="xMidYMid slice"
+              src={Massage3} role="img" preserveAspectRatio="xMidYMid slice"
               focusable="false" />
 
           </div>

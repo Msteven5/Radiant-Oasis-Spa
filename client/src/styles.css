@@ -1,7 +1,10 @@
 body {
-    font-family: "Aclonica", sans-serif;
+    font-family: "Tenor Sans", sans-serif;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: "Aclonica", sans-serif;
+}
 
 #carousel1 {
     background-image: url(./assets/aeroma.jpg);
