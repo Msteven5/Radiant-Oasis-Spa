@@ -2,7 +2,7 @@
 
 .chatbot-button-container {
  position: fixed;
- top: 85%;
+ bottom: 10px;
  right: 20px;
  z-index: 9999;
 }
@@ -21,7 +21,7 @@
 .chatbot-icon {
  width: 75px;
  height: 75px;
- 
+
 }
 img {
  opacity: 100%;
@@ -34,9 +34,8 @@ img {
 
 .chatbot-container {
  position: fixed;
- top: 50%;
+ bottom: 20px;
  right: 20px;
- transform: translateY(-30%);
  z-index: 10000;
 }
 
