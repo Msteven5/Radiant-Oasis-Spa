@@ -4,11 +4,11 @@ import './styles.css'
 
 import App from './App.jsx'
 import Home from './pages/Home';
-// import Login from './pages/Login';
-// import Signup from './pages/Signup';
-// import BookingHistory from './pages/BookingHistory'
-// import Booking from './pages/Booking'
-// import Confirmation from './pages/Confirmation'
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import BookingHistory from './pages/BookingHistory'
+import Booking from './pages/Booking'
+import Confirmation from './pages/Confirmation'
 import Error from './pages/Error'
 
 const router = createBrowserRouter([
@@ -16,37 +16,36 @@ const router = createBrowserRouter([
     path: '/',
     element: <App />,
     errorElement: <Error />,
-    children:[
+    children: [
       {
         index: true,
         element: <Home />
-      // }, {
-      //   path: '/login',
-      //   element: <Login />
-      // }, {
-      //   path: '/signup',
-      //   element: <Signup />
-      // }, {
-      //   path: '/BookingHistory',
-      //   element: <BookingHistory />
-      // },
-      // {
-      //   path: '/Booking',
-      //   element: <Booking />
-      // },
-      // {
-      //   path: '/Confirmation',
-      //   element: <Confirmation />
-      // },
-      // {
-      //   path: '/Error',
-      //   element: <Error />
-      // }
+      }, {
+        path: '/login',
+        element: <Login />
+      }, {
+        path: '/signup',
+        element: <Signup />
+      }, {
+        path: '/BookingHistory',
+        element: <BookingHistory />
+      },
+      {
+        path: '/Booking',
+        element: <Booking />
+      },
+      {
+        path: '/Confirmation',
+        element: <Confirmation />
+      },
+      {
+        path: '/Error',
+        element: <Error />
       }
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-<RouterProvider router={router} />
+  <RouterProvider router={router} />
 )
