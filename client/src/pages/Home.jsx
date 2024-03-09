@@ -13,12 +13,44 @@ import Stone from "../assets/stone.jpg"
 import Worker1 from "../assets/worker1.jpg"
 import Worker2 from "../assets/worker2.jpg"
 import Worker3 from "../assets/worker3.jpg"
+import MyComponent from "../components/ChatBot/Index"
+import React, { useState } from 'react';
+import Logo from "../assets/logoBubble.png"
+import './Home.css';
 
 const Home = () => {
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  const toggleChatbot = () => {
+    setShowChatbot(!showChatbot);
+  };
+
+  const closeChatbot = () => {
+    setShowChatbot(false);
+  };
+
   return (
     <>
-      <main>
+     
+     <div className="chatbot-button-container">
+        <button onClick={toggleChatbot} className="chatbot-button">
+          <img src={Logo} alt="Chatbot Icon" className="chatbot-icon" />
+        </button>
+      </div>
 
+      {showChatbot && (
+        <div className="chatbot-container">
+          <MyComponent />
+          {/* Close button */}
+          <button onClick={closeChatbot} className="close-button">
+            X
+          </button>
+        </div>
+      )}
+
+      <main>
+       
+      
         <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
           <div className="carousel-indicators">
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" className="active"
@@ -26,7 +58,7 @@ const Home = () => {
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-
+        
           <div className="carousel-inner">
             <div className="carousel-item active" id="carousel1">
               <div className="d-flex justify-content-center" id="title-container">
