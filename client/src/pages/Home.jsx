@@ -65,9 +65,9 @@ const Home = () => {
               </div>
               <div className="container">
                 <div className="carousel-caption text-start">
-                  <h1>Example headline.</h1>
-                  <p>Some representative placeholder content for the first slide of the carousel.</p>
-                  <p><a className="btn btn-md gold-background text-light btn-dark" href="#">Sign up today</a></p>
+                  <h1></h1>
+                  <p>Rejuvenate Your Senses, Renew Your Spirit: Your Oasis of Serenity Awaits</p>
+                  <p><a className="btn btn-md gold-background text-light btn-dark" href="#">BOOK NOW</a></p>
                 </div>
               </div>
             </div>
@@ -76,8 +76,8 @@ const Home = () => {
 
               <div className="container">
                 <div className="carousel-caption">
-                  <h1>Another example headline.</h1>
-                  <p>Some representative placeholder content for the second slide of the carousel.</p>
+                  <h1>Enjoy our theraputic sauna</h1>
+                  <p>We offer breathwork and yoga sessions here</p>
                   <p><a className="btn btn-md gold-background text-light btn-dark" href="#">Learn more</a></p>
                 </div>
               </div>
@@ -87,9 +87,9 @@ const Home = () => {
 
               <div className="container">
                 <div className="carousel-caption text-end">
-                  <h1>One more for good measure.</h1>
-                  <p>Some representative placeholder content for the third slide of this carousel.</p>
-                  <p><a className="btn btn-md gold-background text-light btn-dark" href="#">Browse gallery</a></p>
+                  <h1>Relaxation like never before</h1>
+                  <p>Ask your massage thereapist about our hot stone treatment.</p>
+                  <p><a className="btn btn-md gold-background text-light btn-dark" href="#staff">Meet The Staff</a></p>
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@ const Home = () => {
 
         <div className="container-fluid marketing py-5">
           <div className="container marketing py-5">
-            <h2 className="text-center my-3">Meet the Staff</h2>
+            <h2 className="text-center my-3" id="staff">Meet the Staff</h2>
             <div className="row mt-5">
               <div className="col-lg-4">
                 <img className="bd-placeholder-img img-fluid rounded-circle" width="140" height="140"
@@ -115,7 +115,7 @@ const Home = () => {
                   focusable="false" />
 
                 <h2 className="py-3">Andrew Anderson</h2>
-                <p>Aromatherapy and Nail Expert.</p>
+                <p>Specializes in facials</p>
                 <p className="py-4"><a className="btn gold-background" href="#">Book Now &raquo;</a></p>
               </div>
               <div className="col-lg-4">
@@ -125,7 +125,7 @@ const Home = () => {
 
 
                 <h2 className="py-3">Michael Brown</h2>
-                <p>Massage Therapist and Mixology Expert.</p>
+                <p>Expert Manicurist</p>
                 <p className="py-4"><a className="btn gold-background" href="#">Book Now &raquo;</a></p>
               </div>
               <div className="col-lg-4">
@@ -144,8 +144,8 @@ const Home = () => {
                   src={Worker3} role="img" preserveAspectRatio="xMidYMid slice"
                   focusable="false" />
 
-                <h2 className="py-3">Michael Brown</h2>
-                <p>Massage Therapist and Mixology Expert.</p>
+                <h2 className="py-3">Christopher Wilson</h2>
+                <p>Master Massage Therapist</p>
                 <p className="py-4"><a className="btn gold-background" href="#">Book Now &raquo;</a></p>
               </div>
               <div className="col-lg-4">
@@ -153,8 +153,8 @@ const Home = () => {
                   src={Worker3} role="img" preserveAspectRatio="xMidYMid slice"
                   focusable="false" />
 
-                <h2 className="py-3">Michael Brown</h2>
-                <p>Massage Therapist and Mixology Expert.</p>
+                <h2 className="py-3">Olivia Moore</h2>
+                <p>Specialty Pedicurist</p>
                 <p className="py-4"><a className="btn gold-background" href="#">Book Now &raquo;</a></p>
               </div>
               <div className="col-lg-4">
@@ -162,8 +162,8 @@ const Home = () => {
                   src={Worker3} role="img" preserveAspectRatio="xMidYMid slice"
                   focusable="false" />
 
-                <h2 className="py-3">Michael Brown</h2>
-                <p>Massage Therapist and Mixology Expert.</p>
+                <h2 className="py-3">Emily Jones</h2>
+                <p>Master Facialist</p>
                 <p className="py-4"><a className="btn gold-background" href="#">Book Now &raquo;</a></p>
               </div>
 
@@ -177,12 +177,9 @@ const Home = () => {
 
           <div className="row featurette my-5 pt-4">
             <div className="col-md-7">
-              <h2 className="featurette-heading light-text ps-5">Manicure! It’ll blow your mind.</h2>
+              <h2 className="featurette-heading light-text ps-5">Manicure</h2>
 
-              <p className="lead ps-5 light-text">Some great placeholder content for the first featurette here.
-                Imagine some
-                exciting
-                prose here.</p>
+              <p className="lead ps-5 light-text">Indulge in the epitome of pampering with our exquisite manicure services at Radiant Oasis. Our skilled and experienced nail technicians are dedicated to enhancing the natural beauty of your hands, leaving them soft, polished, and impeccably groomed.</p>
             </div>
             <div className="col-md-5">
               <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
@@ -196,9 +193,8 @@ const Home = () => {
 
         <div className="row featurette my-5 pt-4">
           <div className="col-md-7 order-md-2">
-            <h2 className="featurette-heading text-end dark-text">Oh yeah, it’s that good. See for yourself.</h2>
-            <p className="lead text-end dark-text">Another featurette? Of course. More placeholder content here to
-              give you an idea of how this layout would work with some actual real-world content in place.</p>
+            <h2 className="featurette-heading text-end dark-text">Pedicure</h2>
+            <p className="lead text-end dark-text">Step into indulgence with our revitalizing pedicure services. Our expert pedicurists deliver a blissful experience, focusing on meticulous nail care and relaxation. Sit back and unwind as we pamper your feet with a soothing soak, precise nail shaping, and a decadent massage. Choose from our curated selection of vibrant polish colors for a touch of personal flair.</p>
           </div>
           <div className="col-md-5 order-md-1">
             <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
@@ -214,12 +210,9 @@ const Home = () => {
 
           <div className="row featurette my-5 pt-4">
             <div className="col-md-7">
-              <h2 className="featurette-heading light-text ps-5">Massage! It’ll blow your mind.</h2>
+              <h2 className="featurette-heading light-text ps-5">Facial</h2>
 
-              <p className="lead ps-5 light-text">Some great placeholder content for the first featurette here.
-                Imagine some
-                exciting
-                prose here.</p>
+              <p className="lead ps-5 light-text">Rejuvenate your skin with our luxurious facials. Our skilled estheticians offer a personalized experience, cleansing, exfoliating, and nourishing your skin to unveil a radiant glow. Indulge in a moment of pure relaxation as our expert hands work to enhance your natural beauty. Choose from our range of rejuvenating facials tailored to address your unique skincare needs. Elevate your self-care routine and embrace a refreshed, luminous complexion.</p>
             </div>
             <div className="col-md-5">
               <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
@@ -234,9 +227,8 @@ const Home = () => {
 
         <div className="row featurette my-5 pt-4">
           <div className="col-md-7 order-md-2">
-            <h2 className="featurette-heading text-end dark-text">Oh yeah, it’s that good. See for yourself.</h2>
-            <p className="lead text-end dark-text">Another featurette? Of course. More placeholder content here to
-              give you an idea of how this layout would work with some actual real-world content in place.</p>
+            <h2 className="featurette-heading text-end dark-text">Massage</h2>
+            <p className="lead text-end dark-text">Embark on a journey of tranquility with our rejuvenating massages. Our skilled therapists craft a personalized experience, expertly kneading away tension and promoting relaxation. Surrender to the soothing ambiance as our skilled hands work to release stress from your muscles. Choose from our diverse massage options, each designed to cater to your specific needs. Immerse yourself in a moment of serenity and let the cares of the world melt away, leaving you renewed and revitalized.</p>
           </div>
           <div className="col-md-5 order-md-1">
             <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
