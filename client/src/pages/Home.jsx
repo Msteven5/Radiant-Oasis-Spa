@@ -153,7 +153,7 @@ const Home = () => {
                 prose here.</p>
             </div>
             <div className="col-md-5">
-              <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
+              <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
                 src={Manicure} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
             </div>
@@ -162,7 +162,7 @@ const Home = () => {
 
         <hr className="featurette-divider py-5 m-0" />
 
-        <div className="row featurette my-5 pt-4">
+        <div className="row featurette mx-4 my-5 pt-4">
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading text-end dark-text">Oh yeah, it’s that good. See for yourself.</h2>
             <p className="lead text-end dark-text">Another featurette? Of course. More placeholder content here to
@@ -190,17 +190,17 @@ const Home = () => {
                 prose here.</p>
             </div>
             <div className="col-md-5">
-              <img className="bd-placeholder-img ms-3 py-5 img-fluid" width="750" height="750"
+              <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
                 src={Facial} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
-              
+
             </div>
           </div>
         </article>
 
         <hr className="featurette-divider py-5 m-0" />
 
-        <div className="row featurette my-5 pt-4">
+        <div className="row featurette mx-4 my-5 pt-4">
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading text-end dark-text">Oh yeah, it’s that good. See for yourself.</h2>
             <p className="lead text-end dark-text">Another featurette? Of course. More placeholder content here to
@@ -208,7 +208,7 @@ const Home = () => {
           </div>
           <div className="col-md-5 order-md-1">
             <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
-              src= {Massage3} role="img" preserveAspectRatio="xMidYMid slice"
+              src={Massage3} role="img" preserveAspectRatio="xMidYMid slice"
               focusable="false" />
 
           </div>
