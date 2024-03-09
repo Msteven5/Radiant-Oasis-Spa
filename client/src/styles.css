@@ -1,3 +1,8 @@
+body {
+    font-family: "Aclonica", sans-serif;
+}
+
+
 #carousel1 {
     background-image: url(./assets/aeroma.jpg);
     background-size: cover;
@@ -43,26 +48,29 @@
 }
 
 #title-container {
-    height:15%;
-    margin-top:20px;
+    height: 15%;
+    margin-top: 20px;
     background-image: url(./assets/title.png);
     background-size: contain;
     background-repeat: no-repeat;
-    background-position:start;
+    background-position: start;
 }
 
 #title {
     height: 35%;
     width: 15%;
-    margin-top:5px;
+    margin-top: 5px;
 }
 
-.modal-header, h4, .close {
+.modal-header,
+h4,
+.close {
     background-color: #5cb85c;
-    color:white !important;
+    color: white !important;
     text-align: center;
     font-size: 30px;
 }
+
 .modal-footer {
     background-color: #f9f9f9;
 }
@@ -74,8 +82,28 @@
     #carousel3 {
         height: 450px;
     }
+
     #title {
         height: 10%;
         width: 5%;
     }
+}
+
+
+.fugaz-one-regular {
+    font-family: "Fugaz One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.aclonica-regular {
+    font-family: "Aclonica", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+} 
+
+.tenor-sans-regular {
+    font-family: "Tenor Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
