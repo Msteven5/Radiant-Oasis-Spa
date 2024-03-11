@@ -1,7 +1,10 @@
 // import Jumbotron from "../components/Jumbotron";
 // import Jumbotron from "../components/Jumbotron";
+import { useRouteError } from 'react-router-dom'
 
 const NoMatch = () => {
+  const error = useRouteError();
+  console.error(error)
   return (
     <div>
       {/* <Jumbotron> */}

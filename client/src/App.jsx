@@ -26,18 +26,19 @@ const httpLink = createHttpLink({
 
 const client = new ApolloClient({
   // link: authLink.concat(httpLink),
+  uri: '/graphql',
   cache: new InMemoryCache()
 });
 
 function App() {
   return (
-    
-      <div>
-        {/* <StoreProvider> */}
+    <ApolloProvider client={client}>
+
+      <div className='vw-100 vh-100'>
           <Nav />
           <Outlet />
-        {/* </StoreProvider> */}
       </div>
+    </ApolloProvider>
  
   );
 }

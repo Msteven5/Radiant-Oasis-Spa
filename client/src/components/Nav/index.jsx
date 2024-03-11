@@ -9,9 +9,9 @@ function Nav() {
           <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
               <div className="container-fluid">
-                <a className="navbar-brand" href="#">
+                <Link to="/" className="navbar-brand">
                   <img className="navbar-brand" src={Logo} alt="" width="45" height="50" />
-                </a>
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                   aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
@@ -49,9 +49,9 @@ function Nav() {
           <header>
             <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
               <div className="container-fluid">
-                <a className="navbar-brand" href="#">
-                  <img className="navbar-brand" src={Logo} width="45" height="50" />
-                </a>
+              <Link to="/" className="navbar-brand">
+                  <img className="navbar-brand" src={Logo} alt="" width="45" height="50" />
+                </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                   aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@ function Nav() {
                       <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                     </li>
                     <li className="nav-item">
-                      <Link className="nav-link active mx-3" to="/signup">Sign Up</Link>
+                      <Link className="nav-link active mx-3" to="/Signup">Sign Up</Link>
                     </li>
                   </ul>
                   <form className="d-flex">

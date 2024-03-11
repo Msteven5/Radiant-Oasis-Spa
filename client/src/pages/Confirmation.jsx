@@ -1,6 +1,7 @@
 import Pedicure from "../assets/Pedicure.jpg"
 
 const Confirmation = () => {
+    return (
     <div className="row featurette mx-4 my-5 pt-4">
           <div className="col-md-7 order-md-2">
             <h2 className="featurette-heading text-end dark-text">Pedicure</h2>
@@ -13,6 +14,7 @@ const Confirmation = () => {
 
           </div>
         </div>
+    )
 }
 
 export default Confirmation;
