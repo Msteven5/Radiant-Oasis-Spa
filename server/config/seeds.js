@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Staff , Services } = require('../models');
+const { User, Staff , Services, Booking} = require('../models');
 const cleanDB = require('./cleanDB');
 
 
@@ -32,6 +32,12 @@ const staff = await Staff.insertMany([
   { firstName: 'Sophia', lastName: 'Miller', services: services.find(service => service.serviceName === 'Massage')._id },
   { firstName: 'Andrew', lastName: 'Anderson', services: services.find(service => service.serviceName === 'Facial')._id },
   { firstName: 'Olivia', lastName: 'Moore', services: services.find(service => service.serviceName === 'Pedicure')._id },
+])
+
+const booking = await Booking.insertMany([
+    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-19-2024'), time:'3:30 PM' },
+    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-18-2024'), time:'2:30 PM' },
+    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-20-2024'), time:'5:30 PM' }
 ])
 
 
