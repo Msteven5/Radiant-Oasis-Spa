@@ -50,7 +50,7 @@ type AddOn {
 type Booking {
   _id: ID
   user: User
-  service: Service
+  service: [Service]
   staff: Staff
   date: String
   time: String
