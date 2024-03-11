@@ -19,6 +19,7 @@ const BookingHistory = () => {
         </tr>
       </thead>
       <tbody>
+        {/* for each booking that the user has i need a row. booking.serviceName, booking.Staff, booking.date, booking.time, service.Price */}
         <tr>
           <td>Manicure</td>
           <td>Otto</td>
