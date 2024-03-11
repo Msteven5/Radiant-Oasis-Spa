@@ -31,9 +31,20 @@ export const GET_SERVICES = gql`
 export const GET_BOOKINGS = gql`
   query GetBookings {
     getBookings {
-      id
+      _id
+      service
+      staff 
+      date 
+      time
     }
   }
+`;
+
+export const GET_USER = gql`
+query GetUser {
+  getUser
+}
+}
 `;
 
 // NEED TO ADD MORE INFO TO THIS FILE

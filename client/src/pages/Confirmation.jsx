@@ -1,20 +1,30 @@
-import Pedicure from "../assets/Pedicure.jpg"
+import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
+import massageimg from '../assets/candle2.jpg'
 
-const Confirmation = () => {
-    return (
-    <div className="row featurette mx-4 my-5 pt-4">
-          <div className="col-md-7 order-md-2">
-            <h2 className="featurette-heading text-end dark-text">Pedicure</h2>
-            <p className="lead text-end dark-text">Step into indulgence with our revitalizing pedicure services. Our expert pedicurists deliver a blissful experience, focusing on meticulous nail care and relaxation. Sit back and unwind as we pamper your feet with a soothing soak, precise nail shaping, and a decadent massage. Choose from our curated selection of vibrant polish colors for a touch of personal flair.</p>
-          </div>
-          <div className="col-md-5 order-md-1">
-            <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
-              src={Pedicure} role="img" preserveAspectRatio="xMidYMid slice"
-              focusable="false" />
-
-          </div>
-        </div>
-    )
+function WithHeaderExample() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '100px', height:'100vh' }}>
+      <h1 style={{marginBottom:60}}>Radiant Oasis Awaits you</h1>
+      <Card style={{ backgroundColor: '#a68e45', color: '#231a11', maxWidth: '70%', border:'none', marginBottom:60 }}>
+        <Card.Header>Thanks for Booking!</Card.Header>
+        <Card.Body>
+          <Card.Title>[service]</Card.Title>
+          <Card.Text>
+            Your appointment with [name] has been scheduled at [date&time].
+            You will be sent a confirmation text at [users phone number]
+          </Card.Text>
+          <Button style={{ backgroundColor: '#231a11', color: '#a28e7b', border: 'none' }}>Reschedule or Cancel</Button>
+        </Card.Body>
+      </Card>
+      <div style={{margin:'20px', height:600, width:600}}>
+      <Image src={massageimg} style={{height: 'auto', width: '100%'}} fluid />
+      </div>
+    </div>
+  );
 }
 
-export default Confirmation;
+export default WithHeaderExample;
+
