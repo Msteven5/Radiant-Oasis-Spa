@@ -2,10 +2,10 @@ import { gql } from '@apollo/client';
 
 export const CREATE_USER = gql`
   mutation CreateUser(
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-    $password: String!
+    $firstName: String
+    $lastName: String
+    $email: String
+    $password: String
     $birthday: Date
   ) {
     createUser(
@@ -29,11 +29,11 @@ export const CREATE_USER = gql`
 export const CREATE_BOOKING = gql`
   mutation 
   CreateBooking(
-    $userId: ID!, 
-    $services: [ServiceInput]!, 
-    $staffId: ID!, 
-    $date: String!, 
-    $time: String!
+    $userId: ID, 
+    $services: [ServiceInput], 
+    $staffId: ID, 
+    $date: String, 
+    $time: String
     ) {
     createBooking
     (userId: $userId, 
@@ -51,8 +51,8 @@ export const CREATE_BOOKING = gql`
 export const LOGIN = gql`
   mutation 
   Login(
-    $email: String!, 
-    $password: String!
+    $email: String, 
+    $password: String
     ) {
     login
     (email: $email, 

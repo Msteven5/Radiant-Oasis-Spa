@@ -49,8 +49,8 @@ const resolvers = {
       try {
         const serviceObjects = [];
         for (const serviceData of services) {
-          const { serviceId, addOns } = serviceData;
-          const service = await Services.findById(serviceId);
+          const { _id, addOns } = serviceData;
+          const service = await Services.findById(_id);
           if (!service) {
             throw new Error(`Service not found`);
           }
@@ -58,7 +58,7 @@ const resolvers = {
             service.addons.push(...addOns);
           }
           serviceObjects.push(service);
-        }
+        } 
         const newBooking = await Booking.create({
           user: userId,
           services: serviceObjects,
