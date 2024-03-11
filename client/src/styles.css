@@ -2,7 +2,11 @@ body {
     font-family: "Tenor Sans", sans-serif;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: "Aclonica", sans-serif;
 }
 
@@ -33,6 +37,9 @@ h1, h2, h3, h4, h5 {
     height: 700px;
 }
 
+.gold-text {
+    color: #a68e45
+}
 
 .light-text {
     color: #a28e7b;
@@ -42,12 +49,17 @@ h1, h2, h3, h4, h5 {
     color: #231a11;
 }
 
-.dark-background {
-    background-color: #231a11;
-}
 
 .gold-background {
     background-color: #a68e45;
+}
+
+.light-background {
+    background-color: #a28e7b;
+}
+
+.dark-background {
+    background-color: #231a11;
 }
 
 #title-container {
@@ -78,19 +90,6 @@ h4,
     background-color: #f9f9f9;
 }
 
-@media only screen and (max-width: 1100px) {
-
-    #carousel1,
-    #carousel2,
-    #carousel3 {
-        height: 450px;
-    }
-
-    #title {
-        height: 10%;
-        width: 5%;
-    }
-}
 
 
 .fugaz-one-regular {
@@ -103,10 +102,53 @@ h4,
     font-family: "Aclonica", sans-serif;
     font-weight: 400;
     font-style: normal;
-} 
+}
 
 .tenor-sans-regular {
     font-family: "Tenor Sans", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+@media only screen and (max-width: 1100px) {
+
+    #carousel1,
+    #carousel2,
+    #carousel3 {
+        height: 450px;
+    }
+
+    #title {
+        height: 10%;
+        width: 5%;
+    }
+
+}
+
+@media only screen and (max-width: 750px) {
+
+    #booking1,
+    #booking2 {
+        display: none !important;
+    }
+
+    .bookingPage {
+        display: flex;
+        justify-content: center;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        background-image: url(./assets/flower.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #bookNow {
+        color: white;
+    }
+
+    #bookingForm {
+        width: 325px;
+    }
+
 }
