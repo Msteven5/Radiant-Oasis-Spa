@@ -5,7 +5,6 @@ import './styles.css'
 import App from './App.jsx'
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
 import BookingHistory from './pages/BookingHistory'
 import Booking from './pages/Booking'
 import Confirmation from './pages/Confirmation'
@@ -23,10 +22,8 @@ const router = createBrowserRouter([
       }, {
         path: '/login',
         element: <Login />
-      }, {
-        path: '/signup',
-        element: <Signup />
-      }, {
+      }, 
+       {
         path: '/BookingHistory',
         element: <BookingHistory />
       },
