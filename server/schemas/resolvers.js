@@ -30,7 +30,7 @@ const resolvers = {
     },
     getBookings: async () => {
       try {
-        return await Booking.find();
+        return await Booking.find().populate("service");
       } catch (error) {
         throw new Error('Failed to fetch bookings');
       }
@@ -50,6 +50,7 @@ const resolvers = {
         const serviceObjects = [];
         for (const serviceData of services) {
           const { _id, addOns } = serviceData;
+          console.log(_id)
           const service = await Services.findById(_id);
           if (!service) {
             throw new Error(`Service not found`);
@@ -57,17 +58,20 @@ const resolvers = {
           if (addOns && addOns.length > 0) {
             service.addons.push(...addOns);
           }
-          serviceObjects.push(service);
+          serviceObjects.push(service._id);
         } 
+        console.log(serviceObjects)
         const newBooking = await Booking.create({
           user: userId,
-          services: serviceObjects,
+          service: serviceObjects,
           staff: staffId,
           date,
           time
         });
-        return newBooking;
+console.log( await newBooking.populate("service"))
+        return await newBooking.populate("service");
       } catch (error) {
+        console.log(error)
         throw new Error('Failure to create booking');
       }
     },
