@@ -39,7 +39,7 @@ class Auth {
 
   login(token) {
    
-    this.setToken(token);
+    localStorage.setItem('id_token', token);
    // window.location.assign('/login'); 
    // redirect use if neeeded
   }
