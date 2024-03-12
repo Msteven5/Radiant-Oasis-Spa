@@ -40,10 +40,11 @@ export const GET_BOOKINGS = gql`
   }
 `;
 
-export const GET_USER = gql`
-query GetUser {
-  getUser
-}
-`;
+// export const GET_USER = gql`
+// query GetUser {
+//   getUser {
+// }
+// }
+// `;
 
 // NEED TO ADD MORE INFO TO THIS FILE
