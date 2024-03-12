@@ -35,9 +35,9 @@ const staff = await Staff.insertMany([
 ])
 
 const booking = await Booking.insertMany([
-    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-19-2024'), time:'3:30 PM' },
-    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-18-2024'), time:'2:30 PM' },
-    {user:'65eb79a143f69f7887f42631', service:'65eb79a143f69f7887f42634', staff:'65eb79a143f69f7887f42642', date: new Date('01-20-2024'), time:'5:30 PM' }
+    {user:'65ef5952790252be302ea017', service:'65efb9c0d29d47dbcc3991bd', staff:'65ef5952790252be302ea028', date: new Date('01-19-2024'), time:'3:30 PM' },
+    {user:'65ef5952790252be302ea017', service:'65efb9c0d29d47dbcc3991bd', staff:'65ef5952790252be302ea028', date: new Date('01-18-2024'), time:'2:30 PM' },
+    {user:'65ef5952790252be302ea017', service:'65efb9c0d29d47dbcc3991bd', staff:'65ef5952790252be302ea028', date: new Date('01-20-2024'), time:'5:30 PM' }
 ])
 
 

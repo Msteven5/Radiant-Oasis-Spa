@@ -11,31 +11,35 @@ import { GET_BOOKINGS } from '../utils/queries';
 const BookingHistory = () => {
   const { loading, data } = useQuery(GET_BOOKINGS); 
   const bookings = data ? data.bookings : [];
+  console.log(bookings)
 
   return (
     <>
-      <Table striped hover style={{ marginTop: 30 }}>
-        <thead>
-          <tr>
-            <th>Service</th>
-            <th>Staff Member</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking.id}> 
-              <td>{booking.service}</td>
-              <td>{booking.staff}</td>
-              <td>{booking.date}</td>
-              <td>{booking.time}</td>
-              <td>{booking.service.servicePrice}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+    <Table striped hover style={{ marginTop: 30 }}>
+  <thead>
+    <tr>
+      <th>Service</th>
+      <th>Staff Member</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    {bookings && bookings.map((booking) => (  
+      <tr key={booking.id}>
+        {console.log(booking.time)}
+        <td>{booking.service}</td>
+        <td>{booking.staff}</td>
+        <td>{booking.date}</td>
+        <td>{booking.time}</td>
+        <td>{booking.service?.servicePrice || 'N/A'}</td>
+      </tr>
+    ))}
+  </tbody>
+</Table>
+
+
       <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}>
         <Card style={{ maxWidth: '50rem', fontSize: 20, backgroundColor: '#a68e45', color: '#231a11' }}>
           <Card.Body>
