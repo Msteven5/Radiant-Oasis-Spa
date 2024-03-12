@@ -48,7 +48,7 @@ const SignupModal = ({ isOpen, onClose }) => {
         </button>
 
         <h2 className='text-center gold-text my-3'>Signup</h2>
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} />
           <div className="d-flex justify-content-end">
             <label htmlFor="firstName" className='me-3 light-text'>First Name:</label>
             <input
@@ -155,7 +155,7 @@ const SignupModal = ({ isOpen, onClose }) => {
         )}
       </div>
     </div>
-  );
-};
+  </div>
+  )}
 
 export default SignupModal;

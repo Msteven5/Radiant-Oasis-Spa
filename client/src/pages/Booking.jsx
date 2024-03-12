@@ -1,15 +1,13 @@
-// import { useEffect, useState } from 'react';
-// import { Link, useParams } from 'react-router-dom';
-// import { useStoreContext } from '../utils/GlobalState';
-// import { GET_SERVICES } from '../utils/queries';
-
+import { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { GET_STAFF } from '../utils/queries';
+import { GET_STAFF, GET_STAFFMEMBER, GET_SERVICES, GET_SINGLE_SERVICE } from '../utils/queries';
+import { useLazyQuery } from '@apollo/client';
 
 import Candle from "../assets/candle.jpg"
 import Flower from "../assets/flower.jpg"
 
 const Booking = () => {
+
   const { data: staffData, error } = useQuery(GET_STAFF)
   if (error) {
     console.log(error);
@@ -27,6 +25,56 @@ const Booking = () => {
     ));
   });
 
+  let hourList = staffMembers.map(function (staff) {
+    return staff.hours.map(function (hour) {
+      return <option>{hour}</option>;
+    })
+  });
+
+  let addOnsList = staffMembers.map(function (staff) {
+    return staff.services.map(service => (
+      <li key={service.id}> {service.addOns.addOnName} (${service.addOns.addOnPrice}) </li>
+    ));
+  });
+
+  
+  const [formState, setFormState] = useState({
+    staffId: '',
+    serviceId: '',
+  });
+  
+  const handleStaffChange = (event) => {
+    const { key } = event.target;
+    if (key) {
+      setFormState({ staffId: key });
+    }
+  }
+  const handleServiceChange = (event) => {
+    const { key } = event.target;
+    if (key) {
+      setFormState({ serviceId: key });
+    }
+  }
+
+  const [getSingleService, { loading, error: services, data: getServices }] = useLazyQuery(GET_SINGLE_SERVICE);
+  const [getStaffMember, { loading: staff, error: staffMember, data: staffmember }] = useLazyQuery(GET_STAFFMEMBER);
+  
+  function updateStaff() {
+    getStaffMember({
+      variables: { 
+        id: [...formState.staffId],
+      },
+    });
+  }
+  
+  function updateService() {
+    getSingleService({
+      variables: { 
+        id: [...formState.serviceId],
+      },
+    });
+  }
+  
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
@@ -44,25 +92,6 @@ const Booking = () => {
           <form className=" mt-5 rounded-2">
             <h1 className="text-center gold-text py-3" id="bookNow">Book Now</h1>
 
-            <input className="form-control my-2 text-center light-background" type="date"></input>
-
-            <div class="dropdown my-2">
-              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Available Times
-              </button>
-              <ul class="dropdown-menu w-100 text-center">
-                <li>8:00a - 9:00a</li>
-                <li>9:00a - 10:00a</li>
-                <li>10:00a - 11:00a</li>
-                <li>11:00a - 12:00p</li>
-                <li>12:00p - 1:00p</li>
-                <li>1:00p - 2:00a</li>
-                <li>2:00p - 3:00a</li>
-                <li>3:00p - 4:00a</li>
-                <li>4:00p - 5:00a</li>
-              </ul>
-            </div>
-
             <div class="dropdown my-2">
               <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Services
@@ -74,12 +103,33 @@ const Booking = () => {
 
             <div class="dropdown my-2">
               <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Add Ons
+              </button>
+              <ul class="dropdown-menu w-100 text-center">
+                {addOnsList}
+              </ul>
+            </div>
+
+            <input className="form-control my-2 text-center text-light light-background" type="date"></input>
+            
+            <div class="dropdown my-2">
+              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Staff Member
               </button>
               <ul class="dropdown-menu w-100 text-center">
                 {staffList}
               </ul>
             </div>
+
+            <div class="dropdown my-2">
+              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Available Times
+              </button>
+              <ul class="dropdown-menu w-100 text-center">
+                {hourList}
+              </ul>
+            </div>
+
 
             <button type="submit" className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
           </form>
