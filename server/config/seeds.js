@@ -24,14 +24,14 @@ const services = await Services.insertMany([
 
 
 const staff = await Staff.insertMany([
-  { firstName: 'Michael', lastName: 'Brown', services: services.find(service => service.serviceName === 'Manicure')._id },
-  { firstName: 'Jessica', lastName: 'Davis', services: services.find(service => service.serviceName === 'Yoga')._id },
-  { firstName: 'Christopher', lastName: 'Wilson', services: services.find(service => service.serviceName === 'Massage')._id },
-  { firstName: 'Emily', lastName: 'Jones', services: services.find(service => service.serviceName === 'Facial')._id },
-  { firstName: 'Daniel', lastName: 'Taylor', services: services.find(service => service.serviceName === 'Manicure')._id },
-  { firstName: 'Sophia', lastName: 'Miller', services: services.find(service => service.serviceName === 'Massage')._id },
-  { firstName: 'Andrew', lastName: 'Anderson', services: services.find(service => service.serviceName === 'Facial')._id },
-  { firstName: 'Olivia', lastName: 'Moore', services: services.find(service => service.serviceName === 'Pedicure')._id },
+  { firstName: 'Michael', lastName: 'Brown', services: services.find(service => service.serviceName === 'Manicure')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
+  { firstName: 'Jessica', lastName: 'Davis', services: services.find(service => service.serviceName === 'Yoga')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
+  { firstName: 'Christopher', lastName: 'Wilson', services: services.find(service => service.serviceName === 'Massage')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
+  { firstName: 'Emily', lastName: 'Jones', services: services.find(service => service.serviceName === 'Facial')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
+  { firstName: 'Daniel', lastName: 'Taylor', services: services.find(service => service.serviceName === 'Manicure')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
+  { firstName: 'Sophia', lastName: 'Miller', services: services.find(service => service.serviceName === 'Massage')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
+  { firstName: 'Andrew', lastName: 'Anderson', services: services.find(service => service.serviceName === 'Facial')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
+  { firstName: 'Olivia', lastName: 'Moore', services: services.find(service => service.serviceName === 'Pedicure')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
 ])
 
 

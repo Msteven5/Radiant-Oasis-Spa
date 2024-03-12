@@ -38,6 +38,7 @@ const typeDefs = `
     firstName: String
     lastName: String
     services: [Service]
+    hours: [String]
   }
 
   type AddOn {
@@ -61,6 +62,8 @@ const typeDefs = `
     getStaff: [Staff]
     getServices: [Service]
     getBookings: [Booking]
+    getStaffMember(_id: ID): Staff
+    getSingleService(_id: ID): Service
   }
 
   type Mutation {
