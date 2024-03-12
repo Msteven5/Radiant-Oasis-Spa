@@ -28,9 +28,14 @@ const resolvers = {
         throw new Error('Failed to fetch services');
       }
     },
-    getBookings: async () => {
+    getBookings: async (parent, args, context, info) => {
       try {
-        return await Booking.find().populate("service");
+        if(context.user){
+          const user = await User.findById(context.user._id).populate("bookings")
+          return user
+        }
+        throw AuthenticationError
+
       } catch (error) {
         throw new Error('Failed to fetch bookings');
       }

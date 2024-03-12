@@ -29,15 +29,21 @@ export const GET_SERVICES = gql`
 `;
 
 export const GET_BOOKINGS = gql`
-  query GetBookings {
-    getBookings {
-      _id
-      service
-      staff 
-      date 
-      time
+query GetBookings($userId: ID!) {
+  getBookings (userID: $userID){
+    _id
+    service{
+      serviceName
+      servicePrice
     }
+    staff{
+      firstName
+      lastName
+    }
+    date
+    time
   }
+}
 `;
 
 // export const GET_USER = gql`

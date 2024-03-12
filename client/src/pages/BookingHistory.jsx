@@ -33,7 +33,7 @@ const BookingHistory = () => {
         <td>{booking.staff}</td>
         <td>{booking.date}</td>
         <td>{booking.time}</td>
-        <td>{booking.service?.servicePrice || 'N/A'}</td>
+        <td>{booking.service.serviceName}</td>
       </tr>
     ))}
   </tbody>

@@ -60,7 +60,7 @@ const typeDefs = `
     getUser(id: ID): User
     getStaff: [Staff]
     getServices: [Service]
-    getBookings: [Booking]
+    getBookings: User
   }
 
   type Mutation {
