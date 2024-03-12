@@ -67,13 +67,13 @@ const Booking = () => {
     });
   }
   
-  function updateService() {
-    getSingleService({
-      variables: { 
-        id: [...formState.serviceId],
-      },
-    });
-  }
+  // function updateService() {
+  //   getSingleService({
+  //     variables: { 
+  //       id: [...formState.serviceId],
+  //     },
+  //   });
+  // }
   
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
@@ -111,7 +111,7 @@ const Booking = () => {
             </div>
 
             <input className="form-control my-2 text-center text-light light-background" type="date"></input>
-            
+
             <div class="dropdown my-2">
               <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Staff Member
