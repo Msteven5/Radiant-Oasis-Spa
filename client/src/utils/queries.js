@@ -3,17 +3,17 @@ import { gql } from '@apollo/client';
 export const GET_STAFF = gql`
 query GetStaff {
   getStaff {
-    id
+    _id
     firstName
     lastName
     services {
-      id
+      _id
       serviceName
       servicePrice
       addOns {
         addOnName
         addOnPrice
-        id
+        _id
       }
     }
   }
@@ -23,7 +23,7 @@ query GetStaff {
 export const GET_SERVICES = gql`
   query GetServices {
     getServices {
-      id
+      _id
     }
   }
 `;
