@@ -37,13 +37,11 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: async (_, args) => {
-      try {
-        const newUser = await User.create(args);
-        return newUser;
-      } catch (error) {
-        throw new Error('Failed to create user');
-      }
+    createUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
     },
     createBooking: async (_, { userId, services, staffId, date, time }) => {
       try {

@@ -8,9 +8,10 @@ const SignupModal = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState({ email: '', password: '', firstName: '', lastName: '' });
   const [addUser] = useMutation(CREATE_USER); 
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    try {
+
+  
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
       const mutationResponse = await addUser({
         variables: {
           email: formState.email,
@@ -19,21 +20,17 @@ const SignupModal = ({ isOpen, onClose }) => {
           lastName: formState.lastName,
         },
       });
-      const token = mutationResponse.data.createUser.token; 
+      const token = mutationResponse.data.addUser.token;
       Auth.login(token);
-      onClose(); 
-    } catch (error) {
-      console.error('Error occurred:', error);
-    }
-  };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
+    };
+  
+    const handleChange = (event) => {
+      const { name, value } = event.target;
+      setFormState({
+        ...formState,
+        [name]: value,
+      });
+    };
 
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
@@ -48,7 +45,7 @@ const SignupModal = ({ isOpen, onClose }) => {
             <input
               placeholder="First"
               name="firstName"
-              type="text"
+              type="firstName"
               id="firstName"
               onChange={handleChange}
             />
@@ -58,7 +55,7 @@ const SignupModal = ({ isOpen, onClose }) => {
             <input
               placeholder="Last"
               name="lastName"
-              type="text"
+              type="lastName"
               id="lastName"
               onChange={handleChange}
             />
