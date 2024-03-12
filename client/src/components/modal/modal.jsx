@@ -33,15 +33,15 @@ const SignupModal = ({ isOpen, onClose }) => {
     };
 
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`}>
-      <div className="modal-content">
+    <div className={`modal ${isOpen ? 'open' : ''}`} id="signUpModal">
+      <div className="modal-content p-4 d-flex dark-background justify-content-end">
         <button className="close-button" onClick={onClose}>
           X
         </button>
-        <h2>Signup</h2>
+        <h2 className='text-center gold-text my-3'>Signup</h2>
         <form onSubmit={handleFormSubmit}>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="firstName">First Name:</label>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="firstName" className='me-3 light-text'>First Name:</label>
             <input
               placeholder="First"
               name="firstName"
@@ -50,8 +50,8 @@ const SignupModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="lastName">Last Name:</label>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="lastName" className='me-3 light-text'>Last Name:</label>
             <input
               placeholder="Last"
               name="lastName"
@@ -60,8 +60,8 @@ const SignupModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="email">Email:</label>
+          <div className="d-flex justify-content-end ms-5">
+            <label htmlFor="email" className='me-3 light-text'>Email:</label>
             <input
               placeholder="youremail@test.com"
               name="email"
@@ -70,8 +70,8 @@ const SignupModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="password">Password:</label>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="password" className='mx-3 light-text'>Password:</label>
             <input
               placeholder="******"
               name="password"
@@ -80,8 +80,8 @@ const SignupModal = ({ isOpen, onClose }) => {
               onChange={handleChange}
             />
           </div>
-          <div className="flex-row flex-end">
-            <button type="submit">Submit</button>
+          <div className="my-2 d-flex justify-content-end">
+            <button className=' btn gold-background btn-dark' type="submit">Submit</button>
           </div>
         </form>
       </div>

@@ -7,13 +7,13 @@ query GetStaff {
     firstName
     lastName
     services {
-      id
+      _id
       serviceName
       servicePrice
       addOns {
         addOnName
         addOnPrice
-        id
+        _id
       }
     }
   }
