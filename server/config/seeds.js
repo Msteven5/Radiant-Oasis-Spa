@@ -10,8 +10,8 @@ db.once('open', async () => {
   await cleanDB('Booking, booking');
 
 const users = await User.insertMany([
-  {firstName: 'Michael', lastName:'Davidson', email:'md1232example.com', password:'abc123'},
-  {firstName: 'Anna', lastName:'Cormier', email:'ac1232example.com', password:'abc123'},
+  {firstName: 'Michael', lastName:'Davidson', email:'md1232@example.com', password:'abc123'},
+  {firstName: 'Anna', lastName:'Cormier', email:'ac1232@example.com', password:'abc123'},
 ])
 
 const services = await Services.insertMany([

@@ -46,18 +46,15 @@ export const CREATE_BOOKING = gql`
 
 
 
-export const LOGIN = gql`
-  mutation 
-  Login(
-    $email: String, 
-    $password: String
-    ) {
-    login
-    (email: $email, 
-      password: $password
-      ) {
-      token
+export const LOGIN_USER = gql`
+mutation loginUser($email: String!, $password: String!) {
+  loginUser(email: $email, password: $password) {
+    token
+    user {
+      _id
+      firstName
+      lastName
     }
   }
+}
 `;
-
