@@ -37,20 +37,18 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: async (_, args) => {
-      try {
-        const newUser = await User.create(args);
-        return newUser;
-      } catch (error) {
-        throw new Error('Failed to create user');
-      }
+    createUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
     },
     createBooking: async (_, { userId, services, staffId, date, time }) => {
       try {
         const serviceObjects = [];
         for (const serviceData of services) {
           const { _id, addOns } = serviceData;
-          console.log(_id)
+          
           const service = await Services.findById(_id);
           if (!service) {
             throw new Error(`Service not found`);
@@ -60,7 +58,7 @@ const resolvers = {
           }
           serviceObjects.push(service._id);
         } 
-        console.log(serviceObjects)
+       
         const newBooking = await Booking.create({
           user: userId,
           service: serviceObjects,
@@ -68,7 +66,7 @@ const resolvers = {
           date,
           time
         });
-console.log( await newBooking.populate("service"))
+
         return await newBooking.populate("service");
       } catch (error) {
         console.log(error)

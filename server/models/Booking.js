@@ -20,7 +20,6 @@ const bookingSchema = new Schema({
   staff: {
     type: Schema.Types.ObjectId,
     ref: 'Staff',
-
   },
   date: {
     type: Date,
