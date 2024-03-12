@@ -54,6 +54,27 @@ button {
  cursor: pointer;
 }
 
-button:hover {
- background-color: #0056b3;
+.gold-text {
+    color: #a68e45
+}
+
+.light-text {
+    color: #a28e7b;
+}
+
+.dark-text {
+    color: #231a11;
+}
+
+
+.gold-background {
+    background-color: #a68e45;
+}
+
+.light-background {
+    background-color: #a28e7b;
+}
+
+.dark-background {
+    background-color: #231a11;
 }

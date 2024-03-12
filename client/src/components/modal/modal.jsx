@@ -41,17 +41,64 @@ const SignupModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`modal ${isOpen ? 'open' : ''}`}>
-      <div className="modal-content">
+    <div className={`modal ${isOpen ? 'open' : ''}`} id="signUpModal">
+      <div className="modal-content p-4 d-flex dark-background justify-content-end">
         <button className="close-button" onClick={onClose}>
           X
         </button>
+
+        <h2 className='text-center gold-text my-3'>Signup</h2>
+        <form onSubmit={handleFormSubmit}>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="firstName" className='me-3 light-text'>First Name:</label>
+            <input
+              placeholder="First"
+              name="firstName"
+              type="firstName"
+              id="firstName"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="lastName" className='me-3 light-text'>Last Name:</label>
+            <input
+              placeholder="Last"
+              name="lastName"
+              type="lastName"
+              id="lastName"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex justify-content-end ms-5">
+            <label htmlFor="email" className='me-3 light-text'>Email:</label>
+            <input
+              placeholder="youremail@test.com"
+              name="email"
+              type="email"
+              id="email"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex justify-content-end">
+            <label htmlFor="password" className='mx-3 light-text'>Password:</label>
+            <input
+              placeholder="******"
+              name="password"
+              type="password"
+              id="password"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="my-2 d-flex justify-content-end">
+            <button className=' btn gold-background btn-dark' type="submit">Submit</button>
+
         <h2>Signup</h2>
         {submitted ? (
           <div>
             {successMessage && (
               <div className="success-message">{successMessage}</div>
             )}
+           
           </div>
         ) : (
           <form onSubmit={handleFormSubmit}>
