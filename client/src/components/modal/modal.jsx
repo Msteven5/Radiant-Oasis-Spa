@@ -6,12 +6,13 @@ import './modal.css'
 
 const SignupModal = ({ isOpen, onClose }) => {
   const [formState, setFormState] = useState({ email: '', password: '', firstName: '', lastName: '' });
-  const [addUser] = useMutation(CREATE_USER); 
+  const [addUser, { error }] = useMutation(CREATE_USER); 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-
-  
-    const handleFormSubmit = async (event) => {
-      event.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
       const mutationResponse = await addUser({
         variables: {
           email: formState.email,
@@ -20,17 +21,24 @@ const SignupModal = ({ isOpen, onClose }) => {
           lastName: formState.lastName,
         },
       });
-      const token = mutationResponse.data.addUser.token;
+      const token = mutationResponse.data.createUser.token;
       Auth.login(token);
-    };
-  
-    const handleChange = (event) => {
-      const { name, value } = event.target;
-      setFormState({
-        ...formState,
-        [name]: value,
-      });
-    };
+      setSuccessMessage('Signup successful!');
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setSuccessMessage('');
+      setSubmitted(false);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
 
   return (
     <div className={`modal ${isOpen ? 'open' : ''}`}>
@@ -39,51 +47,65 @@ const SignupModal = ({ isOpen, onClose }) => {
           X
         </button>
         <h2>Signup</h2>
-        <form onSubmit={handleFormSubmit}>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="firstName">First Name:</label>
-            <input
-              placeholder="First"
-              name="firstName"
-              type="firstName"
-              id="firstName"
-              onChange={handleChange}
-            />
+        {submitted ? (
+          <div>
+            {successMessage && (
+              <div className="success-message">{successMessage}</div>
+            )}
           </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="lastName">Last Name:</label>
-            <input
-              placeholder="Last"
-              name="lastName"
-              type="lastName"
-              id="lastName"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="email">Email:</label>
-            <input
-              placeholder="youremail@test.com"
-              name="email"
-              type="email"
-              id="email"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row space-between my-2">
-            <label htmlFor="password">Password:</label>
-            <input
-              placeholder="******"
-              name="password"
-              type="password"
-              id="password"
-              onChange={handleChange}
-            />
-          </div>
-          <div className="flex-row flex-end">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+        ) : (
+          <form onSubmit={handleFormSubmit}>
+            {successMessage && (
+              <div className="success-message">{successMessage}</div>
+            )}
+            {error && (
+              <div className="error-message">{error.message}</div>
+            )}
+            <div className="flex-row space-between my-2">
+              <label htmlFor="firstName">First Name:</label>
+              <input
+                placeholder="First"
+                name="firstName"
+                type="text"
+                id="firstName"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row space-between my-2">
+              <label htmlFor="lastName">Last Name:</label>
+              <input
+                placeholder="Last"
+                name="lastName"
+                type="text"
+                id="lastName"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row space-between my-2">
+              <label htmlFor="email">Email:</label>
+              <input
+                placeholder="youremail@test.com"
+                name="email"
+                type="email"
+                id="email"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row space-between my-2">
+              <label htmlFor="password">Password:</label>
+              <input
+                placeholder="******"
+                name="password"
+                type="password"
+                id="password"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="flex-row flex-end">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        )}
       </div>
     </div>
   );
