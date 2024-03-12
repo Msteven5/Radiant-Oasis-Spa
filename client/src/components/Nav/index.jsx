@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
-import SignupModal from '../modal/modal';
+import SignupModal from '../signup-modal/modal';
+import LoginModal from '../login-modal/login-modal'; 
 import { useNavigate } from "react-router-dom";
+import './index.css'
 
 
 function Nav() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
   const navigate = useNavigate();
   const navigateToServices = () => {
     navigate("/");
@@ -19,7 +22,14 @@ function Nav() {
     }, 500);
   }
 
+  const handleLogout = () => {
+    Auth.logout();
+    
+  }
+
   if (Auth.loggedIn()) {
+    
+    const user = Auth.getProfile();
     return (
       <>
         <header>
@@ -34,32 +44,34 @@ function Nav() {
               </button>
               <div className="collapse navbar-collapse" id="navbarCollapse">
                 <ul className="navbar-nav me-auto mb-2 mb-md-0">
-                <li className="nav-item">
+                  <li className="nav-item">
                     <button className="nav-link active mx-3" onClick={navigateToServices}>Services Available</button>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
-                  </li>
-                  <li className="nav-item">
-                    <a className="nav-link active mx-3" aria-current="page" href="/" onClick={() => Auth.logout()}>
-                      Logout
-                    </a>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
                   </li>
                 </ul>
-                {/* <form className="d-flex">
-                  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn btn-outline-warning" type="submit">Search</button>
-                </form> */}
+                <div className="navbar-text mx-3">
+                  {/* Display user's name */}
+                  {user && <span>Welcome, {user.firstName} {user.lastName}</span>}
+                </div>
+                <ul className="navbar-nav mb-2 mb-md-0">
+                  {/* Show logout link */}
+                  <li className="nav-item">
+                    <button className="nav-link active mx-3" onClick={handleLogout}>Logout</button>
+                  </li>
+                </ul>
               </div>
             </div>
           </nav>
         </header>
       </>
-    )
+    );
   } else {
+    
     return (
       <>
         <header>
@@ -80,23 +92,25 @@ function Nav() {
                   <li className="nav-item">
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                   </li>
+                </ul>
+                <ul className="navbar-nav mb-2 mb-md-0">
+                  {/* Show login and sign up buttons */}
                   <li className="nav-item">
-                    <button className="nav-link active mx-3" onClick={() => setIsModalOpen(true)}>Sign Up</button>
+                    <button className="nav-link active mx-3 small-font" onClick={() => setIsLoginModalOpen(true)}>Login</button>
+                  </li>
+                  <li className="nav-item">
+                    <button className="nav-link active mx-3 small-font" onClick={() => setIsSignupModalOpen(true)}>Sign Up</button>
                   </li>
                 </ul>
-                {/* <form className="d-flex">
-                  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                  <button className="btn btn-outline-warning" type="submit">Search</button>
-                </form> */}
               </div>
             </div>
           </nav>
         </header>
-        <SignupModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+        <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
+        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} /> {/* Render the login modal */}
       </>
     );
   }
 }
 
 export default Nav;
-

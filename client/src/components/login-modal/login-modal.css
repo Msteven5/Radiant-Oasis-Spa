@@ -78,3 +78,10 @@ button {
 .dark-background {
     background-color: #231a11;
 }
+
+.success-message {
+ color: white;
+ /* background-color: green;  */
+ padding: 10px;
+ border-radius: 5px;
+}

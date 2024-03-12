@@ -74,7 +74,7 @@ const resolvers = {
       }
     },
 
-    login: async (_, { email, password }) => {
+    loginUser: async (_, { email, password }) => {
       try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -86,7 +86,7 @@ const resolvers = {
         }
         // JWT token
         const token = signToken({ userId: user._id }); 
-        return { token };
+        return { token, user };
       } catch (error) {
         throw new AuthenticationError('Login failed'); 
       }
