@@ -48,7 +48,7 @@ const Home = () => {
         </div>
       )}
 
-      <main>
+
        
       
         <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
@@ -94,14 +94,14 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <button className="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button className="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true"></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+          <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Previous</span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className="visually-hidden">Next</span>
+  </button>
         </div>
 
 
@@ -318,7 +318,7 @@ const Home = () => {
           <p className="float-end"><a href="#">Back to top</a></p>
           <p>&copy; 2017–2021 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
         </footer>
-      </main>
+
     </>
   )
 };

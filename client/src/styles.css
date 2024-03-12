@@ -37,6 +37,12 @@ h5 {
     height: 700px;
 }
 
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+    background-color: inherit;
+    color:inherit;
+}
+
 .gold-text {
     color: #a68e45
 }

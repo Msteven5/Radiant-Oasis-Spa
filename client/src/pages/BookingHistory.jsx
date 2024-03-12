@@ -1,14 +1,14 @@
 
-import Table from 'react-bootstrap/Table';
-import Card from 'react-bootstrap/Card';
-import facial2 from '../assets/facial2.jpg'
-import stone2 from '../assets/stone2.jpg'
-import supplies from '../assets/supplies.jpg'
+// import Table from 'react-bootstrap/Table';
+// import Card from 'react-bootstrap/Card';
+// import facial2 from '../assets/facial2.jpg'
+// import stone2 from '../assets/stone2.jpg'
+// import supplies from '../assets/supplies.jpg'
 
 const BookingHistory = () => {
   return (
     <>
-    <Table striped hover style={{marginTop:30}}>
+    {/* <Table striped hover style={{marginTop:30}}> */}
       <thead>
         <tr>
           <th>Service</th>
@@ -44,7 +44,7 @@ const BookingHistory = () => {
       
         </tr>
       </tbody>
-    </Table>
+    {/* </Table>
     <div style={{display:'flex' ,justifyContent:'center', marginTop:50}}>
     <Card style={{ maxWidth: '50rem', fontSize:20, backgroundColor: '#a68e45', color: '#231a11' }}>
       <Card.Body>
@@ -62,7 +62,7 @@ const BookingHistory = () => {
         <img src={facial2} alt="Facial" style={{ height: 'auto', maxWidth: '30%' }} />
         <img src={supplies} alt="Supplies" style={{ height: 'auto', maxWidth: '30%' }} />
         <img src={stone2} alt="Stone" style={{ height: 'auto', maxWidth: '30%' }} />
-      </div>
+      </div> */}
 
     </>
   )

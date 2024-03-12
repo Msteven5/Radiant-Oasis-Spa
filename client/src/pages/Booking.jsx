@@ -20,9 +20,9 @@ const Booking = () => {
   let staffList = staffMembers.map(function (staff) {
     return <option>{staff.firstName} {staff.lastName}</option>;
   });
-  // let serviceList = staffMembers.map(function (staff) {
-  //   return <option value={staff.services.serviceName}>{staff.services.serviceName}</option>;
-  // })
+  let serviceList = staffMembers.map(function (staff) {
+    return <option value={staff.services.serviceName}>{staff.services.serviceName}</option>;
+  })
 
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
@@ -59,9 +59,9 @@ const Booking = () => {
             </div>
 
             <input className="form-control mt-3" list="datalistOptions" id="exampleDataList" placeholder="Type to search..." />
-            {/* <datalist id="datalistOptions">
+            <datalist id="datalistOptions">
               {serviceList}
-            </datalist> */}
+            </datalist>
 
             <input className="form-control" type="date"></input>
 
