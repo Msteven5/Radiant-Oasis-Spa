@@ -66,7 +66,7 @@ function Nav() {
   const handleSignUpModalClose = () => {
     setIsSignupModalOpen(false); 
   }
-
+//add
   if (Auth.loggedIn()) {
     return (
       <>
