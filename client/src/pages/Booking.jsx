@@ -97,7 +97,7 @@ const Booking = () => {
   });
 
   const handleButtonClick = () => {
-    navigate("/:userId/Confirmation")
+    navigate("/Confirmation")
   };
 
   const availableAddOns = availableServices[formState.serviceId]?.addOns || [];

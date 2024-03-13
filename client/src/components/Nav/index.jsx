@@ -74,9 +74,6 @@ function Nav() {
 //add
   if (Auth.loggedIn()) {
 
-
-
-
     return (
       <>
         <header>
@@ -98,7 +95,7 @@ function Nav() {
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link active mx-3" to="/users/:userId/BookingHistory">Booking History</Link>
+                    <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
                   </li>
                 </ul>
                 <div className="navbar-text mx-3">

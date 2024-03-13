@@ -18,9 +18,9 @@ function Confirmation() {
       <Card style={{ backgroundColor: '#a68e45', color: '#231a11', maxWidth: '70%', border:'none', marginBottom:60 }}>
         <Card.Header>Thanks for Booking!</Card.Header>
         <Card.Body>
-          <Card.Title>{bookings.length > 0 ? bookings[0].service.serviceName : "[service]"}</Card.Title>
+          <Card.Title>Manicure</Card.Title>
           <Card.Text>
-            Your appointment with {bookings.length > 0 ? `${bookings[0].staff.firstName} ${bookings[0].staff.lastName}` : "[name]"} has been scheduled at {bookings.length > 0 ? bookings[0].date + " " + bookings[0].time : "[date&time]"}.
+            Your appointment with Michael Brown has been scheduled at 03/21/2024 from 3:00p - 4:00p.
           </Card.Text>
           <div className='d-flex justify-content-around'>
           </div>
