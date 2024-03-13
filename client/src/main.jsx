@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <Home />
       }, 
        {
-        path: '/BookingHistory',
+        path: '/users/:userId/BookingHistory',
         element: <BookingHistory />
       },
       {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
         element: <Booking />
       },
       {
-        path: '/Confirmation',
+        path: ':userId/Confirmation',
         element: <Confirmation />
       },
       {

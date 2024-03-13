@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_BOOKINGS } from '../utils/queries';
 
 function Confirmation() {
-  const userId = "65f10b7fc3cceb3381601b6d";
+  const { userId } = useParams(); 
   const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
   const bookings = data ? data.getUserBookings : [];
 
@@ -35,6 +35,7 @@ function Confirmation() {
 }
 
 export default Confirmation;
+
 
 
 
