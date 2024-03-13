@@ -1,9 +1,20 @@
+
+import { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_STAFF } from '../utils/queries';
+import { CREATE_BOOKING } from '../utils/mutations';
+
+import Candle from "../assets/candle.jpg"
+import Flower from "../assets/flower.jpg"
+
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_STAFF } from '../utils/queries';
 import { useNavigate } from "react-router-dom";
 import Candle from "../assets/candle.jpg";
 import Flower from "../assets/flower.jpg";
+
+
 
 const Booking = () => {
 
@@ -12,6 +23,10 @@ const Booking = () => {
   const [formState, setFormState] = useState({
     staffId: '',
     serviceId: '',
+    addOnId: '',
+    phoneNumber: '',
+    date: '',
+    time: ''
   });
 
   const handleStaffChange = (event) => {
@@ -28,6 +43,36 @@ const Booking = () => {
     }
   }
 
+
+  
+  const handleAddOnChange = (event) => {
+    const { value } = event.target;
+    if (value) {
+      setFormState({ ...formState, addOnId: value });
+    }
+  }
+
+  const handleDateChange = (event) => {
+    const { value } = event.target;
+    if (value) {
+      setFormState({ ...formState, date: value });
+    }
+  }
+
+  const handleTimeChange = (event) => {
+    const { value } = event.target;
+    if (value) {
+      setFormState({ ...formState, time: value });
+    }
+  }
+  const handlePhoneChange = (event) => {
+    const { value } = event.target;
+    if (value) {
+      setFormState({ ...formState, phoneNumber: value });
+    }
+  }
+
+  
 
   const { data: staffData, error } = useQuery(GET_STAFF)
   if (error) {
@@ -46,6 +91,7 @@ const Booking = () => {
   const staffList = staffMembers.map((staff) => {
     return <option disabled={formState.serviceId ? "" : 'disabled'} value={staff._id} key={staff._id}>{staff.firstName} {staff.lastName}</option>;
   });
+
   const availableServices = allStaff.reduce(
     (services, member) => {
       member.services.forEach((service) =>
@@ -73,13 +119,45 @@ const Booking = () => {
   ));
 
   let hourList = availableHours.map(function (hour) {
-    return <option key={hour}>{hour}</option>;
+    return <option key={hour} value={hour}>{hour}</option>;
   });
 
   let addOnsList = availableAddOns.map(addOn => (
-    <option key={addOn._id}> {addOn.addOnName} (${addOn.addOnPrice}) </option>
+    <option key={addOn._id} value={addOn._id}> {addOn.addOnName} (${addOn.addOnPrice}) </option>
   ));
 
+  const [createBooking, { error: booking }] = useMutation(CREATE_BOOKING);
+
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await createBooking({
+        variables: {
+          userId: '65f15e3872b09af985f65534',
+          staffId: formState.staffId,
+          serviceId: formState.serviceId,
+          addOnId: formState.addOnId,
+          phoneNumber: formState.phoneNumber,
+          date: formState.date,
+          time: formState.time
+        },
+      });
+      if (mutationResponse && mutationResponse.data && mutationResponse.data.createBooking) {
+        console.log('Submission successful!');
+      } else {
+        console.log('Submission failed.');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  console.log(formState.staffId)
+  console.log(formState.serviceId)
+  console.log(formState.addOnId)
+  console.log(formState.phoneNumber)
+  console.log(formState.date)
+  console.log(formState.time)
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
@@ -97,32 +175,39 @@ const Booking = () => {
           <form className=" mt-5 rounded-2">
             <h1 className="text-center gold-text py-3" id="bookNow">Book Now</h1>
 
-            <select onChange={handleServiceChange} className="my-2 text-light light-background p-2 w-100 text-center rounded-2" defaultValue="">
-              <option disabled value="">Services</option>
+
+            <select onChange={handleServiceChange} className="my-2 text-light light-background p-2 w-100 text-center rounded-2" required>
+              <option disabled='disabled' selected>Services</option>
               {serviceList}
             </select>
 
-            <select className="my-2 p-2 w-100 text-center text-light light-background rounded-2" defaultValue="">
-              <option disabled value="">Add Ons</option>
+            <select onChange={handleAddOnChange} className="my-2 p-2 w-100 text-center text-light light-background rounded-2">
+              <option disabled='disabled' selected>Add Ons</option>
+
+           
               {addOnsList}
             </select>
 
-            <input className="form-control p-2 my-2 text-center text-light light-background" type="date"></input>
+            <input onChange={handleDateChange} className="form-control p-2 my-2 text-center text-light light-background" type="date" required></input>
 
-            <select onChange={handleStaffChange} className="my-2 p-2 w-100 text-light light-background text-center rounded-2" defaultValue="">
-              <option disabled value="">Staff Member</option>
+
+            <select onChange={handleStaffChange} className="my-2 p-2 w-100 text-light light-background text-center rounded-2" required>
+              <option disabled='disabled' selected>Staff Member</option>
               {staffList}
             </select>
 
-            <select className="my-2 p-2 w-100 text-center rounded-2 text-light light-background" defaultValue="">
-              <option disabled value="">Hours</option>
+            <select onChange={handleTimeChange} className="my-2 p-2 w-100 text-center rounded-2 text-light light-background" required>
+              <option disabled='disabled' selected>Hours</option>
               {hourList}
             </select>
 
-            <input type="tel" id="phone" name="phone" maxLength="12" placeholder="Please Enter Phone Number" className="my-2 text-center text-light light-background" pattern="(^\d{10}$)|(^\d{3}-\d{3}-\d{4}$)"  required />
+            <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
+            
 
             <button type="submit" className="my-2 align-self-end btn gold-background btn-dark" onClick={handleButtonClick}>Submit</button>
+
+            <button type="submit" onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
 
           </form>
         </div>

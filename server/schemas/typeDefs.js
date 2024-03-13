@@ -79,10 +79,11 @@ const typeDefs = `
       password: String!): Auth
 
     createBooking(
-      userId: ID, 
-      services: [ServiceInput], 
-      staffId: ID, 
-      phoneNumber: String
+      userId: String, 
+      serviceId: String, 
+      addOnId: String,
+      staffId: String, 
+      phoneNumber: String,
       date: String, 
       time: String): Booking!
   }

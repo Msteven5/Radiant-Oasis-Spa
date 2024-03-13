@@ -79,32 +79,19 @@ const resolvers = {
 
       return { token, user };
     },
-    createBooking: async (_, { userId, services, staffId, date, time }) => {
+    createBooking: async (_, { userId, serviceId, staffId, addOnId, phoneNumber, date, time }) => {
       try {
-        const serviceObjects = [];
-        for (const serviceData of services) {
-          const { _id, addOns } = serviceData;
-          
-          const service = await Services.findById(_id);
-          if (!service) {
-            throw new Error(`Service not found`);
-          }
-          if (addOns && addOns.length > 0) {
-            service.addons.push(...addOns);
-          }
-          serviceObjects.push(service._id);
-        } 
-       
-        const newBooking = await Booking.create({
-          user: userId,
-          service: serviceObjects,
-          staff: staffId,
+         const newBooking = await Booking.create({
+          userId: userId,
+          serviceId: serviceId,
+          staffId: staffId,
+          addOnId: addOnId,
           phoneNumber,
           date,
           time
         });
 
-        return await newBooking.populate("service");
+        return await newBooking;
       } catch (error) {
         console.log(error)
         throw new Error('Failure to create booking');
