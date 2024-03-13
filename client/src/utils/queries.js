@@ -29,20 +29,18 @@ export const GET_SERVICES = gql`
 `;
 
 export const GET_BOOKINGS = gql`
-query GetBookings($userId: ID!) {
-  getBookings (userID: $userID){
-    _id
-    service{
-      serviceName
-      servicePrice
-    }
-    staff{
-      firstName
-      lastName
-    }
-    date
-    time
+getUserBookings(userId: $userId) {
+  date
+  time
+  service {
+    serviceName
+    servicePrice
   }
+  staff {
+    firstName
+    lastName
+  }
+}
 }
 `;
 
