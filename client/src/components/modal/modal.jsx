@@ -55,7 +55,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               placeholder="First"
               name="firstName"
               type="firstName"
-              id="firstName"
+              id="firstName-input"
               onChange={handleChange}
             />
           </div>
@@ -65,7 +65,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               placeholder="Last"
               name="lastName"
               type="lastName"
-              id="lastName"
+              id="lastName-input"
               onChange={handleChange}
             />
           </div>
@@ -75,7 +75,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               placeholder="youremail@test.com"
               name="email"
               type="email"
-              id="email"
+              id="email-input"
               onChange={handleChange}
             />
           </div>
@@ -85,7 +85,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               placeholder="******"
               name="password"
               type="password"
-              id="password"
+              id="password-input"
               onChange={handleChange}
             />
           </div>

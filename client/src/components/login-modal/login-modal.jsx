@@ -56,7 +56,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 placeholder="youremail@test.com"
                 name="email"
                 type="email"
-                id="email"
+                id="email-input"
                 onChange={handleChange}
               />
             </div>
@@ -66,7 +66,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 placeholder="******"
                 name="password"
                 type="password"
-                id="password"
+                id="password-input"
                 onChange={handleChange}
               />
             </div>
