@@ -85,6 +85,7 @@ const resolvers = {
           user: userId,
           service: serviceObjects,
           staff: staffId,
+          phoneNumber,
           date,
           time
         });

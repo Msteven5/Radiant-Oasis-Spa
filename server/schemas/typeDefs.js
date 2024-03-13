@@ -58,7 +58,7 @@ const typeDefs = `
 
   type Query {
     getUsers: [User]
-    getUser(id: ID): User
+    getUser(_id: ID): User
     getStaff: [Staff]
     getServices: [Service]
     getBookings: [Booking]
@@ -81,6 +81,7 @@ const typeDefs = `
       userId: ID, 
       services: [ServiceInput], 
       staffId: ID, 
+      phoneNumber: String
       date: String, 
       time: String): Booking!
   }

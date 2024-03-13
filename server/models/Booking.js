@@ -9,17 +9,21 @@ const bookingSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required:true
+    required: true
   },
   service: [{
     type: Schema.Types.ObjectId,
     ref: 'Service',
     required: true,
-   
+
   }],
   staff: {
     type: Schema.Types.ObjectId,
     ref: 'Staff',
+  },
+  phoneNumber: {
+    type: String,
+    required: true
   },
   date: {
     type: Date,

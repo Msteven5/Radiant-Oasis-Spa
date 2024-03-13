@@ -24,7 +24,6 @@ function Nav() {
 
   const handleLogout = () => {
     Auth.logout();
-    
   }
 
   if (Auth.loggedIn()) {

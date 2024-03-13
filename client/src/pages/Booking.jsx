@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_STAFF, GET_STAFFMEMBER, GET_SERVICES, GET_SINGLE_SERVICE } from '../utils/queries';
 import { useLazyQuery } from '@apollo/client';
@@ -8,73 +8,73 @@ import Flower from "../assets/flower.jpg"
 
 const Booking = () => {
 
+  const [formState, setFormState] = useState({
+    staffId: '',
+    serviceId: '',
+  });
+
+  const handleStaffChange = (event) => {
+    const { value } = event.target;
+    console.log(event.target)
+    if (value) {
+      setFormState({ ...formState, staffId: value });
+    }
+  }
+
+  const handleServiceChange = (event) => {
+    const { value } = event.target;
+    if (value) {
+      setFormState({ ...formState, serviceId: value });
+    }
+  }
+
   const { data: staffData, error } = useQuery(GET_STAFF)
   if (error) {
     console.log(error);
     return null;
   }
-  const staffMembers = staffData?.getStaff || [];
+  const filterStaffList = function (members) {
+    if (formState.serviceId) {
+      return members.filter((staff) => staff.services.some((service) => service._id === formState.serviceId));
+    }
+    return members;
+  };
 
-  let staffList = staffMembers.map(function (staff) {
-    return <option key={staff.id}>{staff.firstName} {staff.lastName}</option>;
+  const allStaff = staffData?.getStaff || [];
+  const staffMembers = filterStaffList(allStaff);
+  const staffList = staffMembers.map((staff) => {
+    return <option disabled={formState.serviceId ? "" : 'disabled'} value={staff._id} key={staff._id}>{staff.firstName} {staff.lastName}</option>;
   });
+  const availableServices = allStaff.reduce(
+    (services, member) => {
+      member.services.forEach((service) =>
+        (services[service._id] = service));
+      return services;
+    }, {});
 
-  let serviceList = staffMembers.map(function (staff) {
-    return staff.services.map(service => (
-      <li key={service.id}>{service.serviceName} (${service.servicePrice})</li>
-    ));
-  });
-
-  let hourList = staffMembers.map(function (staff) {
-    return staff.hours.map(function (hour) {
-      return <option>{hour}</option>;
+  const availableHours = [];
+  (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers).forEach((member) => {
+    member.hours.forEach((hour) => {
+      if (!availableHours.includes(hour)) {
+        availableHours.push(hour)
+      }
     })
   });
 
-  let addOnsList = staffMembers.map(function (staff) {
-    return staff.services.map(service => (
-      <li key={service.id}> {service.addOns.addOnName} (${service.addOns.addOnPrice}) </li>
-    ));
+  const availableAddOns = availableServices[formState.serviceId]?.addOns || [];
+
+  let serviceList = Object.values(availableServices).map(service => (
+    <option value={service._id} key={service._id}>{service.serviceName} (${service.servicePrice})</option>
+  ));
+
+  let hourList = availableHours.map(function (hour) {
+    return <option key={hour}>{hour}</option>;
   });
 
-  
-  const [formState, setFormState] = useState({
-    staffId: '',
-    serviceId: '',
-  });
-  
-  const handleStaffChange = (event) => {
-    const { key } = event.target;
-    if (key) {
-      setFormState({ staffId: key });
-    }
-  }
-  const handleServiceChange = (event) => {
-    const { key } = event.target;
-    if (key) {
-      setFormState({ serviceId: key });
-    }
-  }
+  let addOnsList = availableAddOns.map(addOn => (
+    <option key={addOn._id}> {addOn.addOnName} (${addOn.addOnPrice}) </option>
+  ));
 
-  const [getSingleService, { loading, error: services, data: getServices }] = useLazyQuery(GET_SINGLE_SERVICE);
-  const [getStaffMember, { loading: staff, error: staffMember, data: staffmember }] = useLazyQuery(GET_STAFFMEMBER);
-  
-  function updateStaff() {
-    getStaffMember({
-      variables: { 
-        id: [...formState.staffId],
-      },
-    });
-  }
-  
-  // function updateService() {
-  //   getSingleService({
-  //     variables: { 
-  //       id: [...formState.serviceId],
-  //     },
-  //   });
-  // }
-  
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
@@ -92,43 +92,29 @@ const Booking = () => {
           <form className=" mt-5 rounded-2">
             <h1 className="text-center gold-text py-3" id="bookNow">Book Now</h1>
 
-            <div class="dropdown my-2">
-              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Services
-              </button>
-              <ul class="dropdown-menu w-100 text-center">
-                {serviceList}
-              </ul>
-            </div>
+            <select onChange={handleServiceChange} className="my-2 text-light light-background p-2 w-100 text-center rounded-2" >
+              <option disabled='disabled' selected>Services</option>
+              {serviceList}
+            </select>
 
-            <div class="dropdown my-2">
-              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Add Ons
-              </button>
-              <ul class="dropdown-menu w-100 text-center">
-                {addOnsList}
-              </ul>
-            </div>
+            <select className="my-2 p-2 w-100 text-center text-light light-background rounded-2">
+              <option disabled='disabled' selected>Add Ons</option>
+              {addOnsList}
+            </select>
 
-            <input className="form-control my-2 text-center text-light light-background" type="date"></input>
+            <input className="form-control p-2 my-2 text-center text-light light-background" type="date"></input>
 
-            <div class="dropdown my-2">
-              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Staff Member
-              </button>
-              <ul class="dropdown-menu w-100 text-center">
-                {staffList}
-              </ul>
-            </div>
+            <select onChange={handleStaffChange} className="my-2 p-2 w-100 text-light light-background text-center rounded-2" >
+              <option disabled='disabled' selected>Staff Member</option>
+              {staffList}
+            </select>
 
-            <div class="dropdown my-2">
-              <button class="btn light-background btn-dark w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Available Times
-              </button>
-              <ul class="dropdown-menu w-100 text-center">
-                {hourList}
-              </ul>
-            </div>
+            <select className="my-2 p-2 w-100 text-center rounded-2 text-light light-background">
+              <option disabled='disabled' selected>Hours</option>
+              {hourList}
+            </select>
+
+            <input type="tel" id="phone" name="phone" maxLength="10" placeholder="Phone Number (0000000000)" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
 
             <button type="submit" className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
