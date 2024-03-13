@@ -21,21 +21,22 @@ export const CREATE_USER = gql`
   }
 `;
 
-
-
-
 export const CREATE_BOOKING = gql`
   mutation 
-  CreateBooking(
+  createBooking(
     $userId: ID, 
-    $services: [ServiceInput], 
-    $staffId: ID, 
+    $serviceId: String, 
+    $staffId: String, 
+    $addOnId: String,
+    $phoneNumber: String
     $date: String, 
     $time: String
     ) {
     createBooking
     (userId: $userId, 
-      services: $services, 
+      serviceId: $serviceId, 
+      addOnId: $addOnId,
+      phoneNumber: $phoneNumber
       staffId: $staffId, 
       date: $date, 
       time: $time) {

@@ -6,26 +6,26 @@ const { Schema } = mongoose;
 
 
 const bookingSchema = new Schema({
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
+  userId: {
+    type: String,
     required: true
   },
-  service: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Service',
-    required: true,
-
-  }],
-  staff: {
-    type: Schema.Types.ObjectId,
-    ref: 'Staff',
+  serviceId: {
+    type: String,
+    required: true
+  },
+  addOnId: {
+    type: String,
+  },
+  staffId: {
+    type: String,
+    required: true
   },
   phoneNumber: {
     type: String,
   },
   date: {
-    type: Date,
+    type: String,
     required: true
   },
   time: {

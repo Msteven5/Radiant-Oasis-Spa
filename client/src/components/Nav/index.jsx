@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SignupModal from '../signup-modal/modal';
-import LoginModal from '../login-modal/login-modal'; 
+import LoginModal from '../login-modal/login-modal';
 import { useNavigate } from "react-router-dom";
 import './index.css'
 
 function Nav() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
+  const [firstName, setFirstName] = useState("");
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (Auth.loggedIn()) {
+      fetchFirstName();
+    }
+  }, []);
+
+  const fetchFirstName = async () => {
+    const user = await Auth.getProfile();
+    if (user && user.data) {
+      setFirstName(user.data.firstName);
+      console.log('First name:', user.data.firstName); 
+    }
+  };
 
   const navigateToServices = () => {
     navigate("/");
@@ -23,13 +42,31 @@ function Nav() {
   }
 
   const handleLogout = () => {
-    
     Auth.logout();
+
+    setFirstName("");
+    setIsLoginModalOpen(false);
     navigate("/");
+
+
+  }
+  
+
+  const handleLogin = async () => {
+    await fetchFirstName(); 
+    setIsLoggedIn(true);
+    setIsLoginModalOpen(false); 
+  }
+
+  const handleLoginModalClose = () => {
+    setIsLoginModalOpen(false); 
   }
 
   if (Auth.loggedIn()) {
-    const user = Auth.getProfile();
+
+
+
+
     return (
       <>
         <header>
@@ -51,11 +88,13 @@ function Nav() {
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
+                    <Link className="nav-link active mx-3" to="/users/:userId/BookingHistory">Booking History</Link>
                   </li>
                 </ul>
                 <div className="navbar-text mx-3">
-                  {user && <span>Welcome! </span>}
+
+                  {firstName && <span>Welcome, {firstName}! </span>} 
+
                 </div>
                 <ul className="navbar-nav mb-2 mb-md-0">
                   <li className="nav-item">
@@ -91,7 +130,7 @@ function Nav() {
                   </li>
                 </ul>
                 <ul className="navbar-nav mb-2 mb-md-0">
-                  {/* Show login and sign up buttons */}
+                  
                   <li className="nav-item">
                     <button className="nav-link active mx-3 small-font" onClick={() => setIsLoginModalOpen(true)}>Login</button>
                   </li>
@@ -104,7 +143,10 @@ function Nav() {
           </nav>
         </header>
         <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
-        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} /> 
+
+        <LoginModal isOpen={isLoginModalOpen} onClose={handleLogin} onCloseModal={handleLoginModalClose} /> 
+
+
       </>
     );
   }
