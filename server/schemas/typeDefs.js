@@ -58,12 +58,13 @@ const typeDefs = `
 
   type Query {
     getUsers: [User]
-    getUser(id: ID): User
+    getUser(_id: ID): User
     getStaff: [Staff]
     getServices: [Service]
     getBookings: [Booking]
     getStaffMember(_id: ID): Staff
     getSingleService(_id: ID): Service
+    getUserBookings(userId: ID!): [Booking]
   }
 
   type Mutation {
