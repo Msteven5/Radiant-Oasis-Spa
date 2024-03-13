@@ -75,7 +75,7 @@ const Home = () => {
               <div className="carousel-caption text-start">
                 <h1></h1>
                 <p>Rejuvenate Your Senses, Renew Your Spirit: Your Oasis of Serenity Awaits</p>
-                <p><a className="btn btn-md gold-background text-light btn-dark" href="#">BOOK NOW</a></p>
+                <p><a className="btn btn-md gold-background text-light btn-dark" href="/Booking">BOOK NOW</a></p>
               </div>
             </div>
           </div>

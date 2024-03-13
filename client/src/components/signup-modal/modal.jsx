@@ -61,6 +61,7 @@ const SignupModal = ({ isOpen, onClose }) => {
                 type="firstName"
                 id="firstName"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="d-flex justify-content-end">
@@ -71,6 +72,7 @@ const SignupModal = ({ isOpen, onClose }) => {
                 type="lastName"
                 id="lastName"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="d-flex justify-content-end ms-5">
@@ -81,6 +83,7 @@ const SignupModal = ({ isOpen, onClose }) => {
                 type="email"
                 id="email"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="d-flex justify-content-end">
@@ -91,6 +94,7 @@ const SignupModal = ({ isOpen, onClose }) => {
                 type="password"
                 id="password"
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="my-2 d-flex justify-content-end">
