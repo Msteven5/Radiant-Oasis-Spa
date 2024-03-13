@@ -7,11 +7,11 @@ import LoginModal from '../login-modal/login-modal';
 import { useNavigate } from "react-router-dom";
 import './index.css'
 
-
 function Nav() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
   const navigate = useNavigate();
+
   const navigateToServices = () => {
     navigate("/");
     setTimeout(() => {
@@ -23,12 +23,12 @@ function Nav() {
   }
 
   const handleLogout = () => {
-    Auth.logout();
     
+    Auth.logout();
+    navigate("/");
   }
 
   if (Auth.loggedIn()) {
-    
     const user = Auth.getProfile();
     return (
       <>
@@ -55,11 +55,9 @@ function Nav() {
                   </li>
                 </ul>
                 <div className="navbar-text mx-3">
-                  {/* Display user's name */}
-                  {user && <span>Welcome, {user.firstName} {user.lastName}</span>}
+                  {user && <span>Welcome! </span>}
                 </div>
                 <ul className="navbar-nav mb-2 mb-md-0">
-                  {/* Show logout link */}
                   <li className="nav-item">
                     <button className="nav-link active mx-3" onClick={handleLogout}>Logout</button>
                   </li>
@@ -71,7 +69,6 @@ function Nav() {
       </>
     );
   } else {
-    
     return (
       <>
         <header>
@@ -107,7 +104,7 @@ function Nav() {
           </nav>
         </header>
         <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
-        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} /> {/* Render the login modal */}
+        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} /> 
       </>
     );
   }
