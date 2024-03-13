@@ -3,13 +3,13 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SignupModal from '../signup-modal/modal';
-import LoginModal from '../login-modal/login-modal'; 
+import LoginModal from '../login-modal/login-modal';
 import { useNavigate } from "react-router-dom";
 import './index.css'
 
 function Nav() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const navigateToServices = () => {
@@ -23,13 +23,11 @@ function Nav() {
   }
 
   const handleLogout = () => {
-    
     Auth.logout();
-    navigate("/");
   }
 
   if (Auth.loggedIn()) {
-    const user = Auth.getProfile();
+
     return (
       <>
         <header>
@@ -51,11 +49,11 @@ function Nav() {
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
+                    <Link className="nav-link active mx-3" to="/users/:userId/BookingHistory">Booking History</Link>
                   </li>
                 </ul>
                 <div className="navbar-text mx-3">
-                  {user && <span>Welcome! </span>}
+                  <span>Welcome Michael! </span>
                 </div>
                 <ul className="navbar-nav mb-2 mb-md-0">
                   <li className="nav-item">
@@ -104,7 +102,7 @@ function Nav() {
           </nav>
         </header>
         <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
-        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} /> 
+        <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
       </>
     );
   }
