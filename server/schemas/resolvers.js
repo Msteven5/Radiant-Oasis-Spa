@@ -49,6 +49,28 @@ const resolvers = {
         throw new Error('Failed to fetch bookings');
       }
     },
+    getStaffMember: async (_, { _id }) => {
+      try {
+        const staff = await Staff.findById(_id).populate("services");
+        if (!staff) {
+          throw new Error('Employee not found');
+        }
+        return staff;
+      } catch (error) {
+        throw new Error('Failed to fetch employee');
+      }
+    },
+    getSingleService: async (_, { _id }) => {
+      try {
+        const service = await Services.findById(_id).populate("addOns");
+        if (!service) {
+          throw new Error('Service not found');
+        }
+        return service;
+      } catch (error) {
+        throw new Error('Failed to fetch service');
+      }
+    },
   },
   Mutation: {
     createUser: async (parent, args) => {

@@ -18,6 +18,10 @@ const staffSchema = new Schema({
     ref: 'Service', 
     required: true,
   }],
+  hours: [{
+    type: String,
+    required: true
+  }]
 });
 
 const Staff = mongoose.model('Staff', staffSchema);
