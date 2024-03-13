@@ -77,8 +77,9 @@ export const GET_SERVICES = gql`
   }
 `;
 
-export const GET_BOOKINGS = gql`
-getUserBookings(userId: $userId) {
+export const GET_USER_BOOKINGS = gql`
+query GetUserBookings($userId: ID!) {
+  getUserBookings(userId: $userId) {
   date
   time
   service {
@@ -92,11 +93,4 @@ getUserBookings(userId: $userId) {
 }
 }
 `;
-
-// export const GET_USER = gql`
-// query GetUser {
-//   getUser {
-// }
-// }
-// `;
 
