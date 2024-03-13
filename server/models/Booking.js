@@ -23,7 +23,6 @@ const bookingSchema = new Schema({
   },
   phoneNumber: {
     type: String,
-    required: true
   },
   date: {
     type: String,
