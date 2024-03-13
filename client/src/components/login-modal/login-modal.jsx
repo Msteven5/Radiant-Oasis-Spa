@@ -18,17 +18,20 @@ const LoginModal = ({ isOpen, onClose }) => {
           password: formState.password,
         },
       });
-      console.log(mutationResponse.data)
+      console.log(mutationResponse.data);
+  
+      
       const token = mutationResponse.data.loginUser.token;
       Auth.login(token);
-      
+  
+     
+      setFormState({ email: '', password: '' });
       setSubmitted(true);
     } catch (err) {
       console.error(err);
       setSubmitted(false);
     }
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -56,7 +59,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 placeholder="youremail@test.com"
                 name="email"
                 type="email"
-                id="email"
+                id="email-input"
                 onChange={handleChange}
               />
             </div>
@@ -66,7 +69,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 placeholder="******"
                 name="password"
                 type="password"
-                id="password"
+                id="password-input"
                 onChange={handleChange}
               />
             </div>
