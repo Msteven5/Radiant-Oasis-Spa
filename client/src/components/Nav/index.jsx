@@ -13,8 +13,6 @@ function Nav() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
   const [firstName, setFirstName] = useState("");
 
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {

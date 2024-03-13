@@ -55,7 +55,7 @@ db.once('open', async () => {
       service: services.find(service => service.serviceName === 'Manicure')._id,
       staff: staff.find(staff => staff.firstName === 'Michael')._id,
       date: new Date('01-19-2024'),
-      time: '3:30 PM'
+      time: '3:00p - 4:00p'
     },
     {
       user: users[0]._id,

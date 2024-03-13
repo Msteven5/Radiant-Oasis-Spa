@@ -3,18 +3,10 @@ import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_STAFF } from '../utils/queries';
 import { CREATE_BOOKING } from '../utils/mutations';
+import { useNavigate } from "react-router-dom";
 
 import Candle from "../assets/candle.jpg"
 import Flower from "../assets/flower.jpg"
-
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { GET_STAFF } from '../utils/queries';
-import { useNavigate } from "react-router-dom";
-import Candle from "../assets/candle.jpg";
-import Flower from "../assets/flower.jpg";
-
-
 
 const Booking = () => {
 
@@ -43,8 +35,6 @@ const Booking = () => {
     }
   }
 
-
-  
   const handleAddOnChange = (event) => {
     const { value } = event.target;
     if (value) {
@@ -71,8 +61,6 @@ const Booking = () => {
       setFormState({ ...formState, phoneNumber: value });
     }
   }
-
-  
 
   const { data: staffData, error } = useQuery(GET_STAFF)
   if (error) {
@@ -152,12 +140,7 @@ const Booking = () => {
       console.error(err);
     }
   };
-  console.log(formState.staffId)
-  console.log(formState.serviceId)
-  console.log(formState.addOnId)
-  console.log(formState.phoneNumber)
-  console.log(formState.date)
-  console.log(formState.time)
+
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
@@ -184,7 +167,7 @@ const Booking = () => {
             <select onChange={handleAddOnChange} className="my-2 p-2 w-100 text-center text-light light-background rounded-2">
               <option disabled='disabled' selected>Add Ons</option>
 
-           
+
               {addOnsList}
             </select>
 
@@ -203,11 +186,8 @@ const Booking = () => {
 
             <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
-            
 
-            <button type="submit" className="my-2 align-self-end btn gold-background btn-dark" onClick={handleButtonClick}>Submit</button>
-
-            <button type="submit" onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
+            <button type="submit" onClick={handleButtonClick} onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
 
           </form>
         </div>

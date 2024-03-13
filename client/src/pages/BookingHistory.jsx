@@ -10,7 +10,7 @@ import { GET_USER_BOOKINGS } from '../utils/queries';
 
 
 const BookingHistory = () => {
-  const { user } = useParams();
+  const { userId } = useParams();
   const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
   const bookings = data ? data.getUserBookings : [];
   const nextAppointment = bookings.length > 0 ? bookings[0] : null;
