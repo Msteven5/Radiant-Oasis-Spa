@@ -3,12 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import massageimg from '../assets/candle2.jpg';
-import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BOOKINGS } from '../utils/queries';
 
 function Confirmation() {
-  const { userId } = useParams(); 
+  const userId = "65f1ba1147a16939793bfa0d";
+
   const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
   const bookings = data ? data.getUserBookings : [];
 
@@ -23,7 +23,6 @@ function Confirmation() {
             Your appointment with {bookings.length > 0 ? `${bookings[0].staff.firstName} ${bookings[0].staff.lastName}` : "[name]"} has been scheduled at {bookings.length > 0 ? bookings[0].date + " " + bookings[0].time : "[date&time]"}.
           </Card.Text>
           <div className='d-flex justify-content-around'>
-            <Button style={{ backgroundColor: '#231a11', color: '#a28e7b', border: 'none' }}>Need to Cancel?</Button>
           </div>
         </Card.Body>
       </Card>

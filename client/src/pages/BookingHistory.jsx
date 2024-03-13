@@ -4,13 +4,13 @@ import Card from 'react-bootstrap/Card';
 import facial2 from '../assets/facial2.jpg';
 import stone2 from '../assets/stone2.jpg';
 import supplies from '../assets/supplies.jpg';
-import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_USER_BOOKINGS } from '../utils/queries';
 
-
 const BookingHistory = () => {
-  const { userId } = useParams();
+
+  const userId = "65f1ba1147a16939793bfa0d";
+  
   const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
   const bookings = data ? data.getUserBookings : [];
   const nextAppointment = bookings.length > 0 ? bookings[0] : null;
@@ -56,8 +56,6 @@ const BookingHistory = () => {
               <Card.Text>
                 You have an appointment scheduled for {nextAppointment.date} at {nextAppointment.time} with {nextAppointment.staff.firstName} {nextAppointment.staff.lastName}
               </Card.Text>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Reschedule</Card.Link>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Cancel</Card.Link>
             </Card.Body>
           </Card>
         </div>
@@ -72,5 +70,6 @@ const BookingHistory = () => {
 };
 
 export default BookingHistory;
+
 
 
