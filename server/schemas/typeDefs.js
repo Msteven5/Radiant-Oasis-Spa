@@ -82,6 +82,7 @@ const typeDefs = `
       userId: ID, 
       services: [ServiceInput], 
       staffId: ID, 
+      phoneNumber: String
       date: String, 
       time: String): Booking!
   }

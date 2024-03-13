@@ -25,10 +25,6 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  phoneNumber:{
-    type: String,
-    
-  },
   bookings: [{
     type: Schema.Types.ObjectId,
     ref: 'Booking'
