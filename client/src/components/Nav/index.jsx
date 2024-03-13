@@ -46,6 +46,7 @@ function Nav() {
 
     setFirstName("");
     setIsLoginModalOpen(false);
+    setIsSignupModalOpen(false);
     navigate("/");
 
 
@@ -58,10 +59,21 @@ function Nav() {
     setIsLoginModalOpen(false); 
   }
 
+  const handleSignup = async () => {
+    await fetchFirstName(); 
+    setIsLoggedIn(true);
+    setIsLoginModalOpen(false); 
+    setIsSignupModalOpen(false); 
+  }
+
   const handleLoginModalClose = () => {
     setIsLoginModalOpen(false); 
   }
 
+  const handleSignUpModalClose = () => {
+    setIsSignupModalOpen(false); 
+  }
+//add
   if (Auth.loggedIn()) {
 
 
@@ -142,8 +154,10 @@ function Nav() {
             </div>
           </nav>
         </header>
-        <SignupModal isOpen={isSignupModalOpen} onClose={() => setIsSignupModalOpen(false)} />
 
+        <SignupModal isOpen={isSignupModalOpen} onClose={handleSignup} onCloseModal={handleSignUpModalClose} /> 
+
+       
         <LoginModal isOpen={isLoginModalOpen} onClose={handleLogin} onCloseModal={handleLoginModalClose} /> 
 
 
