@@ -64,6 +64,7 @@ const typeDefs = `
     getBookings: [Booking]
     getStaffMember(_id: ID): Staff
     getSingleService(_id: ID): Service
+    getUserBookings(userId: ID!): [Booking]
   }
 
   type Mutation {

@@ -1,4 +1,4 @@
-const { signToken, AuthenticationError } = require('../utils/auth');
+const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
 const { User, Staff, Services, Booking } = require('../models');
 
 const resolvers = {
@@ -28,10 +28,24 @@ const resolvers = {
         throw new Error('Failed to fetch services');
       }
     },
-    getBookings: async () => {
+    getUserBookings: async (parent, args, context, info) => {
       try {
-        return await Booking.find().populate("services");
+        const userId = args.userId;
+    
+        if (!userId) {
+          throw new UserInputError('User ID is required');
+        }
+        const user = await User.findById(userId).populate({
+          path: 'bookings',
+          populate: [
+            { path: 'service', select: ['serviceName', 'servicePrice'] },
+            { path: 'staff', select: ['firstName', 'lastName'] },
+          ],
+        });
+    
+        return user.bookings;
       } catch (error) {
+        console.error('Failed to fetch bookings:', error);
         throw new Error('Failed to fetch bookings');
       }
     },
@@ -118,3 +132,4 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
