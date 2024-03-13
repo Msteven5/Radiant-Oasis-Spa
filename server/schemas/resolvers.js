@@ -122,7 +122,7 @@ const resolvers = {
           throw new Error('Incorrect password');
         }
         // JWT token
-        const token = signToken({ userId: user._id }); 
+        const token = signToken(user); 
         return { token, user };
       } catch (error) {
         throw new AuthenticationError('Login failed'); 
