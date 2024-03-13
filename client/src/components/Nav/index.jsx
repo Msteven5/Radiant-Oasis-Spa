@@ -91,7 +91,7 @@ function Nav() {
                   </li>
                 </ul>
                 <ul className="navbar-nav mb-2 mb-md-0">
-                  {/* Show login and sign up buttons */}
+                  
                   <li className="nav-item">
                     <button className="nav-link active mx-3 small-font" onClick={() => setIsLoginModalOpen(true)}>Login</button>
                   </li>
