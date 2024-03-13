@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_STAFF, GET_STAFFMEMBER, GET_SERVICES, GET_SINGLE_SERVICE } from '../utils/queries';
 import { useLazyQuery } from '@apollo/client';
-
+import { useNavigate } from "react-router-dom";
 import Candle from "../assets/candle.jpg"
 import Flower from "../assets/flower.jpg"
 
 const Booking = () => {
+
+  const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
     staffId: '',
@@ -27,6 +29,7 @@ const Booking = () => {
       setFormState({ ...formState, serviceId: value });
     }
   }
+
 
   const { data: staffData, error } = useQuery(GET_STAFF)
   if (error) {
@@ -60,6 +63,10 @@ const Booking = () => {
       }
     })
   });
+
+  const handleButtonClick = () => {
+    navigate("/:userId/Confirmation")
+  };
 
   const availableAddOns = availableServices[formState.serviceId]?.addOns || [];
 
@@ -114,10 +121,11 @@ const Booking = () => {
               {hourList}
             </select>
 
-            <input type="tel" id="phone" name="phone" maxLength="10" placeholder="Phone Number (0000000000)" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+            <input type="tel" id="phone" name="phone" maxLength="12" placeholder="Phone Number (0000000000)" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
 
-            <button type="submit" className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
+            <button type="submit" className="my-2 align-self-end btn gold-background btn-dark" onClick={handleButtonClick}>Submit</button>
+
           </form>
         </div>
       </div>
