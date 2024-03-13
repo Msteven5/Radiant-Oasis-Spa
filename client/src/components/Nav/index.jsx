@@ -3,14 +3,18 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo.png";
 import SignupModal from '../signup-modal/modal';
-import LoginModal from '../login-modal/login-modal'; 
+import LoginModal from '../login-modal/login-modal';
 import { useNavigate } from "react-router-dom";
 import './index.css'
 
 function Nav() {
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false); 
   const [firstName, setFirstName] = useState("");
+
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,10 +43,13 @@ function Nav() {
 
   const handleLogout = () => {
     Auth.logout();
+
     setFirstName("");
     setIsLoginModalOpen(false);
     setIsSignupModalOpen(false);
     navigate("/");
+
+
   }
   
 
@@ -68,6 +75,10 @@ function Nav() {
   }
 //add
   if (Auth.loggedIn()) {
+
+
+
+
     return (
       <>
         <header>
@@ -89,11 +100,13 @@ function Nav() {
                     <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link active mx-3" to="/BookingHistory">Booking History</Link>
+                    <Link className="nav-link active mx-3" to="/users/:userId/BookingHistory">Booking History</Link>
                   </li>
                 </ul>
                 <div className="navbar-text mx-3">
+
                   {firstName && <span>Welcome, {firstName}! </span>} 
+
                 </div>
                 <ul className="navbar-nav mb-2 mb-md-0">
                   <li className="nav-item">
@@ -141,8 +154,13 @@ function Nav() {
             </div>
           </nav>
         </header>
+
         <SignupModal isOpen={isSignupModalOpen} onClose={handleSignup} onCloseModal={handleSignUpModalClose} /> 
+
+       
         <LoginModal isOpen={isLoginModalOpen} onClose={handleLogin} onCloseModal={handleLoginModalClose} /> 
+
+
       </>
     );
   }
