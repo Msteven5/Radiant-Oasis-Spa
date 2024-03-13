@@ -30,15 +30,11 @@ const resolvers = {
     },
     getUserBookings: async (parent, args, context, info) => {
       try {
-        // Extract the user ID from the args parameter
         const userId = args.userId;
     
-        // Check if the user ID is provided
         if (!userId) {
           throw new UserInputError('User ID is required');
         }
-    
-        // Fetch the user's bookings using the provided user ID
         const user = await User.findById(userId).populate({
           path: 'bookings',
           populate: [
