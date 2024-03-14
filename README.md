@@ -81,24 +81,18 @@ or harmful.
 ![Screen Shot 2024-02-13 at 9 22 16 PM](client/src/assets/Screenshot 2024-03-13 at 10.51.28 PM.png)
 
 
-![Screen Shot 2024-02-13 at 9 25 49 PM]()
+![Screen Shot 2024-02-13 at 9 25 49 PM](https://github.com/Msteven5/Radiant-Oasis-Spa/blob/main/client/src/assets/home.png)
 
-![Screen Shot 2024-02-13 at 9 29 19 PM]()
+![Screen Shot 2024-02-13 at 9 29 19 PM](https://github.com/Msteven5/Radiant-Oasis-Spa/blob/main/client/src/assets/home1.png)
 
-![Screen Shot 2024-02-13 at 9 30 00 PM](https://github.com/AnthonyBuffill/invoicinator/assets/153314977/6cbb818b-5b83-41cb-af10-ed3447986024)
-
-![Screen Shot 2024-02-13 at 9 32 45 PM](https://github.com/AnthonyBuffill/invoicinator/assets/153314977/69a8b963-d2e1-4323-88be-fac6a5007b66)
-
-![Screen Shot 2024-02-13 at 9 42 16 PM](https://github.com/AnthonyBuffill/invoicinator/assets/153314977/51d1ffa4-4ee3-43ed-97fa-445cde523f06)
-
-![Screen Shot 2024-02-13 at 9 42 54 PM](https://github.com/AnthonyBuffill/invoicinator/assets/153314977/99553504-9ccb-4643-a440-b388d9f0956c)
-
-![Screenshot 2024-02-13 at 9 46 07 PM](https://github.com/AnthonyBuffill/invoicinator/assets/153314977/76c469d4-cc66-4ed4-a0fb-76326d204d21)
+![Screen Shot 2024-02-13 at 9 30 00 PM](https://github.com/Msteven5/Radiant-Oasis-Spa/blob/main/client/src/assets/home2.png)
 
 
 
 
+## Credit 
 
+give credit to https://fredrikoseberg.github.io/react-chatbot-kit-docs/ for chat bot
 
 ## Deployment
 
