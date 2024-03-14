@@ -23,7 +23,7 @@ import Reviewer5 from "../assets/reviewer5.jpg"
 
 import MyComponent from "../components/ChatBot/index"
 import React, { useState } from 'react';
-import Logo from "../assets/logoBubble.png"
+import Logo from "../assets/LogoBubble.png"
 import './Home.css';
 
 const Home = () => {
