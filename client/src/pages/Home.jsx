@@ -21,7 +21,7 @@ import Reviewer3 from "../assets/reviewer3.jpg"
 import Reviewer4 from "../assets/reviewer4.jpg"
 import Reviewer5 from "../assets/reviewer5.jpg"
 
-import MyComponent from "../components/ChatBot/Index"
+import MyComponent from "../components/ChatBot/index"
 import React, { useState } from 'react';
 import Logo from "../assets/logoBubble.png"
 import './Home.css';
