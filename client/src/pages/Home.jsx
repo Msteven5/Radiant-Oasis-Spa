@@ -24,7 +24,7 @@ import Reviewer5 from "../assets/reviewer5.jpg"
 import MyComponent from "../components/ChatBot/index"
 import React, { useState } from 'react';
 import Logo from "../assets/LogoBubble.png"
-import './Home.css';
+import './home.css';
 
 const Home = () => {
   const [showChatbot, setShowChatbot] = useState(false);
