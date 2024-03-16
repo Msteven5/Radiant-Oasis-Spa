@@ -9,7 +9,6 @@ db.once('open', async () => {
   await cleanDB('Service', 'services');
   await cleanDB('Booking', 'bookings');
 
-  
   const users = await User.insertMany([
     {
       firstName: 'Michael',
@@ -27,7 +26,6 @@ db.once('open', async () => {
     }
   ]);
 
-  
   const services = await Services.insertMany([
     { serviceName: 'Manicure', servicePrice: 25.99, addOns: [{ addOnName: 'Nail Art', addOnPrice: 5.99 }, { addOnName: 'Cuticle Treatment', addOnPrice: 3.99 }] },
     { serviceName: 'Pedicure', servicePrice: 35.99, addOns: [{ addOnName: 'Foot Massage', addOnPrice: 8.99 }, { addOnName: 'Callus Removal', addOnPrice: 4.99 }] },
@@ -36,7 +34,6 @@ db.once('open', async () => {
     { serviceName: 'Yoga', servicePrice: 30.00 }
   ]);
 
-  // Insert Staff
   const staff = await Staff.insertMany([
     { firstName: 'Michael', lastName: 'Brown', services: services.find(service => service.serviceName === 'Manicure')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
     { firstName: 'Jessica', lastName: 'Davis', services: services.find(service => service.serviceName === 'Yoga')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
@@ -46,9 +43,8 @@ db.once('open', async () => {
     { firstName: 'Sophia', lastName: 'Miller', services: services.find(service => service.serviceName === 'Massage')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
     { firstName: 'Andrew', lastName: 'Anderson', services: services.find(service => service.serviceName === 'Facial')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
     { firstName: 'Olivia', lastName: 'Moore', services: services.find(service => service.serviceName === 'Pedicure')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
-  ])
+  ]);
 
-  // Insert Bookings for Michael
   const michaelBookings = [
     {
       user: users[0]._id,
@@ -73,7 +69,6 @@ db.once('open', async () => {
     }
   ];
 
-
   const annaBookings = [
     {
       user: users[1]._id,
@@ -82,15 +77,14 @@ db.once('open', async () => {
       date: new Date('01-19-2024'),
       time: '3:30 PM'
     },
-    
+  
   ];
-
 
   const bookings = await Booking.insertMany([...michaelBookings, ...annaBookings]);
 
   for (const booking of bookings) {
     const userIndex = users.findIndex(user => user._id.toString() === booking.user.toString());
-    users[userIndex].bookings.push(booking._id);
+    users[userIndex].bookings.push(booking);
   }
 
   await Promise.all(users.map(user => user.save()));
@@ -98,8 +92,4 @@ db.once('open', async () => {
   console.log('Data seeded successfully');
   process.exit();
 });
-
-
-
-
 
