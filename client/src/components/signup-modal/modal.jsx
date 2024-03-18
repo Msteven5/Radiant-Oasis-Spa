@@ -13,7 +13,7 @@ const SignupModal = ({ isOpen, onClose }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
-      const mutationResponse = await addUser({
+      const { data } = await addUser({
         variables: {
           email: formState.email,
           password: formState.password,
@@ -21,7 +21,7 @@ const SignupModal = ({ isOpen, onClose }) => {
           lastName: formState.lastName,
         },
       });
-      const token = mutationResponse.data.createUser.token;
+      const token = data.createUser.token;
       Auth.login(token);
       setSuccessMessage('Thank You! Signup was successful!');
       setSubmitted(true);
@@ -58,7 +58,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               <input
                 placeholder="First"
                 name="firstName"
-                type="firstName"
+                type="text"
                 id="firstName"
                 onChange={handleChange}
                 required
@@ -69,7 +69,7 @@ const SignupModal = ({ isOpen, onClose }) => {
               <input
                 placeholder="Last"
                 name="lastName"
-                type="lastName"
+                type="text" 
                 id="lastName"
                 onChange={handleChange}
                 required

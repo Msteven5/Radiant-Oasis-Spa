@@ -5,6 +5,7 @@ import Logo from "../../assets/Logo.png";
 import SignupModal from '../signup-modal/modal';
 import LoginModal from '../login-modal/login-modal';
 import { useNavigate } from "react-router-dom";
+
 import './index.css'
 
 function Nav() {
@@ -51,24 +52,31 @@ function Nav() {
   }
   
 
-  const handleLogin = async () => {
-    await fetchFirstName(); 
-    setIsLoggedIn(true);
-    setIsLoginModalOpen(false); 
-  }
+  // const handleLogin = async () => {
+  //   await fetchFirstName(); 
+  //   setIsLoggedIn(true);
+  //   setIsLoginModalOpen(false); 
+  // }
 
-  const handleSignup = async () => {
-    await fetchFirstName(); 
-    setIsLoggedIn(true);
-    setIsLoginModalOpen(false); 
-    setIsSignupModalOpen(false); 
-  }
+  // const handleSignup = async () => {
+  //   await fetchFirstName(); 
+  //   setIsLoggedIn(true);
+  //   setIsLoginModalOpen(false); 
+  //   setIsSignupModalOpen(false); 
+  // }
 
   const handleLoginModalClose = () => {
-    setIsLoginModalOpen(false); 
+    setIsLoginModalOpen(false);
+     fetchFirstName(); 
+    setIsLoggedIn(true);
+    setIsLoginModalOpen(false);
+   
   }
 
   const handleSignUpModalClose = () => {
+    setIsSignupModalOpen(false); 
+    fetchFirstName(); 
+    setIsLoggedIn(true);
     setIsSignupModalOpen(false); 
   }
 //add
@@ -150,10 +158,10 @@ function Nav() {
           </nav>
         </header>
 
-        <SignupModal isOpen={isSignupModalOpen} onClose={handleSignup} onCloseModal={handleSignUpModalClose} /> 
+        <SignupModal isOpen={isSignupModalOpen} onClose={handleSignUpModalClose} onCloseModal={handleSignUpModalClose} /> 
 
        
-        <LoginModal isOpen={isLoginModalOpen} onClose={handleLogin} onCloseModal={handleLoginModalClose} /> 
+        <LoginModal isOpen={isLoginModalOpen} onClose={handleLoginModalClose} onCloseModal={handleLoginModalClose} /> 
 
 
       </>
