@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from "../../utils/auth";
 import { LOGIN_USER } from '../../utils/mutations'; 
+
 import './login-modal.css';
 
 const LoginModal = ({ isOpen, onClose }) => {
@@ -20,18 +21,22 @@ const LoginModal = ({ isOpen, onClose }) => {
       });
       console.log(mutationResponse.data);
   
-      
       const token = mutationResponse.data.loginUser.token;
       Auth.login(token);
   
-     
       setFormState({ email: '', password: '' });
       setSubmitted(true);
     } catch (err) {
       console.error(err);
       setSubmitted(false);
+
+    
+      if (err.message.includes('AuthenticationError')) {
+       
+      }
     }
   };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({

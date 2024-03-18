@@ -1,5 +1,6 @@
 const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
 const { User, Staff, Services, Booking } = require('../models');
+const bcrypt = require('bcrypt');
 
 const resolvers = {
   Query: {
@@ -105,10 +106,13 @@ const resolvers = {
           throw new Error('User not found');
         }
         
-        if (password !== user.password) {
+       
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
           throw new Error('Incorrect password');
         }
-        // JWT token
+    
+        
         const token = signToken(user); 
         return { token, user };
       } catch (error) {
