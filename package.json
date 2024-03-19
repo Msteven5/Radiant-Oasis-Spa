@@ -15,11 +15,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-  },
   "dependencies": {
-    "webpack-dev-server": "^5.0.2",
     "concurrently": "^5.1.0",
-    "webpack-cli": "^5.1.4"
+    "dotenv": "^16.4.5",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
   }
 }

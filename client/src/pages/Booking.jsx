@@ -4,6 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_STAFF } from '../utils/queries';
 import { CREATE_BOOKING } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
+import  auth  from '../utils/auth'; 
 
 import Candle from "../assets/candle.jpg"
 import Flower from "../assets/flower.jpg"
@@ -13,6 +14,7 @@ const Booking = () => {
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
+    userId: auth.getProfile().data._id,
     staffId: '',
     serviceId: '',
     addOnId: '',
@@ -96,9 +98,9 @@ const Booking = () => {
     })
   });
 
-  const handleButtonClick = () => {
-    navigate("/Confirmation")
-  };
+  // const handleButtonClick = () => {
+  //   navigate("/Confirmation")
+  // };
 
   const availableAddOns = availableServices[formState.serviceId]?.addOns || [];
 
@@ -122,7 +124,7 @@ const Booking = () => {
     try {
       const mutationResponse = await createBooking({
         variables: {
-          userId: '65f15e3872b09af985f65534',
+          userId: formState.userId,
           staffId: formState.staffId,
           serviceId: formState.serviceId,
           addOnId: formState.addOnId,
@@ -131,8 +133,9 @@ const Booking = () => {
           time: formState.time
         },
       });
-      if (mutationResponse && mutationResponse.data && mutationResponse.data.createBooking) {
+      if (mutationResponse.ok) {
         console.log('Submission successful!');
+        navigate("/Confirmation")
       } else {
         console.log('Submission failed.');
       }
@@ -187,7 +190,7 @@ const Booking = () => {
             <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
 
-            <button type="submit" onClick={handleButtonClick} onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
+            <button type="submit" onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
 
           </form>
         </div>
