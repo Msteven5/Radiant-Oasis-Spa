@@ -83,10 +83,10 @@ const resolvers = {
     createBooking: async (_, { userId, serviceId, staffId, addOnId, phoneNumber, date, time }) => {
       try {
          const newBooking = await Booking.create({
-          userId: userId,
-          serviceId: serviceId,
-          staffId: staffId,
-          addOnId: addOnId,
+          user:userId,
+          service: serviceId,
+          staff:staffId,
+          addOn: addOnId,
           phoneNumber,
           date,
           time

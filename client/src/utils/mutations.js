@@ -24,20 +24,20 @@ export const CREATE_USER = gql`
 export const CREATE_BOOKING = gql`
   mutation 
   createBooking(
-    $userId: ID, 
-    $serviceId: String, 
-    $staffId: String, 
-    $addOnId: String,
+    $userId: ID!, 
+    $serviceId: ID!, 
+    $staffId: ID!, 
+    $addOnId: ID,
     $phoneNumber: String
-    $date: String, 
-    $time: String
+    $date: String!, 
+    $time: String!
     ) {
     createBooking
-    (userId: $userId, 
-      serviceId: $serviceId, 
-      addOnId: $addOnId,
+    (user: $userId, 
+      service: $serviceId, 
+      addOn: $addOnId,
       phoneNumber: $phoneNumber
-      staffId: $staffId, 
+      staff: $staffId, 
       date: $date, 
       time: $time) {
       _id
