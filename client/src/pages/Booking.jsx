@@ -133,9 +133,9 @@ const Booking = () => {
           time: formState.time
         },
       });
-      if (mutationResponse.ok) {
+      if (mutationResponse.data.createBooking) {
         console.log('Submission successful!');
-        navigate("/Confirmation")
+        navigate("/Confirmation");
       } else {
         console.log('Submission failed.');
       }
@@ -143,7 +143,7 @@ const Booking = () => {
       console.error(err);
     }
   };
-
+  
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
@@ -158,7 +158,7 @@ const Booking = () => {
 
       <div className="bookingPage mt-5 pt-3 col-md-4">
         <div className="row d-flex justify-content-center align-content-center" id="bookingForm">
-          <form className=" mt-5 rounded-2">
+          <form className=" mt-5 rounded-2" onSubmit={handleFormSubmit}>
             <h1 className="text-center gold-text py-3" id="bookNow">Book Now</h1>
 
 
@@ -190,7 +190,7 @@ const Booking = () => {
             <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
 
 
-            <button type="submit" onSubmit={handleFormSubmit} className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
+            <button type="submit" className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
 
           </form>
         </div>

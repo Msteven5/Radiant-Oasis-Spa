@@ -92,6 +92,8 @@ const resolvers = {
           time
         });
 
+        await User.findByIdAndUpdate(userId, { $push: { bookings: newBooking._id } });
+
         return await newBooking;
       } catch (error) {
         console.log(error)
