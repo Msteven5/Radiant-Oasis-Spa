@@ -1,25 +1,23 @@
-
+import React, { useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card';
 import facial2 from '../assets/facial2.jpg';
 import stone2 from '../assets/stone2.jpg';
 import supplies from '../assets/supplies.jpg';
 import { useQuery } from '@apollo/client';
-import  auth  from '../utils/auth'; 
+import auth from '../utils/auth';
 import { GET_USER_BOOKINGS } from '../utils/queries';
 
 const BookingHistory = () => {
   const userId = auth.getProfile().data._id;
-  console.log(userId)
-  const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
+  const { loading, data, refetch } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  useEffect(() => {
+    refetch();
+  }, [userId, refetch]); 
 
   const bookings = data ? data.getUserBookings : [];
-  console.log(bookings)
-  const nextAppointment = bookings.length > 0 ? bookings[0] : null;
+  const nextAppointment = bookings.length > 0 ? bookings[bookings.length - 1] : null;
 
   return (
     <div id="historyContainer" className="vh-100">
@@ -34,13 +32,11 @@ const BookingHistory = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking) => (  
+          {bookings.map((booking) => (
             <tr key={booking.id}>
               <td>
                 {booking.service.map((service, index) => (
-                  <div key={index}>
-                    {service.serviceName}
-                  </div>
+                  <div key={index}>{service.serviceName}</div>
                 ))}
               </td>
               <td>{`${booking.staff.firstName} ${booking.staff.lastName}`}</td>
@@ -60,10 +56,15 @@ const BookingHistory = () => {
               <Card.Title>Your Next Appointment:</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">{nextAppointment.service[0].serviceName}</Card.Subtitle>
               <Card.Text>
-                You have an appointment scheduled for {nextAppointment.date} at {nextAppointment.time} with {nextAppointment.staff.firstName} {nextAppointment.staff.lastName}
+                You have an appointment scheduled for {nextAppointment.date} at {nextAppointment.time} with{' '}
+                {nextAppointment.staff.firstName} {nextAppointment.staff.lastName}
               </Card.Text>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Reschedule</Card.Link>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Cancel</Card.Link>
+              <Card.Link href="#" style={{ color: '#231a11' }}>
+                Reschedule
+              </Card.Link>
+              <Card.Link href="#" style={{ color: '#231a11' }}>
+                Cancel
+              </Card.Link>
             </Card.Body>
           </Card>
         </div>
@@ -78,6 +79,7 @@ const BookingHistory = () => {
 };
 
 export default BookingHistory;
+
 
 
 

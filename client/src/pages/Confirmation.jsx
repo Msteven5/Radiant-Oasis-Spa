@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import massageimg from '../assets/candle2.jpg';
@@ -8,11 +8,12 @@ import { GET_USER_BOOKINGS } from '../utils/queries';
 
 function Confirmation() {
   const userId = auth.getProfile().data._id;
-  console.log(userId)
-  const { loading, data } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
+  const { loading, data, refetch } = useQuery(GET_USER_BOOKINGS, { variables: { userId } });
+  useEffect(() => {
+    refetch();
+  }, [userId]); 
   const bookings = data ? data.getUserBookings : [];
-  console.log(bookings)
-  const nextAppointment = bookings.length > 0 ? bookings[0] : null;
+  const nextAppointment = bookings.length > 0 ? bookings[bookings.length - 1] : null;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 0 }}  id="confirmationBg">
