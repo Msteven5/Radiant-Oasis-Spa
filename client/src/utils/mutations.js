@@ -33,11 +33,11 @@ export const CREATE_BOOKING = gql`
     $time: String!
     ) {
     createBooking
-    (user: $userId, 
-      service: $serviceId, 
-      addOn: $addOnId,
+    (userId: $userId, 
+      serviceId: $serviceId, 
+      addOnId: $addOnId,
       phoneNumber: $phoneNumber
-      staff: $staffId, 
+      staffId: $staffId, 
       date: $date, 
       time: $time) {
       _id
