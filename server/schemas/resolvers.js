@@ -118,7 +118,7 @@ const resolvers = {
           throw new Error('Incorrect password');
         }
     
-        // Generate token if passwords match
+        
         const token = signToken(user); 
         return { token, user };
       } catch (error) {

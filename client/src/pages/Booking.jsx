@@ -14,7 +14,7 @@ const Booking = () => {
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
-    userId: auth.getProfile().data._id,
+    userId: '',
     staffId: '',
     serviceId: '',
     addOnId: '',
