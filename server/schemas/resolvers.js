@@ -17,7 +17,7 @@ const resolvers = {
     },
     getStaff: async () => {
       try {
-        return await Staff.find().populate('services');
+        return await Staff.find().populate('services').populate('availability');
       } catch (error) {
         throw new Error('Failed to fetch staff');
       }
@@ -32,7 +32,6 @@ const resolvers = {
     getUserBookings: async (parent, args, context, info) => {
       try {
         const userId = args.userId;
-    
         if (!userId) {
           throw new UserInputError('User ID is required');
         }
@@ -43,7 +42,6 @@ const resolvers = {
             { path: 'staff', select: ['firstName', 'lastName'] },
           ],
         });
-    
         return user.bookings;
       } catch (error) {
         console.error('Failed to fetch bookings:', error);
@@ -77,7 +75,6 @@ const resolvers = {
     createUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
-
       return { token, user };
     },
     createBooking: async (_, { userId, serviceId, staffId, addOnId, phoneNumber, date, time }) => {
@@ -91,16 +88,13 @@ const resolvers = {
           date,
           time
         });
-
         await User.findByIdAndUpdate(userId, { $push: { bookings: newBooking._id } });
-
-        return await newBooking;
+        return newBooking;
       } catch (error) {
         console.log(error)
         throw new Error('Failure to create booking');
       }
     },
-
     loginUser: async (_, { email, password }) => {
       try {
         const user = await User.findOne({ email });
@@ -108,19 +102,16 @@ const resolvers = {
           throw new Error('User not found');
         }
         
-     
         if (password === user.password) {
           const token = signToken(user); 
           return { token, user };
         }
         
-     
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
           throw new Error('Incorrect password');
         }
     
-        
         const token = signToken(user); 
         return { token, user };
       } catch (error) {
@@ -131,4 +122,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-

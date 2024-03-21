@@ -38,7 +38,7 @@ const typeDefs = `
     firstName: String
     lastName: String
     services: [Service]
-    hours: [String]
+    availability: [Availability]
   }
 
   type AddOn {
@@ -54,6 +54,13 @@ const typeDefs = `
     staff: Staff
     date: String
     time: String
+  }
+
+  type Availability {
+    _id: ID!
+    dayOfWeek: Int!
+    hour: Int!
+    available: Boolean!
   }
 
   type Query {

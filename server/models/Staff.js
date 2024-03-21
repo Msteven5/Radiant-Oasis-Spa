@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const availabilitySchema = require('./Availability');
 
 const { Schema } = mongoose;
 
@@ -18,10 +19,7 @@ const staffSchema = new Schema({
     ref: 'Service', 
     required: true,
   }],
-  hours: [{
-    type: String,
-    required: true
-  }]
+  availability: [availabilitySchema] 
 });
 
 const Staff = mongoose.model('Staff', staffSchema);
