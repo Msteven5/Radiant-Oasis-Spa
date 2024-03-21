@@ -1,6 +1,5 @@
 import { gql } from '@apollo/client';
 
-import { gql } from 'apollo-boost';
 
 export const GET_STAFF = gql`
   query GetStaff {
