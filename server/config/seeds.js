@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('./connection');
-const { User, Staff, Services, Booking, Availability } = require('../models');
+const { User, Staff, Services, Booking, } = require('../models');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
@@ -8,6 +8,7 @@ db.once('open', async () => {
   await cleanDB('Staff', 'staff');
   await cleanDB('Service', 'services');
   await cleanDB('Booking', 'bookings');
+
 
   const users = await User.insertMany([
     {
@@ -37,8 +38,7 @@ db.once('open', async () => {
   const staff = await Staff.insertMany([
     { firstName: 'Michael', 
     lastName: 'Brown', 
-    services: services.find(service => service.serviceName === 'Manicure')._id, 
-    hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ],  
+    services: services.find(service => service.serviceName === 'Manicure')._id,   
     
     availability: [
       { dayOfWeek: 1, hour: 12, available: true }, // Monday 12:00 PM - Available

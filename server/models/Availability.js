@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const { Schema } = require ('mongoose')
 
-const availabilitySchema = new mongoose.Schema({
+const availabilitySchema = new Schema({
   dayOfWeek: {
     type: Number, 
     required: true

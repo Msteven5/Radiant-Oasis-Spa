@@ -1,25 +1,34 @@
 import { gql } from '@apollo/client';
 
+import { gql } from 'apollo-boost';
+
 export const GET_STAFF = gql`
-query GetStaff {
-  getStaff {
-    _id
-    firstName
-    lastName
-    hours
-    services {
+  query GetStaff {
+    getStaff {
       _id
-      serviceName
-      servicePrice
-      addOns {
-        addOnName
-        addOnPrice
+      firstName
+      lastName
+      hours
+      availability { 
         _id
+        dayOfWeek
+        hour
+        available
+      }
+      services {
+        _id
+        serviceName
+        servicePrice
+        addOns {
+          addOnName
+          addOnPrice
+          _id
+        }
       }
     }
   }
-}
 `;
+
 
 export const GET_USER = gql`
 query GetUser($userId: ID!) {
