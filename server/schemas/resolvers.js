@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
-const { User, Staff, Services, Booking } = require('../models');
+const { User, Staff, Services, Booking, Availability } = require('../models');
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -73,6 +73,21 @@ const resolvers = {
       }
     },
   },
+
+  availability: async (_, { dayOfWeek, hour }) => {
+    try {
+      
+      const availability = await Availability.find({ dayOfWeek, hour });
+      return availability;
+    } catch (error) {
+      throw new Error('Failed to fetch availability data');
+    }
+  },
+  
+
+
+
+
   Mutation: {
     createUser: async (parent, args) => {
       const user = await User.create(args);

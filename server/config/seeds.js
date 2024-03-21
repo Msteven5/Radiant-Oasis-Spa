@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('./connection');
-const { User, Staff, Services, Booking } = require('../models');
+const { User, Staff, Services, Booking, Availability } = require('../models');
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
@@ -35,7 +35,19 @@ db.once('open', async () => {
   ]);
 
   const staff = await Staff.insertMany([
-    { firstName: 'Michael', lastName: 'Brown', services: services.find(service => service.serviceName === 'Manicure')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },
+    { firstName: 'Michael', 
+    lastName: 'Brown', 
+    services: services.find(service => service.serviceName === 'Manicure')._id, 
+    hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ],  
+    
+    availability: [
+      { dayOfWeek: 1, hour: 12, available: true }, // Monday 12:00 PM - Available
+      { dayOfWeek: 1, hour: 13, available: true }, // Monday 1:00 PM - Available
+      { dayOfWeek: 1, hour: 14, available: true }, // Monday 2:00 PM - Available
+      { dayOfWeek: 2, hour: 10, available: true }, // Tuesday 10:00 AM - Available
+      { dayOfWeek: 2, hour: 11, available: true }, // Tuesday 11:00 AM - Available
+    ] },
+    
     { firstName: 'Jessica', lastName: 'Davis', services: services.find(service => service.serviceName === 'Yoga')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
     { firstName: 'Christopher', lastName: 'Wilson', services: services.find(service => service.serviceName === 'Massage')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },
     { firstName: 'Emily', lastName: 'Jones', services: services.find(service => service.serviceName === 'Facial')._id, hours: ['12:00p-1:00p','1:00p-2:00p','2:00p-3:00p','3:00p-4:00p', '4:00p-5:00p' ] },

@@ -94,3 +94,13 @@ query GetUserBookings($userId: ID!) {
 }
 `;
 
+export const GET_AVAILABILITY = gql`
+  query GetAvailability($dayOfWeek: Int!, $hour: Int!) {
+    availability(dayOfWeek: $dayOfWeek, hour: $hour) {
+      _id
+      dayOfWeek
+      hour
+      available
+    }
+  }
+`;

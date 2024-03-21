@@ -56,6 +56,13 @@ const typeDefs = `
     time: String
   }
 
+  type Availability {
+    _id: ID!
+    dayOfWeek: Int!
+    hour: Int!
+    available: Boolean!
+  }
+
   type Query {
     getUsers: [User]
     getUser(_id: ID): User
@@ -65,6 +72,7 @@ const typeDefs = `
     getStaffMember(_id: ID): Staff
     getSingleService(_id: ID): Service
     getUserBookings(userId: ID!): [Booking]
+    getAvailability(dayOfWeek: Int!, hour: Int!): [Availability]
   }
 
   type Mutation {
