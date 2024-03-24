@@ -41,11 +41,11 @@ db.once('open', async () => {
     services: services.find(service => service.serviceName === 'Manicure')._id,   
     
     availability: [
-      { dayOfWeek: 1, hour: 12, available: true }, // Monday 12:00 PM - Available
-      { dayOfWeek: 1, hour: 13, available: true }, // Monday 1:00 PM - Available
-      { dayOfWeek: 1, hour: 14, available: true }, // Monday 2:00 PM - Available
-      { dayOfWeek: 2, hour: 10, available: true }, // Tuesday 10:00 AM - Available
-      { dayOfWeek: 2, hour: 11, available: true }, // Tuesday 11:00 AM - Available
+      { dayOfMonth: "1", hour: "12:00", available: true }, 
+      { dayOfMonth: "20", hour: "10:00", available: true }, 
+      { dayOfMonth: "10", hour: "9:00", available: true }, 
+      { dayOfMonth: "12", hour: "2:00", available: true }, 
+      { dayOfMonth: "14", hour: "4:00", available: true }, 
     ] },
     
     { firstName: 'Jessica', lastName: 'Davis', services: services.find(service => service.serviceName === 'Yoga')._id, hours: ['8:00a-9:00a','9:00a-10:00a','10:00a-11:00a','12:00p-1:00p','1:00p-2:00p' ] },

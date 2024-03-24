@@ -1,12 +1,12 @@
 const { Schema } = require ('mongoose')
 
 const availabilitySchema = new Schema({
-  dayOfWeek: {
-    type: Number, 
+  dayOfMonth: {
+    type: String, 
     required: true
   },
   hour: {
-    type: Number, 
+    type: String, 
     required: true
   },
   available: {
