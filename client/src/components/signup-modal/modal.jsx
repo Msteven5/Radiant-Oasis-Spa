@@ -47,10 +47,11 @@ const SignupModal = ({ isOpen, onClose }) => {
           X
         </button>
 
-        <h2 className='text-center gold-text my-3'>Signup</h2>
+        <h2 className='text-center gold-text my-2'>Signup</h2>
         {submitted && successMessage && (
           <div className="success-message">{successMessage}</div>
         )}
+        <h5 className='gold-text text-center fs-6 my-3 mb-4'>Please Sign Up to Book Your Appointment!</h5>
         {!submitted && (
           <form onSubmit={handleFormSubmit}>
             <div className="d-flex justify-content-end">

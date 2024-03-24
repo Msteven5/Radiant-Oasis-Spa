@@ -141,7 +141,7 @@ function Nav() {
                     <button className="nav-link active mx-3" onClick={navigateToServices}>Services Available</button>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link active mx-3" to="/Booking">Book Your Appointment</Link>
+                    <Link className="nav-link active mx-3" onClick={() => setIsSignupModalOpen(true)}>Book Your Appointment</Link>
                   </li>
                 </ul>
                 <ul className="navbar-nav mb-2 mb-md-0">
