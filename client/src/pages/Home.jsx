@@ -21,6 +21,8 @@ import Reviewer3 from "../assets/reviewer3.jpg"
 import Reviewer4 from "../assets/reviewer4.jpg"
 import Reviewer5 from "../assets/reviewer5.jpg"
 
+import  auth  from '../utils/auth'; 
+
 import MyComponent from "../components/ChatBot/index"
 import React, { useState } from 'react';
 import Logo from "../assets/LogoBubble.png"
@@ -36,7 +38,7 @@ const Home = () => {
   const closeChatbot = () => {
     setShowChatbot(false);
   };
-
+console.log(auth.getProfile().data.email)
   return (
     <>
 
@@ -190,7 +192,7 @@ const Home = () => {
             <p className="lead ps-5 light-text">Indulge in the epitome of pampering with our exquisite manicure services at Radiant Oasis. Our skilled and experienced nail technicians are dedicated to enhancing the natural beauty of your hands, leaving them soft, polished, and impeccably groomed.</p>
           </div>
           <div className="col-md-5">
-            <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
+            <img className="bd-placeholder-img py-5 mx-3 px-4 img-fluid" width="750" height="750"
               src={Manicure} role="img" preserveAspectRatio="xMidYMid slice"
               focusable="false" />
           </div>
@@ -201,8 +203,8 @@ const Home = () => {
 
       <div className="row featurette mx-4 my-5 pt-4">
         <div className="col-md-7 order-md-2">
-          <h2 className="featurette-heading text-end dark-text">Pedicure</h2>
-          <p className="lead text-end dark-text">Step into indulgence with our revitalizing pedicure services. Our expert pedicurists deliver a blissful experience, focusing on meticulous nail care and relaxation. Sit back and unwind as we pamper your feet with a soothing soak, precise nail shaping, and a decadent massage. Choose from our curated selection of vibrant polish colors for a touch of personal flair.</p>
+          <h2 className="featurette-heading me-3 text-end dark-text">Pedicure</h2>
+          <p className="lead text-end dark-text me-3">Step into indulgence with our revitalizing pedicure services. Our expert pedicurists deliver a blissful experience, focusing on meticulous nail care and relaxation. Sit back and unwind as we pamper your feet with a soothing soak, precise nail shaping, and a decadent massage. Choose from our curated selection of vibrant polish colors for a touch of personal flair.</p>
         </div>
         <div className="col-md-5 order-md-1">
           <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
@@ -216,14 +218,14 @@ const Home = () => {
 
       <article className="row dark-background py-5">
 
-        <div className="row featurette my-5 pt-4">
+        <div className="row featurette mx-1 my-5 pt-4">
           <div className="col-md-7">
-            <h2 className="featurette-heading light-text ps-5">Facial</h2>
+            <h2 className="featurette-heading light-text ps-3">Facial</h2>
 
-            <p className="lead ps-5 light-text">Rejuvenate your skin with our luxurious facials. Our skilled estheticians offer a personalized experience, cleansing, exfoliating, and nourishing your skin to unveil a radiant glow. Indulge in a moment of pure relaxation as our expert hands work to enhance your natural beauty. Choose from our range of rejuvenating facials tailored to address your unique skincare needs. Elevate your self-care routine and embrace a refreshed, luminous complexion.</p>
+            <p className="lead ps-3 light-text me-4">Rejuvenate your skin with our luxurious facials. Our skilled estheticians offer a personalized experience, cleansing, exfoliating, and nourishing your skin to unveil a radiant glow. Indulge in a moment of pure relaxation as our expert hands work to enhance your natural beauty. Choose from our range of rejuvenating facials tailored to address your unique skincare needs. Elevate your self-care routine and embrace a refreshed, luminous complexion.</p>
           </div>
           <div className="col-md-5">
-            <img className="bd-placeholder-img py-5 img-fluid" width="750" height="750"
+            <img className="bd-placeholder-img py-5 px-3 img-fluid" width="750" height="750"
               src={Facial} role="img" preserveAspectRatio="xMidYMid slice"
               focusable="false" />
 
@@ -256,7 +258,7 @@ const Home = () => {
                 src={Reviewer5} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
 
-              <div className="carousel-caption text-center light-text mb-5">
+              <div className="carousel-caption text-center reviews light-text mb-5">
                 <h1>Molly Ringwell says:</h1>
                 <p>"Finally someone got that knot out of my back!! Highly recommend for those chronically in pain"</p>
               </div>
@@ -270,9 +272,9 @@ const Home = () => {
                 src={Reviewer4} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
 
-              <div className="carousel-caption text-center dark-text mb-5">
+              <div className="carousel-caption text-center reviews dark-text mb-5">
                 <h1>WalksWithoutPain says:</h1>
-                <p>Pretty sure I saw a worker turn water into wine, that's all I'm saying. 10/10</p>
+                <p>"Pretty sure I saw a worker turn water into wine, that's all I'm saying. 10/10"</p>
               </div>
             </div>
           </div>
@@ -284,9 +286,9 @@ const Home = () => {
                 src={Reviewer1} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
 
-              <div className="carousel-caption text-center light-text mb-5">
+              <div className="carousel-caption text-center reviews light-text mb-5">
                 <h1>CrickInMyCrack says:</h1>
-                <p>They have some people there with crazy hands. They must always be hitting the gym! 5 Stars!</p>
+                <p>"They have some people there with crazy hands. They must always be hitting the gym! 5 Stars!"</p>
               </div>
             </div>
           </div>
@@ -298,9 +300,9 @@ const Home = () => {
                 src={Reviewer2} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
 
-              <div className="carousel-caption text-center dark-text mb-5">
-                <h1>Bird_Watches_For_The_Thrill says:</h1>
-                <p>The experience here has been life changing, which isn't saying much I guess, didn't have much of a life to begin with. 5/5 beaks up!</p>
+              <div className="carousel-caption reviews text-center dark-text mb-5">
+                <h2 className="reviewTitle">Bird_Watches_For_The_Thrill says:</h2>
+                <p>"The experience here has been life changing, which isn't saying much I guess, didn't have much of a life to begin with. 5/5 beaks up!"</p>
               </div>
             </div>
           </div>
@@ -312,9 +314,9 @@ const Home = () => {
                 src={Reviewer3} role="img" preserveAspectRatio="xMidYMid slice"
                 focusable="false" />
 
-              <div className="carousel-caption text-center light-text mb-5">
+              <div className="carousel-caption text-center reviews light-text mb-5">
                 <h1>Jeremiah Anderson says:</h1>
-                <p>They really only hire the best, shout out to cousin Andy! Love you bro! 10/10</p>
+                <p>"They really only hire the best, shout out to cousin Andy! Love you bro! 10/10"</p>
               </div>
             </div>
           </div>
