@@ -10,7 +10,7 @@ export const GET_STAFF = gql`
       hours
       availability { 
         _id
-        dayOfWeek
+        dayOfMonth
         hour
         available
       }
@@ -103,10 +103,10 @@ query GetUserBookings($userId: ID!) {
 `;
 
 export const GET_AVAILABILITY = gql`
-  query GetAvailability($dayOfWeek: Int!, $hour: Int!) {
-    availability(dayOfWeek: $dayOfWeek, hour: $hour) {
+  query GetAvailability($dayOfMonth: String!, $hour: String!) {
+    availability(dayOfMonth: $dayOfMonth, hour: $hour) {
       _id
-      dayOfWeek
+      dayOfMonth
       hour
       available
     }
