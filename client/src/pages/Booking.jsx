@@ -91,9 +91,9 @@ const Booking = () => {
 
   const availableHours = [];
   (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers).forEach((member) => {
-    member.hours.forEach((hour) => {
-      if (!availableHours.includes(hour)) {
-        availableHours.push(hour)
+    member.availability.forEach((timeBlock) => {
+      if (!availableHours.includes(timeBlock.hour)) {
+        availableHours.push(timeBlock.hour)
       }
     })
   });
@@ -108,7 +108,7 @@ const Booking = () => {
     <option value={service._id} key={service._id}>{service.serviceName} (${service.servicePrice})</option>
   ));
 
-  let hourList = availableHours.map(function (hour) {
+  let hourList = availableHours.map((hour) => {
     return <option key={hour} value={hour}>{hour}</option>;
   });
 
