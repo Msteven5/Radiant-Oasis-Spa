@@ -7,7 +7,6 @@ export const GET_STAFF = gql`
       _id
       firstName
       lastName
-      hours
       availability { 
         _id
         dayOfMonth
