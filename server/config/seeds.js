@@ -1,119 +1,142 @@
 const mongoose = require('mongoose');
-const { getCurrentDate } = require('../utils/date');
 const db = require('./connection');
-const { User, Staff, Services, Booking, } = require('../models');
+const { Staff, Services } = require('../models');
+const Availability = require ('../models/Availability')
 const cleanDB = require('./cleanDB');
 
 db.once('open', async () => {
-  await cleanDB('User', 'users');
-  await cleanDB('Staff', 'staff');
-  await cleanDB('Service', 'services');
-  await cleanDB('Booking', 'bookings');
+  try {
+    await cleanDB('Staff', 'staff');
+    await cleanDB('Service', 'services');
+    await cleanDB('Availability', 'openingAvailability', 'closingAvailability'); 
 
+    const servicesData = [
+      { serviceName: 'Manicure', servicePrice: 25.99, addOns: [{ addOnName: 'Nail Art', addOnPrice: 5.99 }, { addOnName: 'Cuticle Treatment', addOnPrice: 3.99 }] },
+      { serviceName: 'Pedicure', servicePrice: 35.99, addOns: [{ addOnName: 'Foot Massage', addOnPrice: 8.99 }, { addOnName: 'Callus Removal', addOnPrice: 4.99 }] },
+      { serviceName: 'Massage', servicePrice: 45.99, addOns: [{ addOnName: 'Aromatherapy', addOnPrice: 7.99 }, { addOnName: 'Hot Stones', addOnPrice: 9.99 }] },
+      { serviceName: 'Facial', servicePrice: 55.99, addOns: [{ addOnName: 'Exfoliation', addOnPrice: 6.99 }, { addOnName: 'Mask', addOnPrice: 5.99 }] },
+      { serviceName: 'Yoga', servicePrice: 30.00 }
+    ];
 
-  const users = await User.insertMany([
-    {
-      firstName: 'Michael',
-      lastName: 'Davidson',
-      email: 'md1232@example.com',
-      password: 'abc123',
-      bookings: []
-    },
-    {
-      firstName: 'Anna',
-      lastName: 'Cormier',
-      email: 'ac1232@example.com',
-      password: 'abc123',
-      bookings: []
-    }
-  ]);
+    const services = await Services.insertMany(servicesData);
 
-  const services = await Services.insertMany([
-    { serviceName: 'Manicure', servicePrice: 25.99, addOns: [{ addOnName: 'Nail Art', addOnPrice: 5.99 }, { addOnName: 'Cuticle Treatment', addOnPrice: 3.99 }] },
-    { serviceName: 'Pedicure', servicePrice: 35.99, addOns: [{ addOnName: 'Foot Massage', addOnPrice: 8.99 }, { addOnName: 'Callus Removal', addOnPrice: 4.99 }] },
-    { serviceName: 'Massage', servicePrice: 45.99, addOns: [{ addOnName: 'Aromatherapy', addOnPrice: 7.99 }, { addOnName: 'Hot Stones', addOnPrice: 9.99 }] },
-    { serviceName: 'Facial', servicePrice: 55.99, addOns: [{ addOnName: 'Exfoliation', addOnPrice: 6.99 }, { addOnName: 'Mask', addOnPrice: 5.99 }] },
-    { serviceName: 'Yoga', servicePrice: 30.00 }
-  ]);
+    const openingAvailabilityData = [
+      { fullDate: "2024-03-28", hour: "8:00a-9:00a", available: true }, 
+      { fullDate: "2024-03-28", hour: "9:00a-10:00a", available: true }, 
+      { fullDate: "2024-03-28", hour: "10:00a:-11:00a", available: true }, 
+      { fullDate: "2024-03-28", hour: "11:00a:12:00p", available: true }, 
+      { fullDate: "2024-03-28", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "8:00a-9:00a", available: true }, 
+      { fullDate: "2024-03-29", hour: "9:00a-10:00a", available: true }, 
+      { fullDate: "2024-03-29", hour: "10:00a:-11:00a", available: true }, 
+      { fullDate: "2024-03-29", hour: "11:00a:12:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "12:00p-1:00p", available: true },
+      { fullDate: "2024-03-30", hour: "8:00a-9:00a", available: true }, 
+      { fullDate: "2024-03-30", hour: "9:00a-10:00a", available: true }, 
+      { fullDate: "2024-03-30", hour: "10:00a:-11:00a", available: true }, 
+      { fullDate: "2024-03-30", hour: "11:00a:12:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "12:00p-1:00p", available: true },
+      { fullDate: "2024-03-31", hour: "8:00a-9:00a", available: true }, 
+      { fullDate: "2024-03-31", hour: "9:00a-10:00a", available: true }, 
+      { fullDate: "2024-03-31", hour: "10:00a:-11:00a", available: true }, 
+      { fullDate: "2024-03-31", hour: "11:00a:12:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "12:00p-1:00p", available: true },
+      { fullDate: "2024-04-01", hour: "8:00a-9:00a", available: true }, 
+      { fullDate: "2024-04-01", hour: "9:00a-10:00a", available: true }, 
+      { fullDate: "2024-04-01", hour: "10:00a:-11:00a", available: true }, 
+      { fullDate: "2024-04-01", hour: "11:00a:12:00p", available: true }, 
+      { fullDate: "2024-04-01", hour: "12:00p-1:00p", available: true },
+    ];
 
+    const closingAvailabilityData = [
+      { fullDate: "2024-03-28", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-03-28", hour: "1:00p-2:00p", available: true }, 
+      { fullDate: "2024-03-28", hour: "2:00p:3:00p", available: true }, 
+      { fullDate: "2024-03-28", hour: "3:00p:4:00p", available: true }, 
+      { fullDate: "2024-03-28", hour: "4:00p-5:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "1:00p-2:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "2:00p:3:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "3:00p:4:00p", available: true }, 
+      { fullDate: "2024-03-29", hour: "4:00p-5:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "1:00p-2:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "2:00p:3:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "3:00p:4:00p", available: true }, 
+      { fullDate: "2024-03-30", hour: "4:00p-5:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "1:00p-2:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "2:00p:3:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "3:00p:4:00p", available: true }, 
+      { fullDate: "2024-03-31", hour: "4:00p-5:00p", available: true },
+      { fullDate: "2024-04-01", hour: "12:00p-1:00p", available: true }, 
+      { fullDate: "2024-04-01", hour: "1:00p-2:00p", available: true }, 
+      { fullDate: "2024-04-01", hour: "2:00p:3:00p", available: true }, 
+      { fullDate: "2024-04-01", hour: "3:00p:4:00p", available: true }, 
+      { fullDate: "2024-04-01", hour: "4:00p-5:00p", available: true }, 
+    ];
 
-  function generateAvailability(date, hours) {
-    const fullDate = date;
+    const openingAvailability = await Availability.insertMany(openingAvailabilityData);
+    const closingAvailability = await Availability.insertMany(closingAvailabilityData);
 
-    return hours.map(hour => ({
-        fullDate: fullDate,
-        hour: hour,
-        available: true
-    }));
-}
+    const staffData = [
+      { 
+          firstName: 'Michael', 
+          lastName: 'Brown', 
+          services: [services.find(service => service.serviceName === 'Manicure')._id],   
+          availability: [closingAvailability]._id
+      },
+      { 
+          firstName: 'Jessica', 
+          lastName: 'Davis', 
+          services: [services.find(service => service.serviceName === 'Yoga')._id], 
+          availability: [openingAvailability]._id
+      },
+      { 
+          firstName: 'Christopher', 
+          lastName: 'Wilson', 
+          services: [services.find(service => service.serviceName === 'Massage')._id], 
+          availability: [openingAvailability]._id
+      },
+      { 
+          firstName: 'Emily', 
+          lastName: 'Jones', 
+          services: [services.find(service => service.serviceName === 'Facial')._id], 
+          availability: [closingAvailability]._id
+      },
+      { 
+          firstName: 'Daniel', 
+          lastName: 'Taylor', 
+          services: [services.find(service => service.serviceName === 'Manicure')._id], 
+          availability: [openingAvailability]._id
+      },
+      { 
+          firstName: 'Sophia', 
+          lastName: 'Miller', 
+          services: [services.find(service => service.serviceName === 'Massage')._id], 
+          availability: [closingAvailability]._id
+      },
+      { 
+          firstName: 'Andrew', 
+          lastName: 'Anderson', 
+          services: [services.find(service => service.serviceName === 'Facial')._id], 
+          availability: [openingAvailability]._id
+      },
+      { 
+          firstName: 'Olivia', 
+          lastName: 'Moore', 
+          services: [services.find(service => service.serviceName === 'Pedicure')._id], 
+          availability: [closingAvailability]._id
+      }
+    ];
 
-const currentDate = getCurrentDate();
+    const staff = await Staff.insertMany(staffData);
 
-const staffData = [
-    { firstName: 'Michael', lastName: 'Brown', serviceName: 'Manicure', hours: ['12:00p-1:00p', '1:00p-2:00p', '2:00p-3:00p', '3:00p-4:00p', '4:00p-5:00p'] },
-    { firstName: 'Jessica', lastName: 'Davis', serviceName: 'Yoga', hours: ['8:00a-9:00a', '9:00a-10:00a', '10:00a-11:00a', '12:00p-1:00p', '1:00p-2:00p'] },
-    { firstName: 'Christopher', lastName: 'Wilson', serviceName: 'Massage', hours: ['8:00a-9:00a', '9:00a-10:00a', '10:00a-11:00a', '12:00p-1:00p', '1:00p-2:00p'] },
-    { firstName: 'Emily', lastName: 'Jones', serviceName: 'Facial', hours: ['12:00p-1:00p', '1:00p-2:00p', '2:00p-3:00p', '3:00p-4:00p', '4:00p-5:00p'] },
-    { firstName: 'Daniel', lastName: 'Taylor', serviceName: 'Manicure', hours: ['8:00a-9:00a', '9:00a-10:00a', '10:00a-11:00a', '12:00p-1:00p', '1:00p-2:00p'] },
-    { firstName: 'Sophia', lastName: 'Miller', serviceName: 'Massage', hours: ['12:00p-1:00p', '1:00p-2:00p', '2:00p-3:00p', '3:00p-4:00p', '4:00p-5:00p'] },
-    { firstName: 'Andrew', lastName: 'Anderson', serviceName: 'Facial', hours: ['8:00a-9:00a', '9:00a-10:00a', '10:00a-11:00a', '12:00p-1:00p', '1:00p-2:00p'] },
-    { firstName: 'Olivia', lastName: 'Moore', serviceName: 'Pedicure', hours: ['12:00p-1:00p', '1:00p-2:00p', '2:00p-3:00p', '3:00p-4:00p', '4:00p-5:00p'] }
-];
-
-const staff = await Staff.insertMany(staffData.map(staff => ({
-    firstName: staff.firstName,
-    lastName: staff.lastName,
-    services: services.find(service => service.serviceName === staff.serviceName)._id,
-    availability: generateAvailability(currentDate, staff.hours)
-})));
-
-
-
-  const michaelBookings = [
-    {
-      user: users[0]._id,
-      service: services.find(service => service.serviceName === 'Manicure')._id,
-      staff: staff.find(staff => staff.firstName === 'Michael')._id,
-      date: new Date('01-19-2024'),
-      time: '3:00p - 4:00p'
-    },
-    {
-      user: users[0]._id,
-      service: services.find(service => service.serviceName === 'Manicure')._id,
-      staff: staff.find(staff => staff.firstName === 'Michael')._id,
-      date: new Date('01-18-2024'),
-      time: '2:30 PM'
-    },
-    {
-      user: users[0]._id,
-      service: services.find(service => service.serviceName === 'Manicure')._id,
-      staff: staff.find(staff => staff.firstName === 'Michael')._id,
-      date: new Date('01-20-2024'),
-      time: '5:30 PM'
-    }
-  ];
-
-  const annaBookings = [
-    {
-      user: users[1]._id,
-      service: services.find(service => service.serviceName === 'Manicure')._id,
-      staff: staff.find(staff => staff.firstName === 'Michael')._id,
-      date: new Date('01-19-2024'),
-      time: '3:30 PM'
-    },
-  
-  ];
-
-  const bookings = await Booking.insertMany([...michaelBookings, ...annaBookings]);
-
-  for (const booking of bookings) {
-    const userIndex = users.findIndex(user => user._id.toString() === booking.user.toString());
-    users[userIndex].bookings.push(booking);
+    console.log('Data seeded successfully');
+    process.exit();
+  } catch (error) {
+    console.error('Error seeding data:', error);
+    process.exit(1);
   }
-
-  await Promise.all(users.map(user => user.save()));
-
-  console.log('Data seeded successfully');
-  process.exit();
 });
 
