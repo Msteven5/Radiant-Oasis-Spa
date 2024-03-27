@@ -6,6 +6,7 @@ import { useQuery, useMutation} from '@apollo/client';
 import auth from '../utils/auth';
 import { GET_USER_BOOKINGS } from '../utils/queries';
 import { CANCEL_BOOKING } from '../utils/mutations';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,14 +21,16 @@ function Confirmation() {
 
   const [cancelBookingMutation] = useMutation(CANCEL_BOOKING);
 
+  const navigate = useNavigate();
+
 const handleCancelBooking = async (bookingId) => {
   try {
     console.log('Booking ID:', bookingId);
     const { data } = await cancelBookingMutation({
       variables: { id: bookingId }
     });
-    console.log('Cancellation response:', data); 
-    alert('Booking cancelled!');
+    alert('Booking Cancelled')
+    navigate('/Booking')
   } catch (error) {
     console.error('Error cancelling booking:', error);
   }
