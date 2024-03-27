@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_STAFF } from '../utils/queries';
 import { CREATE_BOOKING } from '../utils/mutations';
+import { UPDATE_AVAILABILITY } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
 import auth from '../utils/auth';
 
@@ -142,7 +142,7 @@ const Booking = () => {
   }
 
   const [createBooking, { error: booking }] = useMutation(CREATE_BOOKING);
-
+  const [updateAvailability, { error: availability }] = useMutation(UPDATE_AVAILABILITY)
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -158,13 +158,21 @@ const Booking = () => {
           time: formState.time
         },
       });
-      if (mutationResponse.data.createBooking) {
+
+      const updateAvail = await updateAvailability({
+        variables: {
+          id: formState.availability,
+          available: false
+        }
+      });
+      if (mutationResponse.data.createBooking && updateAvail.data.updateAvailability) {
         console.log('Submission successful!');
         navigate("/Confirmation");
       } else {
         console.log('Submission failed.');
       }
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
     }
   };
