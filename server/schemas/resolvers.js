@@ -118,16 +118,17 @@ const resolvers = {
         throw new AuthenticationError('Login failed');
       }
     },
-    updateAvailability: async (_, { availabilityID, available }) => {
-      try {
-        await Availability.findByIdAndUpdate(availabilityID,
-          { $set: { available: available } });
-      } catch (error) {
-        console.log(error)
-        throw new Error('Failure to update availability');
+
+    cancelBooking: async(parent, {_id}) => {
+      try{
+      const booking = await Booking.findByIdAndDelete(_id)
+      return booking
+      }
+      catch (error) {
+        throw new Error ('failed to cancel booking')
       }
     }
-  },
+  },    
 };
 
 module.exports = resolvers;
