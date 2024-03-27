@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 
 const availabilitySchema = new Schema({
@@ -19,6 +20,7 @@ const availabilitySchema = new Schema({
     }
 });
 
+const Availability = mongoose.model('Availability', availabilitySchema)
 
-module.exports = availabilitySchema;
+module.exports = Availability;
 

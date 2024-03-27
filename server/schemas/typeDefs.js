@@ -93,6 +93,10 @@ const typeDefs = `
       phoneNumber: String,
       date: String, 
       time: String): Booking!
+
+      updateAvailability(
+        availabilityID: ID!,
+        available: Boolean!) : Availability
   }
 `;
 
