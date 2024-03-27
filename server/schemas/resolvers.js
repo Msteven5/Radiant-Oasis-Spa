@@ -137,10 +137,12 @@ const resolvers = {
         throw new Error(`failed to cancel booking:${error.message}`)
       }
     },
-    updateAvailability: async (_, { availabilityID, available }) => {
+    updateAvailability: async (_, {_id, available }) => {
       try {
-        await Availability.findByIdAndUpdate(availabilityID,
+      const updatedAvail=  await Availability.findByIdAndUpdate(_id,
           { $set: { available: available } });
+
+        return updatedAvail
       } catch (error) {
         console.log(error)
         throw new Error('Failure to update availability');
