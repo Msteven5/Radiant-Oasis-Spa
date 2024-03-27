@@ -26,7 +26,6 @@ function Nav() {
     const user = await Auth.getProfile();
     if (user && user.data) {
       setFirstName(user.data.firstName);
-      console.log('First name:', user.data.firstName); 
     }
   };
 
@@ -51,19 +50,6 @@ function Nav() {
 
   }
   
-
-  // const handleLogin = async () => {
-  //   await fetchFirstName(); 
-  //   setIsLoggedIn(true);
-  //   setIsLoginModalOpen(false); 
-  // }
-
-  // const handleSignup = async () => {
-  //   await fetchFirstName(); 
-  //   setIsLoggedIn(true);
-  //   setIsLoginModalOpen(false); 
-  //   setIsSignupModalOpen(false); 
-  // }
 
   const handleLoginModalClose = () => {
     setIsLoginModalOpen(false);

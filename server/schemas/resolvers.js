@@ -1,6 +1,6 @@
 const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
 const { User, Staff, Services, Booking } = require('../models');
-const Availability = require ('../models/Availability')
+const Availability = require('../models/Availability')
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -16,18 +16,18 @@ const resolvers = {
         throw new Error('Failed to fetch user');
       }
     },
-    getStaff:  async () => {
+    getStaff: async () => {
       try {
-          return await Staff.find()
-              .populate('services')
-              .populate('availability');
+        return await Staff.find()
+          .populate('services')
+          .populate('availability');
       } catch (error) {
-          console.error('Error fetching staff:', error);
-          throw new Error('Failed to fetch staff');
+        console.error('Error fetching staff:', error);
+        throw new Error('Failed to fetch staff');
       }
-  },
-  
-  
+    },
+
+
     getServices: async () => {
       try {
         return await Services.find();
@@ -125,19 +125,28 @@ const resolvers = {
       }
     },
 
-    cancelBooking: async(parent, {_id}) => {
-      try{
-      const booking = await Booking.findByIdAndDelete(_id)
-      console.log(_id)
-     
-      return booking
-      ;
+    cancelBooking: async (parent, { _id }) => {
+      try {
+        const booking = await Booking.findByIdAndDelete(_id)
+        console.log(_id)
+
+        return booking
+          ;
       }
       catch (error) {
-        throw new Error (`failed to cancel booking:${error.message}`)
+        throw new Error(`failed to cancel booking:${error.message}`)
+      }
+    },
+    updateAvailability: async (_, { availabilityID, available }) => {
+      try {
+        await Availability.findByIdAndUpdate(availabilityID,
+          { $set: { available: available } });
+      } catch (error) {
+        console.log(error)
+        throw new Error('Failure to update availability');
       }
     }
-  },    
+  },
 };
 
 module.exports = resolvers;
