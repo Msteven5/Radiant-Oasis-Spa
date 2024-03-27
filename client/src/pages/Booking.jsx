@@ -96,7 +96,6 @@ const Booking = () => {
   (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers)
     .forEach((member) => {
       member.availability.forEach((timeBlock) => {
-        console.log(timeBlock)
         if (timeBlock.available && timeBlock.fullDate == formState.date && !availableHours.includes(timeBlock.hour)) {
           availableHours.push(timeBlock)
         }
