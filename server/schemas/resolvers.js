@@ -118,6 +118,16 @@ const resolvers = {
         throw new AuthenticationError('Login failed'); 
       }
     },
+
+    cancelBooking: async(parent, {_id}) => {
+      try{
+      const booking = await Booking.findByIdAndDelete(_id)
+      return booking
+      }
+      catch (error) {
+        throw new Error ('failed to cancel booking')
+      }
+    }
   },    
 };
 

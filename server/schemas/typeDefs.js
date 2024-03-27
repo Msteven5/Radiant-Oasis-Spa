@@ -78,6 +78,8 @@ const typeDefs = `
     loginUser (email: String!, password: String!): Auth! # Login mutation
     
     logout: String! # Logout mutation
+    
+    cancelBooking(_id: ID): Booking
   
     createUser(
       firstName: String!, 
