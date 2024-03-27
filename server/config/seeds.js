@@ -36,6 +36,7 @@ db.once('open', async () => {
     { serviceName: 'Yoga', servicePrice: 30.00 }
   ]);
 
+
   function generateAvailability(date, hours) {
     const fullDate = date;
 
