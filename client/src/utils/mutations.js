@@ -72,3 +72,11 @@ mutation updateAvailability($availabilityID: ID!, $available: Boolean!) {
   }
 }
 `;
+
+export const CANCEL_BOOKING = gql`
+mutation Mutation($id: ID) {
+  cancelBooking(_id: $id) {
+    _id
+  }
+}
+`

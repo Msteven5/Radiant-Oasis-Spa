@@ -87,6 +87,7 @@ export const GET_SERVICES = gql`
 export const GET_USER_BOOKINGS = gql`
 query GetUserBookings($userId: ID!) {
   getUserBookings(userId: $userId) {
+  _id
   date
   time
   service {
