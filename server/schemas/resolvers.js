@@ -1,5 +1,6 @@
 const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
-const { User, Staff, Services, Booking, Availability } = require('../models');
+const { User, Staff, Services, Booking } = require('../models');
+const Availability = require ('../models/Availability')
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -15,13 +16,18 @@ const resolvers = {
         throw new Error('Failed to fetch user');
       }
     },
-    getStaff: async () => {
+    getStaff:  async () => {
       try {
-        return await Staff.find().populate('services').populate('availability');
+          return await Staff.find()
+              .populate('services')
+              .populate('availability');
       } catch (error) {
-        throw new Error('Failed to fetch staff');
+          console.error('Error fetching staff:', error);
+          throw new Error('Failed to fetch staff');
       }
-    },
+  },
+  
+  
     getServices: async () => {
       try {
         return await Services.find();
