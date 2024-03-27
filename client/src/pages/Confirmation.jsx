@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import massageimg from '../assets/candle2.jpg';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation} from '@apollo/client';
 import auth from '../utils/auth';
 import { GET_USER_BOOKINGS } from '../utils/queries';
+import { CANCEL_BOOKING } from '../utils/mutations';
+
+
 
 function Confirmation() {
   const userId = auth.getProfile().data._id;
@@ -14,6 +17,21 @@ function Confirmation() {
   }, [userId]); 
   const bookings = data ? data.getUserBookings : [];
   const nextAppointment = bookings.length > 0 ? bookings[bookings.length - 1] : null;
+
+  const [cancelBookingMutation] = useMutation(CANCEL_BOOKING);
+
+const handleCancelBooking = async (bookingId) => {
+  try {
+    console.log('Booking ID:', bookingId);
+    const { data } = await cancelBookingMutation({
+      variables: { id: bookingId }
+    });
+    console.log('Cancellation response:', data); 
+    alert('Booking cancelled!');
+  } catch (error) {
+    console.error('Error cancelling booking:', error);
+  }
+};
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 0 }}  id="confirmationBg">
@@ -28,8 +46,7 @@ function Confirmation() {
               <Card.Text>
                 You have an appointment scheduled for {nextAppointment.date} at {nextAppointment.time} with {nextAppointment.staff.firstName} {nextAppointment.staff.lastName}
               </Card.Text>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Reschedule</Card.Link>
-              <Card.Link href="#" style={{ color: '#231a11' }}>Cancel</Card.Link>
+              <Card.Link href="#" style={{ color: '#231a11' }} onClick={() => handleCancelBooking(nextAppointment._id)}>Cancel</Card.Link>
             </Card.Body>
           </Card>
         </div>

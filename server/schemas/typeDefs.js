@@ -56,6 +56,8 @@ const typeDefs = `
     time: String
   }
 
+
+
   type Availability {
     _id: ID!
     fullDate: String

@@ -128,10 +128,13 @@ const resolvers = {
     cancelBooking: async(parent, {_id}) => {
       try{
       const booking = await Booking.findByIdAndDelete(_id)
+      console.log(_id)
+     
       return booking
+      ;
       }
       catch (error) {
-        throw new Error ('failed to cancel booking')
+        throw new Error (`failed to cancel booking:${error.message}`)
       }
     }
   },    
