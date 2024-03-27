@@ -51,9 +51,9 @@ const SignupModal = ({ isOpen, onClose }) => {
         {submitted && successMessage && (
           <div className="success-message">{successMessage}</div>
         )}
-        <h5 className='gold-text text-center fs-6 my-3 mb-4'>Please Sign Up to Book Your Appointment!</h5>
         {!submitted && (
           <form onSubmit={handleFormSubmit}>
+            <h5 className='gold-text text-center fs-6 my-3 mb-4'>Please Signup to Book Your Appointment!</h5>
             <div className="d-flex justify-content-end">
               <label htmlFor="firstName" className='me-3 light-text'>First Name:</label>
               <input

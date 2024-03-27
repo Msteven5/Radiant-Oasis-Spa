@@ -37,7 +37,6 @@ db.once('open', async () => {
   ]);
 
 
-
   function generateAvailability(date, hours) {
     const fullDate = date;
 

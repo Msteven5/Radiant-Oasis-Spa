@@ -58,7 +58,7 @@ const typeDefs = `
 
   type Availability {
     _id: ID!
-    dayOfMonth: String
+    fullDate: String
     hour: String
     available: Boolean!
   }
@@ -95,6 +95,10 @@ const typeDefs = `
       phoneNumber: String,
       date: String, 
       time: String): Booking!
+
+      updateAvailability(
+        availabilityID: ID!,
+        available: Boolean!) : Availability
   }
 `;
 

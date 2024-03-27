@@ -38,7 +38,7 @@ const Home = () => {
   const closeChatbot = () => {
     setShowChatbot(false);
   };
-console.log(auth.getProfile().data.email)
+
   return (
     <>
 
@@ -57,9 +57,6 @@ console.log(auth.getProfile().data.email)
           </button>
         </div>
       )}
-
-
-
 
       <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
         <div className="carousel-indicators">
