@@ -140,8 +140,7 @@ const resolvers = {
     updateAvailability: async (_, {_id, available }) => {
       try {
       const updatedAvail=  await Availability.findByIdAndUpdate(_id,
-          { $set: { available: available } });
-
+          { $set: { available: available } }, {new:true});
         return updatedAvail
       } catch (error) {
         console.log(error)
