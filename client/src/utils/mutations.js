@@ -65,10 +65,9 @@ mutation loginUser($email: String!, $password: String!) {
 export const UPDATE_AVAILABILITY = gql`
 mutation updateAvailability($availabilityID: ID!, $available: Boolean!) {
   updateAvailability(availabilityID: $availabilityID, available: $available) {
-    user {
+    availability {
       _id
-      firstName
-      lastName
+      available
     }
   }
 }

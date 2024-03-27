@@ -1,5 +1,5 @@
 const { signToken, AuthenticationError, UserInputError } = require('../utils/auth');
-const { User, Staff, Services, Booking } = require('../models');
+const { User, Staff, Services, Booking, Availability } = require('../models');
 const bcrypt = require('bcrypt');
 
 const resolvers = {
@@ -79,10 +79,10 @@ const resolvers = {
     },
     createBooking: async (_, { userId, serviceId, staffId, addOnId, phoneNumber, date, time }) => {
       try {
-         const newBooking = await Booking.create({
-          user:userId,
+        const newBooking = await Booking.create({
+          user: userId,
           service: serviceId,
-          staff:staffId,
+          staff: staffId,
           addOn: addOnId,
           phoneNumber,
           date,
@@ -101,24 +101,33 @@ const resolvers = {
         if (!user) {
           throw new Error('User not found');
         }
-        
+
         if (password === user.password) {
-          const token = signToken(user); 
+          const token = signToken(user);
           return { token, user };
         }
-        
+
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
           throw new Error('Incorrect password');
         }
-    
-        const token = signToken(user); 
+
+        const token = signToken(user);
         return { token, user };
       } catch (error) {
-        throw new AuthenticationError('Login failed'); 
+        throw new AuthenticationError('Login failed');
       }
     },
-  },    
+    updateAvailability: async (_, { availabilityID, available }) => {
+      try {
+        await Availability.findByIdAndUpdate(availabilityID,
+          { $set: { available: available } });
+      } catch (error) {
+        console.log(error)
+        throw new Error('Failure to update availability');
+      }
+    }
+  },
 };
 
 module.exports = resolvers;
