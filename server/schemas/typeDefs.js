@@ -98,8 +98,7 @@ const typeDefs = `
       date: String, 
       time: String): Booking!
 
-      updateAvailability(
-        availabilityID: ID!,
+      updateAvailability(_id: ID!,
         available: Boolean!) : Availability
   }
 `;
