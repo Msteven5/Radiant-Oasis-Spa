@@ -58,7 +58,7 @@ const typeDefs = `
 
   type Availability {
     _id: ID!
-    dayOfMonth: String
+    fullDate: String
     hour: String
     available: Boolean!
   }

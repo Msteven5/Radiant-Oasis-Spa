@@ -9,7 +9,7 @@ export const GET_STAFF = gql`
       lastName
       availability { 
         _id
-        dayOfMonth
+        fullDate
         hour
         available
       }
@@ -102,10 +102,10 @@ query GetUserBookings($userId: ID!) {
 `;
 
 export const GET_AVAILABILITY = gql`
-  query GetAvailability($dayOfMonth: String!, $hour: String!) {
-    availability(dayOfMonth: $dayOfMonth, hour: $hour) {
+  query GetAvailability($fullDate: String!, $hour: String!) {
+    availability(fullDate: $fullDate, hour: $hour) {
       _id
-      dayOfMonth
+      fullDate
       hour
       available
     }
