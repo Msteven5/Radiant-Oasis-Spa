@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_STAFF } from '../utils/queries';
 import { CREATE_BOOKING } from '../utils/mutations';
 import { useNavigate } from "react-router-dom";
-import  auth  from '../utils/auth'; 
+import auth from '../utils/auth';
 
 import Candle from "../assets/candle.jpg"
 import Flower from "../assets/flower.jpg"
@@ -90,17 +90,14 @@ const Booking = () => {
     }, {});
 
   const availableHours = [];
-  (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers).forEach((member) => {
-    member.availability.forEach((timeBlock) => {
-      if (!availableHours.includes(timeBlock.hour)) {
-        availableHours.push(timeBlock.hour)
-      }
-    })
-  });
-
-  // const handleButtonClick = () => {
-  //   navigate("/Confirmation")
-  // };
+  (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers)
+    .forEach((member) => {
+      member.availability.forEach((timeBlock) => {
+        if (timeBlock.available && timeBlock.fullDate == formState.date && !availableHours.includes(timeBlock.hour)) {
+          availableHours.push(timeBlock.hour)
+        }
+      })
+    });
 
   const availableAddOns = availableServices[formState.serviceId]?.addOns || [];
 
@@ -143,7 +140,7 @@ const Booking = () => {
       console.error(err);
     }
   };
-  
+
   return (
     <div id="bookingPage" className="vh-100 dark-background row">
 
