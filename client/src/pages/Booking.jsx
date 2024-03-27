@@ -20,7 +20,8 @@ const Booking = () => {
     addOnId: '',
     phoneNumber: '',
     date: '',
-    time: ''
+    time: '',
+    availability: ''
   });
 
   const handleStaffChange = (event) => {
@@ -53,10 +54,15 @@ const Booking = () => {
 
   const handleTimeChange = (event) => {
     const { value } = event.target;
-    if (value) {
-      setFormState({ ...formState, time: value });
+    const selectedIndex = event.target.selectedIndex;
+    const selectedOption = event.target.options[selectedIndex];
+    const key = selectedOption.getAttribute('data-key');
+
+    if (value && key) {
+      setFormState({ ...formState, time: key, availability: value });
     }
   }
+
   const handlePhoneChange = (event) => {
     const { value } = event.target;
     if (value) {
@@ -78,9 +84,6 @@ const Booking = () => {
 
   const allStaff = staffData?.getStaff || [];
   const staffMembers = filterStaffList(allStaff);
-  const staffList = staffMembers.map((staff) => {
-    return <option disabled={formState.serviceId ? "" : 'disabled'} value={staff._id} key={staff._id}>{staff.firstName} {staff.lastName}</option>;
-  });
 
   const availableServices = allStaff.reduce(
     (services, member) => {
@@ -93,12 +96,23 @@ const Booking = () => {
   (formState.staffId ? staffMembers.filter((member) => formState.staffId === member._id) : staffMembers)
     .forEach((member) => {
       member.availability.forEach((timeBlock) => {
-       
         if (timeBlock.available && timeBlock.fullDate == formState.date && !availableHours.includes(timeBlock.hour)) {
-          availableHours.push(timeBlock.hour)
+          availableHours.push(timeBlock)
         }
       })
     });
+
+  let staffList;
+
+  if (staffMembers.length > 0) {
+
+    staffList = staffMembers.map((staff) => {
+      return <option disabled={formState.serviceId ? "" : 'disabled'} value={staff._id} key={staff._id}>{staff.firstName} {staff.lastName}</option>;
+    }
+    )
+  } else {
+    staffList = <option className='text-white' disabled>No Staff Members Available</option>;
+  }
 
   const availableAddOns = availableServices[formState.serviceId]?.addOns || [];
 
@@ -106,13 +120,26 @@ const Booking = () => {
     <option value={service._id} key={service._id}>{service.serviceName} (${service.servicePrice})</option>
   ));
 
-  let hourList = availableHours.map((hour) => {
-    return <option key={hour} value={hour}>{hour}</option>;
-  });
+  let hourList;
 
-  let addOnsList = availableAddOns.map(addOn => (
-    <option key={addOn._id} value={addOn._id}> {addOn.addOnName} (${addOn.addOnPrice}) </option>
-  ));
+  if (availableHours.length > 0) {
+    hourList = availableHours.map((hour) => (
+      <option key={hour._id} value={hour._id} data-key={hour.hour}>{hour.hour}</option>
+    ));
+  } else {
+    hourList = <option className='text-white' disabled>No Time Slots Available</option>;
+  }
+
+
+  let addOnsList;
+
+  if (availableAddOns.length > 0) {
+    addOnsList = availableAddOns.map(addOn => (
+      <option key={addOn._id} value={addOn._id}> {addOn.addOnName} (${addOn.addOnPrice}) </option>
+    ));
+  } else {
+    addOnsList = <option className='text-white' disabled>No Add Ons Available</option>
+  }
 
   const [createBooking, { error: booking }] = useMutation(CREATE_BOOKING);
 
@@ -185,7 +212,7 @@ const Booking = () => {
               {hourList}
             </select>
 
-            <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+            <input type="tel" onChange={handlePhoneChange} id="phone" name="phone" maxLength="12" placeholder="Phone Number 000-000-0000" className="my-2 text-center text-light light-background" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
 
 
             <button type="submit" className="my-2 align-self-end btn gold-background btn-dark">Submit</button>
