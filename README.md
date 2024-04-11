@@ -34,8 +34,6 @@ This project is licensed under the terms of the MIT .
 
 ## Screen Shots
 
-![Screen Shot 2024-02-13 at 9 22 16 PM](client/src/assets/Screenshot 2024-03-13 at 10.51.28 PM.png)
-
 
 ![Screen Shot 2024-02-13 at 9 25 49 PM](https://github.com/Msteven5/Radiant-Oasis-Spa/blob/main/client/src/assets/home.png)
 
@@ -60,7 +58,7 @@ GITHUB repository: https://github.com/Msteven5/Radiant-Oasis-Spa
 
 Michael Davidson
 GITHUB profile : https://github.com/Msteven5
-Email : msdvid55@gmail.com
+Email : msdavid55@gmail.com
 
 Joshua Roth
 GITHUB profile : https://github.com/JoshRTheDeveloper  
